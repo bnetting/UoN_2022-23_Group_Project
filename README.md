@@ -1,8 +1,8 @@
 # Refresh
 
 - psyas16: Ashnip Sodhi
-- psybn3:
-- psyaj3:
+- psybn3: Benjamin Netting
+- psyaj3: 
 - psyvv2:
 - psynp2: Nayan Patel
 - psypb8:
