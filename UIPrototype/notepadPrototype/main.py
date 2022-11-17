@@ -15,7 +15,7 @@ class NotepadWindow(QMainWindow, Ui_MainWindow):
     def save_file(self): #The save file button
         filename = QFileDialog.getSaveFileName(self, "Save File")
         
-        if filename[0]:
+        if filename[0]: #filename[0] gives the folder directory you tried to save the file in
             f = open(filename[0], 'w')
             
             with f:
