@@ -7,7 +7,6 @@ pyuic6 -x mainwindow.ui -o mainwindow.py
 
 '-o ___.py' is what the outrput file will be called
 
-
 """
 
 from PyQt6.QtWidgets import QApplication, QMainWindow #If we get an error in the future, check the error to see if it wants QMainWindow, QWidget or QDialog
