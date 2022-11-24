@@ -7,7 +7,7 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets
-import mysql.connector as mc # Custom inport
+import mysql.connector as mc # Custom import
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -62,6 +62,7 @@ class Ui_Form(object):
         #----------------------------------
         self.pushButton_createDB.clicked.connect(self.createDatabase)
         #----------------------------------
+        
         self.pushButton_connectDB.setFont(font)
         self.pushButton_connectDB.setObjectName("pushButton_connectDB")
         self.horizontalLayout_2.addWidget(self.pushButton_connectDB)
@@ -70,6 +71,7 @@ class Ui_Form(object):
         #----------------------------------
         self.pushButton_connectDB.clicked.connect(self.connectDatabase)
         #----------------------------------
+        
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
         
