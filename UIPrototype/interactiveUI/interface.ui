@@ -6,67 +6,73 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>807</width>
-    <height>497</height>
+    <width>800</width>
+    <height>495</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true">@font-face {
-	font-family: NovaFlat;
-	src: url(:/fonts/Nova_Flat/NovaFlat-Regular.ttf) format(&quot;truetype&quot;);
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">*{
+color: #000;
+font-size 12px;
+border: nine;
+background :none;
 }
-*{
-color : #000;
-font-family: NovaFlat;
-font-size: 12px;
-border : nine;
-background: none;
-}
+
+/* Changes the background colour of the application*/
 #centralwidget{
-background-color: rgb(255, 255, 255);
+background-color: rgb(230, 236, 242);
 }
-#left_menu_widget, #percentage_bar_chart, #nested_donuts,
-#line_charts, #bar_charts, #temperature_bar_chart
-{
-background-color: rgba(220, 225, 232, 100)
+
+/* Changes all pages and the side select menu to a darker colour*/
+#left_menu_widget, #percentage_bar_chart, #nested_donuts, #line_charts, #bar_charts, #temperature_bar_chart{
+background-color: rgba(213, 223, 232, 100);
 }
-#header_frame, #frame_3, #frame_5{
-background-color: rgb(242, 246, 252);
+
+/* Changes sorrounding frame colours*/
+#header_frame, #frame_11, #frame_12{
+background-color: rgb(213, 223, 232);
 }
+
+/* Changes the colour of the selection buttons in the left slide widget*/
 #frame_4 QPushButton{
 padding: 10px;
 border-radius: 5px;
-background-color: rgba(194, 198, 204, 100);
+background-color: rgb(213, 223, 232);
 }
-#header_nav QPushButton{
-	background-color: rgb(255, 255, 255);
-	border-radius: 15px;
-	border: 3px solid rgb(61, 80, 95);
+
+/* Changes colour of the menu button*/
+#frame_8 QPushButton{
+padding: 5px;
+border-radius: 3px;
+background-color: rgb(192, 201, 212);
 }
-#header_nav QPushButton:hover{
-	background-color: rgb(61, 80, 95);
+
+/* Changes to colouring of minimise, maximise and close buttons*/
+#frame_9 QPushButton{
+border-radius: 15px;
+background-color: rgb(192, 201, 212);
+border: 2px solid rgb(172, 181, 192);
+}
+
+
+/* Changes colour of buttons when hovered over */
+#frame_4 QPushButton:hover{
+background-color: rgb(193, 203, 212);
+}
+
+#frame_9 QPushButton:hover{
+background-color:rgb(172, 181, 192);
+}
+
+#frame_8 QPushButton:hover{
+background-color:rgb(172, 181, 192);
 }</string>
-  </property>
-  <widget class="QWidget" name="centralwidget">
+   </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
-    <property name="spacing">
-     <number>0</number>
-    </property>
-    <property name="leftMargin">
-     <number>0</number>
-    </property>
-    <property name="topMargin">
-     <number>1</number>
-    </property>
-    <property name="rightMargin">
-     <number>0</number>
-    </property>
-    <property name="bottomMargin">
-     <number>0</number>
-    </property>
     <item>
      <widget class="QWidget" name="left_menu_widget" native="true">
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -85,10 +91,13 @@ background-color: rgba(194, 198, 204, 100);
        <property name="bottomMargin">
         <number>0</number>
        </property>
-       <item alignment="Qt::AlignTop">
+       <item>
         <widget class="QFrame" name="frame_3">
-         <property name="autoFillBackground">
-          <bool>false</bool>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
          </property>
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
@@ -96,14 +105,55 @@ background-color: rgba(194, 198, 204, 100);
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-         <property name="lineWidth">
-          <number>10</number>
+         <layout class="QHBoxLayout" name="horizontalLayout_7">
+          <item>
+           <widget class="QLabel" name="label_10">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="resources.qrc">:/icons/icons8-pie-chart-32.png</pixmap>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="font">
+             <font>
+              <pointsize>11</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>QT CHART</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="frame_4">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
-          <property name="spacing">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <property name="leftMargin">
            <number>0</number>
           </property>
-          <property name="leftMargin">
+          <property name="topMargin">
            <number>0</number>
           </property>
           <property name="rightMargin">
@@ -113,134 +163,57 @@ background-color: rgba(194, 198, 204, 100);
            <number>0</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_10">
-            <property name="text">
-             <string/>
-            </property>
-            <property name="pixmap">
-             <pixmap>the-graphs-icons/icons8-pie-chart-32.png</pixmap>
-            </property>
-            <property name="scaledContents">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item alignment="Qt::AlignTop">
-           <widget class="QLabel" name="label">
-            <property name="maximumSize">
-             <size>
-              <width>500</width>
-              <height>500</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>QT Charts</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignBottom|Qt::AlignHCenter</set>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item alignment="Qt::AlignHCenter">
-        <widget class="QFrame" name="frame_4">
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>400</height>
-          </size>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_2">
-          <item>
            <widget class="QPushButton" name="pushButton">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
-             <string>PushButton</string>
+             <string>Percentage Bar Chart</string>
             </property>
             <property name="icon">
-             <iconset>
-              <normaloff>the-graphs-icons/icons8-bar-chart-32.png</normaloff>the-graphs-icons/icons8-bar-chart-32.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButton_2">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>PushButton</string>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>the-graphs-icons/icons8-temperature-32.png</normaloff>the-graphs-icons/icons8-temperature-32.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButton_4">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>PushButton</string>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>the-graphs-icons/icons8-doughnut-chart-32.png</normaloff>the-graphs-icons/icons8-doughnut-chart-32.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButton_3">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>PushButton</string>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>the-graphs-icons/icons8-line-chart-32.png</normaloff>the-graphs-icons/icons8-line-chart-32.png</iconset>
+             <iconset resource="resources.qrc">
+              <normaloff>:/icons/icons8-bar-chart-32.png</normaloff>:/icons/icons8-bar-chart-32.png</iconset>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="pushButton_5">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="text">
-             <string>PushButton</string>
+             <string>Temperature Records</string>
             </property>
             <property name="icon">
-             <iconset>
-              <normaloff>the-graphs-icons/icons8-improvement-32.png</normaloff>the-graphs-icons/icons8-improvement-32.png</iconset>
+             <iconset resource="resources.qrc">
+              <normaloff>:/icons/icons8-temperature-32.png</normaloff>:/icons/icons8-temperature-32.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_2">
+            <property name="text">
+             <string>Nested Donuts</string>
+            </property>
+            <property name="icon">
+             <iconset resource="resources.qrc">
+              <normaloff>:/icons/icons8-doughnut-chart-32.png</normaloff>:/icons/icons8-doughnut-chart-32.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_3">
+            <property name="text">
+             <string>Line Charts</string>
+            </property>
+            <property name="icon">
+             <iconset resource="resources.qrc">
+              <normaloff>:/icons/icons8-line-chart-32.png</normaloff>:/icons/icons8-line-chart-32.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_4">
+            <property name="text">
+             <string>Bar Charts</string>
+            </property>
+            <property name="icon">
+             <iconset resource="resources.qrc">
+              <normaloff>:/icons/icons8-improvement-32.png</normaloff>:/icons/icons8-improvement-32.png</iconset>
             </property>
            </widget>
           </item>
@@ -258,8 +231,17 @@ background-color: rgba(194, 198, 204, 100);
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout_3">
-       <item alignment="Qt::AlignTop">
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
         <widget class="QFrame" name="header_frame">
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
@@ -267,7 +249,7 @@ background-color: rgba(194, 198, 204, 100);
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
           <property name="spacing">
            <number>0</number>
           </property>
@@ -291,7 +273,7 @@ background-color: rgba(194, 198, 204, 100);
             <property name="frameShadow">
              <enum>QFrame::Raised</enum>
             </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
              <item>
               <widget class="QPushButton" name="pushButton_6">
                <property name="maximumSize">
@@ -304,13 +286,13 @@ background-color: rgba(194, 198, 204, 100);
                 <string/>
                </property>
                <property name="icon">
-                <iconset>
-                 <normaloff>the-graphs-icons/icons8-menu-32.png</normaloff>the-graphs-icons/icons8-menu-32.png</iconset>
+                <iconset resource="resources.qrc">
+                 <normaloff>:/icons/icons8-menu-32.png</normaloff>:/icons/icons8-menu-32.png</iconset>
                </property>
                <property name="iconSize">
                 <size>
-                 <width>30</width>
-                 <height>30</height>
+                 <width>20</width>
+                 <height>20</height>
                 </size>
                </property>
               </widget>
@@ -318,7 +300,10 @@ background-color: rgba(194, 198, 204, 100);
              <item>
               <widget class="QLabel" name="label_2">
                <property name="text">
-                <string>Menu</string>
+                <string>MENU</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
                </property>
               </widget>
              </item>
@@ -333,18 +318,18 @@ background-color: rgba(194, 198, 204, 100);
             <property name="frameShadow">
              <enum>QFrame::Raised</enum>
             </property>
-            <layout class="QVBoxLayout" name="verticalLayout_4">
+            <layout class="QHBoxLayout" name="horizontalLayout_4">
              <item>
               <widget class="QLabel" name="label_3">
                <property name="font">
                 <font>
-                 <family>NovaFlat</family>
-                 <pointsize>-1</pointsize>
+                 <pointsize>13</pointsize>
                  <bold>true</bold>
+                 <underline>true</underline>
                 </font>
                </property>
                <property name="text">
-                <string>Dashboard</string>
+                <string>DASHBOARD</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
@@ -354,8 +339,8 @@ background-color: rgba(194, 198, 204, 100);
             </layout>
            </widget>
           </item>
-          <item alignment="Qt::AlignRight">
-           <widget class="QFrame" name="header_nav">
+          <item>
+           <widget class="QFrame" name="frame_9">
             <property name="frameShape">
              <enum>QFrame::StyledPanel</enum>
             </property>
@@ -364,7 +349,13 @@ background-color: rgba(194, 198, 204, 100);
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_5">
              <item>
-              <widget class="QPushButton" name="pushButton_7">
+              <widget class="QPushButton" name="pushButton_9">
+               <property name="minimumSize">
+                <size>
+                 <width>30</width>
+                 <height>30</height>
+                </size>
+               </property>
                <property name="maximumSize">
                 <size>
                  <width>30</width>
@@ -375,8 +366,14 @@ background-color: rgba(194, 198, 204, 100);
                 <string/>
                </property>
                <property name="icon">
-                <iconset>
-                 <normaloff>the-graphs-icons/icons8-macos-minimize-32.png</normaloff>the-graphs-icons/icons8-macos-minimize-32.png</iconset>
+                <iconset resource="resources.qrc">
+                 <normaloff>:/icons/icons8-macos-minimize-32.png</normaloff>:/icons/icons8-macos-minimize-32.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>20</width>
+                 <height>20</height>
+                </size>
                </property>
               </widget>
              </item>
@@ -392,28 +389,37 @@ background-color: rgba(194, 198, 204, 100);
                 <string/>
                </property>
                <property name="icon">
-                <iconset>
-                 <normaloff>the-graphs-icons/icons8-enlarge-32.png</normaloff>the-graphs-icons/icons8-enlarge-32.png</iconset>
+                <iconset resource="resources.qrc">
+                 <normaloff>:/icons/icons8-enlarge-32.png</normaloff>:/icons/icons8-enlarge-32.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>20</width>
+                 <height>20</height>
+                </size>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_9">
+              <widget class="QPushButton" name="pushButton_7">
                <property name="maximumSize">
                 <size>
                  <width>30</width>
                  <height>30</height>
                 </size>
                </property>
-               <property name="layoutDirection">
-                <enum>Qt::LeftToRight</enum>
-               </property>
                <property name="text">
                 <string/>
                </property>
                <property name="icon">
-                <iconset>
-                 <normaloff>the-graphs-icons/icons8-cancel-32.png</normaloff>the-graphs-icons/icons8-cancel-32.png</iconset>
+                <iconset resource="resources.qrc">
+                 <normaloff>:/icons/icons8-cancel-32.png</normaloff>:/icons/icons8-cancel-32.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>20</width>
+                 <height>20</height>
+                </size>
                </property>
               </widget>
              </item>
@@ -424,7 +430,7 @@ background-color: rgba(194, 198, 204, 100);
         </widget>
        </item>
        <item>
-        <widget class="QFrame" name="frame_5">
+        <widget class="QFrame" name="frame_7">
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
          </property>
@@ -432,19 +438,23 @@ background-color: rgba(194, 198, 204, 100);
           <enum>QFrame::Raised</enum>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_6">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>2</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
           <item>
            <widget class="QStackedWidget" name="stackedWidget">
-            <property name="font">
-             <font>
-              <family>NovaFlat</family>
-              <pointsize>-1</pointsize>
-              <bold>true</bold>
-              <underline>true</underline>
-             </font>
-            </property>
-            <property name="currentIndex">
-             <number>2</number>
-            </property>
             <widget class="QWidget" name="percentage_bar_chart">
              <layout class="QVBoxLayout" name="verticalLayout_7">
               <item alignment="Qt::AlignTop">
@@ -458,14 +468,6 @@ background-color: rgba(194, 198, 204, 100);
                 <layout class="QVBoxLayout" name="verticalLayout_8">
                  <item alignment="Qt::AlignTop">
                   <widget class="QLabel" name="label_5">
-                   <property name="font">
-                    <font>
-                     <family>NovaFlat</family>
-                     <pointsize>-1</pointsize>
-                     <bold>true</bold>
-                     <underline>true</underline>
-                    </font>
-                   </property>
                    <property name="text">
                     <string>Percentage Bar Chart</string>
                    </property>
@@ -496,6 +498,49 @@ background-color: rgba(194, 198, 204, 100);
               </item>
              </layout>
             </widget>
+            <widget class="QWidget" name="temperature_bar_chart">
+             <layout class="QVBoxLayout" name="verticalLayout_10">
+              <item>
+               <widget class="QFrame" name="frame_15">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_9">
+                 <item alignment="Qt::AlignTop">
+                  <widget class="QLabel" name="label_6">
+                   <property name="text">
+                    <string>Temperature Records</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="frame_16">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_2"/>
+               </widget>
+              </item>
+             </layout>
+            </widget>
             <widget class="QWidget" name="nested_donuts">
              <layout class="QVBoxLayout" name="verticalLayout_12">
               <item>
@@ -509,16 +554,8 @@ background-color: rgba(194, 198, 204, 100);
                 <layout class="QVBoxLayout" name="verticalLayout_11">
                  <item alignment="Qt::AlignTop">
                   <widget class="QLabel" name="label_7">
-                   <property name="font">
-                    <font>
-                     <family>NovaFlat</family>
-                     <pointsize>-1</pointsize>
-                     <bold>true</bold>
-                     <underline>true</underline>
-                    </font>
-                   </property>
                    <property name="text">
-                    <string>Nested Donut Chart</string>
+                    <string>Nested Donuts</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -560,14 +597,6 @@ background-color: rgba(194, 198, 204, 100);
                 <layout class="QVBoxLayout" name="verticalLayout_13">
                  <item alignment="Qt::AlignTop">
                   <widget class="QLabel" name="label_8">
-                   <property name="font">
-                    <font>
-                     <family>NovaFlat</family>
-                     <pointsize>-1</pointsize>
-                     <bold>true</bold>
-                     <underline>true</underline>
-                    </font>
-                   </property>
                    <property name="text">
                     <string>Line Charts</string>
                    </property>
@@ -601,7 +630,7 @@ background-color: rgba(194, 198, 204, 100);
             <widget class="QWidget" name="bar_charts">
              <layout class="QVBoxLayout" name="verticalLayout_16">
               <item>
-               <widget class="QFrame" name="frame_22">
+               <widget class="QFrame" name="frame_21">
                 <property name="frameShape">
                  <enum>QFrame::StyledPanel</enum>
                 </property>
@@ -611,14 +640,6 @@ background-color: rgba(194, 198, 204, 100);
                 <layout class="QVBoxLayout" name="verticalLayout_15">
                  <item alignment="Qt::AlignTop">
                   <widget class="QLabel" name="label_9">
-                   <property name="font">
-                    <font>
-                     <family>NovaFlat</family>
-                     <pointsize>-1</pointsize>
-                     <bold>true</bold>
-                     <underline>true</underline>
-                    </font>
-                   </property>
                    <property name="text">
                     <string>Bar Charts</string>
                    </property>
@@ -631,7 +652,7 @@ background-color: rgba(194, 198, 204, 100);
                </widget>
               </item>
               <item>
-               <widget class="QFrame" name="frame_21">
+               <widget class="QFrame" name="frame_22">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
                   <horstretch>0</horstretch>
@@ -649,64 +670,13 @@ background-color: rgba(194, 198, 204, 100);
               </item>
              </layout>
             </widget>
-            <widget class="QWidget" name="temperature_bar_chart">
-             <layout class="QVBoxLayout" name="verticalLayout_10">
-              <item>
-               <widget class="QFrame" name="frame_16">
-                <property name="frameShape">
-                 <enum>QFrame::StyledPanel</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Raised</enum>
-                </property>
-                <layout class="QVBoxLayout" name="verticalLayout_9">
-                 <item alignment="Qt::AlignTop">
-                  <widget class="QLabel" name="label_6">
-                   <property name="font">
-                    <font>
-                     <family>NovaFlat</family>
-                     <pointsize>-1</pointsize>
-                     <bold>true</bold>
-                     <underline>true</underline>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>Temperature Bar Chart</string>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-              <item>
-               <widget class="QFrame" name="frame_15">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="frameShape">
-                 <enum>QFrame::StyledPanel</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Raised</enum>
-                </property>
-                <layout class="QGridLayout" name="gridLayout_2"/>
-               </widget>
-              </item>
-             </layout>
-            </widget>
            </widget>
           </item>
          </layout>
         </widget>
        </item>
        <item>
-        <widget class="QFrame" name="frame_7">
+        <widget class="QFrame" name="frame_6">
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
          </property>
@@ -714,6 +684,18 @@ background-color: rgba(194, 198, 204, 100);
           <enum>QFrame::Raised</enum>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
           <item>
            <widget class="QFrame" name="frame_11">
             <property name="frameShape">
@@ -723,6 +705,9 @@ background-color: rgba(194, 198, 204, 100);
              <enum>QFrame::Raised</enum>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_5">
+             <property name="leftMargin">
+              <number>9</number>
+             </property>
              <item>
               <widget class="QLabel" name="label_4">
                <property name="text">
@@ -744,8 +729,8 @@ background-color: rgba(194, 198, 204, 100);
             <widget class="QFrame" name="size_grip">
              <property name="geometry">
               <rect>
-               <x>70</x>
-               <y>20</y>
+               <x>90</x>
+               <y>70</y>
                <width>120</width>
                <height>80</height>
               </rect>
@@ -768,6 +753,8 @@ background-color: rgba(194, 198, 204, 100);
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
