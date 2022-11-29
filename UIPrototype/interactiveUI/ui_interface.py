@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'interfaceMQuqaQ.ui'
+## Form generated from reading UI file 'interface.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.3.2
+## Created by: Qt User Interface Compiler version 6.4.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -84,21 +84,29 @@ class Ui_MainWindow(object):
 "#frame_8 QPushButton:hover{\n"
 "background-color:rgb(172, 181, 192);\n"
 "}")
+        #self.Side_Menu_Num = 0
         self.horizontalLayout = QHBoxLayout(self.centralwidget)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.left_menu_widget = QWidget(self.centralwidget)
         self.left_menu_widget.setObjectName(u"left_menu_widget")
+        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.MinimumExpanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.left_menu_widget.sizePolicy().hasHeightForWidth())
+        self.left_menu_widget.setSizePolicy(sizePolicy)
+        self.left_menu_widget.setMaximumSize(QSize(160, 16777215))
+        self.left_menu_widget.setLayoutDirection(Qt.LeftToRight)
         self.verticalLayout = QVBoxLayout(self.left_menu_widget)
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.frame_3 = QFrame(self.left_menu_widget)
         self.frame_3.setObjectName(u"frame_3")
-        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Minimum)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.frame_3.sizePolicy().hasHeightForWidth())
-        self.frame_3.setSizePolicy(sizePolicy)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Minimum)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.frame_3.sizePolicy().hasHeightForWidth())
+        self.frame_3.setSizePolicy(sizePolicy1)
         self.frame_3.setFrameShape(QFrame.StyledPanel)
         self.frame_3.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_7 = QHBoxLayout(self.frame_3)
@@ -124,11 +132,12 @@ class Ui_MainWindow(object):
 
         self.frame_4 = QFrame(self.left_menu_widget)
         self.frame_4.setObjectName(u"frame_4")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.frame_4.sizePolicy().hasHeightForWidth())
-        self.frame_4.setSizePolicy(sizePolicy1)
+        sizePolicy2 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.frame_4.sizePolicy().hasHeightForWidth())
+        self.frame_4.setSizePolicy(sizePolicy2)
+        self.frame_4.setMaximumSize(QSize(16777215, 16777215))
         self.frame_4.setFrameShape(QFrame.StyledPanel)
         self.frame_4.setFrameShadow(QFrame.Raised)
         self.verticalLayout_3 = QVBoxLayout(self.frame_4)
@@ -314,8 +323,8 @@ class Ui_MainWindow(object):
 
         self.frame_14 = QFrame(self.percentage_bar_chart)
         self.frame_14.setObjectName(u"frame_14")
-        sizePolicy1.setHeightForWidth(self.frame_14.sizePolicy().hasHeightForWidth())
-        self.frame_14.setSizePolicy(sizePolicy1)
+        sizePolicy2.setHeightForWidth(self.frame_14.sizePolicy().hasHeightForWidth())
+        self.frame_14.setSizePolicy(sizePolicy2)
         self.frame_14.setFrameShape(QFrame.StyledPanel)
         self.frame_14.setFrameShadow(QFrame.Raised)
         self.gridLayout = QGridLayout(self.frame_14)
@@ -345,8 +354,8 @@ class Ui_MainWindow(object):
 
         self.frame_16 = QFrame(self.temperature_bar_chart)
         self.frame_16.setObjectName(u"frame_16")
-        sizePolicy1.setHeightForWidth(self.frame_16.sizePolicy().hasHeightForWidth())
-        self.frame_16.setSizePolicy(sizePolicy1)
+        sizePolicy2.setHeightForWidth(self.frame_16.sizePolicy().hasHeightForWidth())
+        self.frame_16.setSizePolicy(sizePolicy2)
         self.frame_16.setFrameShape(QFrame.StyledPanel)
         self.frame_16.setFrameShadow(QFrame.Raised)
         self.gridLayout_2 = QGridLayout(self.frame_16)
@@ -376,8 +385,8 @@ class Ui_MainWindow(object):
 
         self.frame_18 = QFrame(self.nested_donuts)
         self.frame_18.setObjectName(u"frame_18")
-        sizePolicy1.setHeightForWidth(self.frame_18.sizePolicy().hasHeightForWidth())
-        self.frame_18.setSizePolicy(sizePolicy1)
+        sizePolicy2.setHeightForWidth(self.frame_18.sizePolicy().hasHeightForWidth())
+        self.frame_18.setSizePolicy(sizePolicy2)
         self.frame_18.setFrameShape(QFrame.StyledPanel)
         self.frame_18.setFrameShadow(QFrame.Raised)
         self.gridLayout_3 = QGridLayout(self.frame_18)
@@ -407,8 +416,8 @@ class Ui_MainWindow(object):
 
         self.frame_20 = QFrame(self.line_charts)
         self.frame_20.setObjectName(u"frame_20")
-        sizePolicy1.setHeightForWidth(self.frame_20.sizePolicy().hasHeightForWidth())
-        self.frame_20.setSizePolicy(sizePolicy1)
+        sizePolicy2.setHeightForWidth(self.frame_20.sizePolicy().hasHeightForWidth())
+        self.frame_20.setSizePolicy(sizePolicy2)
         self.frame_20.setFrameShape(QFrame.StyledPanel)
         self.frame_20.setFrameShadow(QFrame.Raised)
         self.gridLayout_4 = QGridLayout(self.frame_20)
@@ -438,8 +447,8 @@ class Ui_MainWindow(object):
 
         self.frame_22 = QFrame(self.bar_charts)
         self.frame_22.setObjectName(u"frame_22")
-        sizePolicy1.setHeightForWidth(self.frame_22.sizePolicy().hasHeightForWidth())
-        self.frame_22.setSizePolicy(sizePolicy1)
+        sizePolicy2.setHeightForWidth(self.frame_22.sizePolicy().hasHeightForWidth())
+        self.frame_22.setSizePolicy(sizePolicy2)
         self.frame_22.setFrameShape(QFrame.StyledPanel)
         self.frame_22.setFrameShadow(QFrame.Raised)
         self.gridLayout_5 = QGridLayout(self.frame_22)
