@@ -5,7 +5,9 @@ import sys
 import csv
 
 from PySide6 import QtCharts, QtWidgets
-from PySide6.QtCore import QPropertyAnimation, QEasingCurve
+from PySide6.QtCore import QPropertyAnimation, QEasingCurve, QTimer
+from functools import partial
+from random import randrange
 
 from ui_interface import *
 
@@ -34,7 +36,6 @@ class MainWindow(QMainWindow):
         self.ui.pushButton_5.clicked.connect(self.changePageTemp)
         self.ui.pushButton_2.clicked.connect(self.changePageNest)
         self.ui.pushButton_3.clicked.connect(self.changePageLine)
-        self.ui.pushButton_4.clicked.connect(self.changePageBar)
                 
 
     def move(self):
@@ -77,8 +78,10 @@ class MainWindow(QMainWindow):
     #Functions to change the page of the stacked widget -------------------------------------------------------------
     
     ### Percentage bar chart tab switching and graph development
-    def changePagePer(self):
+    def changePagePer(self):        
         self.ui.stackedWidget.setCurrentIndex(0)
+        
+        self.ui.label_8.setText("Percentage Bar Chart")
         
         yearList = {}
         wealth = {}
@@ -110,9 +113,6 @@ class MainWindow(QMainWindow):
                 else:
                     wealth[z["name"]].append(float(z["wealth"]))
         
-        #print(nameList)
-        #print(wealth)
-        
         for x in nameList:
             setattr(self, "set"+str(x), QtCharts.QBarSet(str(x)))
             series.append(getattr(self, "set"+str(x)))
@@ -136,7 +136,7 @@ class MainWindow(QMainWindow):
         
         self.ui.chart_view = QtCharts.QChartView(chart)
         self.ui.chart_view.setRenderHint(QPainter.Antialiasing)
-        self.ui.chart_view.chart().setTheme(QtCharts.QChart.ChartThemeLight)
+        self.ui.chart_view.chart().setTheme(QtCharts.QChart.ChartThemeBlueIcy)
         
         sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -147,28 +147,174 @@ class MainWindow(QMainWindow):
         self.ui.chart_view.setMinimumSize(QSize(0,300))
         
         self.ui.percentage_bar_chart.setContentsMargins(0,0,0,0)
-        lay= QtWidgets.QHBoxLayout(self.ui.percentage_bar_chart)
+        lay = QtWidgets.QHBoxLayout(self.ui.percentage_bar_chart)
+        
         lay.setContentsMargins(0,0,0,0)
         lay.addWidget(self.ui.chart_view)
 
         csvFile.close()  
         
         
-        
-        
-        
+    ### Temperature bar chart tab switching and graph development
     def changePageTemp(self):
         self.ui.stackedWidget.setCurrentIndex(1)
         
-    def changePageNest(self):
-        self.ui.stackedWidget.setCurrentIndex(2)
+        self.ui.label_8.setText("Temperature Records")
         
+        low = QtCharts.QBarSet("Minimum Temperature")
+        high = QtCharts.QBarSet("Maximum Temperature")
+        
+        lowTemp = []
+        highTemp = []
+        
+        rowCount = 0
+        
+        with open('weather.csv') as csvfile:
+            csvReader = csv.reader(csvfile, delimiter=',')
+            for row in csvReader:
+                if rowCount > 0:
+                    lowTemp.append(float(row[0]))
+                    highTemp.append(float(row[1]))
+                    
+                if rowCount > 11:
+                    break
+                
+                rowCount += 1
+        csvfile.close()
+        
+        low.append(lowTemp)
+        high.append(highTemp)
+        
+        series = QtCharts.QStackedBarSeries()
+        series.append(low)
+        series.append(high)
+        
+        chart = QtCharts.QChart()
+        chart.addSeries(series)
+        chart.setTitle("Temperature records in celcius")
+        chart.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+        
+        categories = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+        
+        axisX = QtCharts.QBarCategoryAxis()
+        axisX.append(categories)
+        axisX.setTitleText("Month")
+        chart.addAxis(axisX, Qt.AlignBottom)
+        axisY = QtCharts.QValueAxis()
+        axisY.setRange(-52, 52)
+        axisY.setTitleText("Temperature [&deg;C]")
+        chart.addAxis(axisY, Qt.AlignLeft)
+        series.attachAxis(axisX)
+        series.attachAxis(axisY)
+        
+        chart.legend().setVisible(True)
+        chart.legend().setAlignment(Qt.AlignBottom)
+        
+        self.ui.chart_view = QtCharts.QChartView(chart)
+        self.ui.chart_view.setRenderHint(QPainter.Antialiasing)
+        self.ui.chart_view.chart().setTheme(QtCharts.QChart.ChartThemeBlueIcy)
+        
+        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.ui.chart_view.sizePolicy().hasHeightForWidth())
+        
+        
+        self.ui.chart_view.setSizePolicy(sizePolicy)
+        self.ui.chart_view.setMinimumSize(QSize(0,300))
+        self.ui.temperature_bar_chart.setContentsMargins(0,0,0,0)       
+        
+        lay = QtWidgets.QHBoxLayout(self.ui.temperature_bar_chart)
+        lay.setContentsMargins(0,0,0,0)
+        lay.addWidget(self.ui.chart_view)
+        
+    ### Line Chart tab switching and graph development
     def changePageLine(self):
         self.ui.stackedWidget.setCurrentIndex(3)
         
-    def changePageBar(self):
-        self.ui.stackedWidget.setCurrentIndex(4)
-     
+        self.ui.label_8.setText("Line Chart")
+        
+        self.highTempSeries = QtCharts.QLineSeries()     
+        self.lowTempSeries = QtCharts.QLineSeries()
+        
+        rowCount = 0
+        
+        with open('weather.csv') as csvfile:
+            csvRreader = csv.reader(csvfile, delimiter=',')
+            for row in csvRreader:
+                if rowCount > 0:
+                    self.highTempSeries.append(float(rowCount), float(row[0]))
+                    self.lowTempSeries.append(float(rowCount), float(row[1]))
+                rowCount += 1
+                
+        chart = QtCharts.QChart()
+        
+        chart.legend().setVisible(True)
+        
+        chart.addSeries(self.highTempSeries)
+        chart.addSeries(self.lowTempSeries)
+        chart.createDefaultAxes()
+        chart.setTitle("Line Charts")
+        
+        self.ui.chart_view = QtCharts.QChartView(chart)
+        self.ui.chart_view.setRenderHint(QPainter.Antialiasing)
+        chart.setAnimationOptions(QtCharts.QChart.AllAnimations)
+        self.ui.chart_view.chart().setTheme(QtCharts.QChart.ChartThemeBlueIcy)
+        
+        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        sizePolicy.setHeightForWidth(self.ui.chart_view.sizePolicy().hasHeightForWidth())        
+        self.ui.chart_view.setSizePolicy(sizePolicy)
+        self.ui.chart_view.setMinimumSize(QSize(0,300))
+        
+        self.ui.line_charts.setContentsMargins(0,0,0,0)       
+        
+        lay = QtWidgets.QHBoxLayout(self.ui.line_charts)
+        lay.setContentsMargins(0,0,0,0)
+        lay.addWidget(self.ui.chart_view)
+        
+        
+        
+    ### Donut graph tab switching and graph development
+    def changePageNest(self):
+        self.ui.stackedWidget.setCurrentIndex(2)
+        
+        self.ui.label_8.setText("Nested Donuts")        
+        
+        series = QtCharts.QPieSeries()
+        
+        ### --- Manual input data ---
+        series.append("Phishing",120)
+        series.append("DDoS",60)
+        series.append("MitM",25)
+        series.append("SQL Injection",70)
+        series.append("Password Attack",40)
+        ### --- ---
+        chart = QtCharts.QChart()
+        
+        chart.addSeries(series)
+        chart.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+        chart.createDefaultAxes()
+        chart.setTitle("Donut Graphs")
+        
+
+        
+        self.ui.chart_view = QtCharts.QChartView(chart)
+        self.ui.chart_view.setRenderHint(QPainter.Antialiasing)
+        self.ui.chart_view.chart().setTheme(QtCharts.QChart.ChartThemeBlueIcy)
+        
+        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        sizePolicy.setHeightForWidth(self.ui.chart_view.sizePolicy().hasHeightForWidth())
+                
+        self.ui.chart_view.setSizePolicy(sizePolicy)
+        self.ui.chart_view.setMinimumSize(QSize(0,300))
+        
+        self.ui.nested_donuts.setContentsMargins(0,0,0,0)
+        
+        lay = QtWidgets.QHBoxLayout(self.ui.nested_donuts)
+        lay.setContentsMargins(0,0,0,0)
+        lay.addWidget(self.ui.chart_view)
+        
+        
 app = QApplication(sys.argv)
 
 window = MainWindow()
