@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'interface.ui'
+## Form generated from reading UI file 'interfaceeFJcBA.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.4.0
+## Created by: Qt User Interface Compiler version 6.3.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -45,7 +45,7 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "/* Changes sorrounding frame colours*/\n"
-"#header_frame, #frame_11, #frame_12{\n"
+"#header_frame, #frame_11, #frame_12,#frame_3{\n"
 "background-color: rgb(213, 223, 232);\n"
 "}\n"
 "\n"
@@ -63,8 +63,8 @@ class Ui_MainWindow(object):
 "background-color: rgb(192, 201, 212);\n"
 "}\n"
 "\n"
-"/* Changes to colouring of minimise, maximise and close"
-                        " buttons*/\n"
+"/* Changes to colouring of minimise, maximise "
+                        "and close buttons*/\n"
 "#frame_9 QPushButton{\n"
 "border-radius: 15px;\n"
 "background-color: rgb(192, 201, 212);\n"
@@ -84,7 +84,6 @@ class Ui_MainWindow(object):
 "#frame_8 QPushButton:hover{\n"
 "background-color:rgb(172, 181, 192);\n"
 "}")
-        #self.Side_Menu_Num = 0
         self.horizontalLayout = QHBoxLayout(self.centralwidget)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.left_menu_widget = QWidget(self.centralwidget)
@@ -304,10 +303,9 @@ class Ui_MainWindow(object):
         self.stackedWidget.setObjectName(u"stackedWidget")
         self.percentage_bar_chart = QWidget()
         self.percentage_bar_chart.setObjectName(u"percentage_bar_chart")
-        self.verticalLayout_7 = QVBoxLayout(self.percentage_bar_chart)
-        self.verticalLayout_7.setObjectName(u"verticalLayout_7")
         self.frame_13 = QFrame(self.percentage_bar_chart)
         self.frame_13.setObjectName(u"frame_13")
+        self.frame_13.setGeometry(QRect(9, 9, 129, 34))
         self.frame_13.setFrameShape(QFrame.StyledPanel)
         self.frame_13.setFrameShadow(QFrame.Raised)
         self.verticalLayout_8 = QVBoxLayout(self.frame_13)
@@ -318,20 +316,15 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_8.addWidget(self.label_5, 0, Qt.AlignTop)
 
-
-        self.verticalLayout_7.addWidget(self.frame_13, 0, Qt.AlignTop)
-
         self.frame_14 = QFrame(self.percentage_bar_chart)
         self.frame_14.setObjectName(u"frame_14")
+        self.frame_14.setGeometry(QRect(9, 49, 18, 18))
         sizePolicy2.setHeightForWidth(self.frame_14.sizePolicy().hasHeightForWidth())
         self.frame_14.setSizePolicy(sizePolicy2)
         self.frame_14.setFrameShape(QFrame.StyledPanel)
         self.frame_14.setFrameShadow(QFrame.Raised)
         self.gridLayout = QGridLayout(self.frame_14)
         self.gridLayout.setObjectName(u"gridLayout")
-
-        self.verticalLayout_7.addWidget(self.frame_14)
-
         self.stackedWidget.addWidget(self.percentage_bar_chart)
         self.temperature_bar_chart = QWidget()
         self.temperature_bar_chart.setObjectName(u"temperature_bar_chart")
@@ -506,6 +499,9 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
+
+        self.stackedWidget.setCurrentIndex(0)
+
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi

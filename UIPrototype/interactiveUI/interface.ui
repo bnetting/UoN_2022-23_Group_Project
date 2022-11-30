@@ -33,7 +33,7 @@ background-color: rgba(213, 223, 232, 100);
 }
 
 /* Changes sorrounding frame colours*/
-#header_frame, #frame_11, #frame_12{
+#header_frame, #frame_11, #frame_12,#frame_3{
 background-color: rgb(213, 223, 232);
 }
 
@@ -476,48 +476,61 @@ background-color:rgb(172, 181, 192);
           </property>
           <item>
            <widget class="QStackedWidget" name="stackedWidget">
+            <property name="currentIndex">
+             <number>0</number>
+            </property>
             <widget class="QWidget" name="percentage_bar_chart">
-             <layout class="QVBoxLayout" name="verticalLayout_7">
-              <item alignment="Qt::AlignTop">
-               <widget class="QFrame" name="frame_13">
-                <property name="frameShape">
-                 <enum>QFrame::StyledPanel</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Raised</enum>
-                </property>
-                <layout class="QVBoxLayout" name="verticalLayout_8">
-                 <item alignment="Qt::AlignTop">
-                  <widget class="QLabel" name="label_5">
-                   <property name="text">
-                    <string>Percentage Bar Chart</string>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-              <item>
-               <widget class="QFrame" name="frame_14">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="frameShape">
-                 <enum>QFrame::StyledPanel</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Raised</enum>
-                </property>
-                <layout class="QGridLayout" name="gridLayout"/>
-               </widget>
-              </item>
-             </layout>
+             <widget class="QFrame" name="frame_13">
+              <property name="geometry">
+               <rect>
+                <x>9</x>
+                <y>9</y>
+                <width>129</width>
+                <height>34</height>
+               </rect>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_8">
+               <item alignment="Qt::AlignTop">
+                <widget class="QLabel" name="label_5">
+                 <property name="text">
+                  <string>Percentage Bar Chart</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QFrame" name="frame_14">
+              <property name="geometry">
+               <rect>
+                <x>9</x>
+                <y>49</y>
+                <width>18</width>
+                <height>18</height>
+               </rect>
+              </property>
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QGridLayout" name="gridLayout"/>
+             </widget>
             </widget>
             <widget class="QWidget" name="temperature_bar_chart">
              <layout class="QVBoxLayout" name="verticalLayout_10">
