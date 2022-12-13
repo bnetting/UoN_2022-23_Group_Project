@@ -40,12 +40,12 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "/* Changes all pages and the side select menu to a darker colour*/\n"
-"#left_menu_widget, #percentage_bar_chart, #nested_donuts, #line_charts, #bar_charts, #temperature_bar_chart{\n"
+"#left_menu_widget, #percentage_bar_chart, #nested_donuts, #line_charts, #temperature_bar_chart,#_home_page{\n"
 "background-color: rgba(213, 223, 232, 100);\n"
 "}\n"
 "\n"
 "/* Changes sorrounding frame colours*/\n"
-"#header_frame, #frame_11, #frame_12{\n"
+"#header_frame, #frame_11, #frame_12,#frame_3{\n"
 "background-color: rgb(213, 223, 232);\n"
 "}\n"
 "\n"
@@ -63,8 +63,8 @@ class Ui_MainWindow(object):
 "background-color: rgb(192, 201, 212);\n"
 "}\n"
 "\n"
-"/* Changes to colouring of minimise, maximise and close"
-                        " buttons*/\n"
+"/* Changes to colouring of minimise, maximise a"
+                        "nd close buttons*/\n"
 "#frame_9 QPushButton{\n"
 "border-radius: 15px;\n"
 "background-color: rgb(192, 201, 212);\n"
@@ -84,7 +84,6 @@ class Ui_MainWindow(object):
 "#frame_8 QPushButton:hover{\n"
 "background-color:rgb(172, 181, 192);\n"
 "}")
-        #self.Side_Menu_Num = 0
         self.horizontalLayout = QHBoxLayout(self.centralwidget)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.left_menu_widget = QWidget(self.centralwidget)
@@ -94,7 +93,7 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.left_menu_widget.sizePolicy().hasHeightForWidth())
         self.left_menu_widget.setSizePolicy(sizePolicy)
-        self.left_menu_widget.setMaximumSize(QSize(160, 16777215))
+        self.left_menu_widget.setMaximumSize(QSize(0, 16777215))
         self.left_menu_widget.setLayoutDirection(Qt.LeftToRight)
         self.verticalLayout = QVBoxLayout(self.left_menu_widget)
         self.verticalLayout.setSpacing(0)
@@ -175,14 +174,6 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addWidget(self.pushButton_3)
 
-        self.pushButton_4 = QPushButton(self.frame_4)
-        self.pushButton_4.setObjectName(u"pushButton_4")
-        icon4 = QIcon()
-        icon4.addFile(u":/icons/icons8-improvement-32.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_4.setIcon(icon4)
-
-        self.verticalLayout_3.addWidget(self.pushButton_4)
-
 
         self.verticalLayout.addWidget(self.frame_4)
 
@@ -213,9 +204,9 @@ class Ui_MainWindow(object):
         self.pushButton_6 = QPushButton(self.frame_8)
         self.pushButton_6.setObjectName(u"pushButton_6")
         self.pushButton_6.setMaximumSize(QSize(30, 30))
-        icon5 = QIcon()
-        icon5.addFile(u":/icons/icons8-menu-32.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_6.setIcon(icon5)
+        icon4 = QIcon()
+        icon4.addFile(u":/icons/icons8-menu-32.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton_6.setIcon(icon4)
         self.pushButton_6.setIconSize(QSize(20, 20))
 
         self.horizontalLayout_3.addWidget(self.pushButton_6)
@@ -259,9 +250,9 @@ class Ui_MainWindow(object):
         self.pushButton_9.setObjectName(u"pushButton_9")
         self.pushButton_9.setMinimumSize(QSize(30, 30))
         self.pushButton_9.setMaximumSize(QSize(30, 30))
-        icon6 = QIcon()
-        icon6.addFile(u":/icons/icons8-macos-minimize-32.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_9.setIcon(icon6)
+        icon5 = QIcon()
+        icon5.addFile(u":/icons/icons8-macos-minimize-32.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton_9.setIcon(icon5)
         self.pushButton_9.setIconSize(QSize(20, 20))
 
         self.horizontalLayout_5.addWidget(self.pushButton_9)
@@ -269,9 +260,9 @@ class Ui_MainWindow(object):
         self.pushButton_8 = QPushButton(self.frame_9)
         self.pushButton_8.setObjectName(u"pushButton_8")
         self.pushButton_8.setMaximumSize(QSize(30, 30))
-        icon7 = QIcon()
-        icon7.addFile(u":/icons/icons8-enlarge-32.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_8.setIcon(icon7)
+        icon6 = QIcon()
+        icon6.addFile(u":/icons/icons8-enlarge-32.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton_8.setIcon(icon6)
         self.pushButton_8.setIconSize(QSize(20, 20))
 
         self.horizontalLayout_5.addWidget(self.pushButton_8)
@@ -279,9 +270,9 @@ class Ui_MainWindow(object):
         self.pushButton_7 = QPushButton(self.frame_9)
         self.pushButton_7.setObjectName(u"pushButton_7")
         self.pushButton_7.setMaximumSize(QSize(30, 30))
-        icon8 = QIcon()
-        icon8.addFile(u":/icons/icons8-cancel-32.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_7.setIcon(icon8)
+        icon7 = QIcon()
+        icon7.addFile(u":/icons/icons8-cancel-32.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton_7.setIcon(icon7)
         self.pushButton_7.setIconSize(QSize(20, 20))
 
         self.horizontalLayout_5.addWidget(self.pushButton_7)
@@ -291,6 +282,25 @@ class Ui_MainWindow(object):
 
 
         self.verticalLayout_4.addWidget(self.header_frame)
+
+        self.frame_19 = QFrame(self.frame_2)
+        self.frame_19.setObjectName(u"frame_19")
+        self.frame_19.setFrameShape(QFrame.StyledPanel)
+        self.frame_19.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_13 = QVBoxLayout(self.frame_19)
+        self.verticalLayout_13.setObjectName(u"verticalLayout_13")
+        self.label_8 = QLabel(self.frame_19)
+        self.label_8.setObjectName(u"label_8")
+        font2 = QFont()
+        font2.setPointSize(10)
+        font2.setBold(True)
+        self.label_8.setFont(font2)
+        self.label_8.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_13.addWidget(self.label_8, 0, Qt.AlignTop)
+
+
+        self.verticalLayout_4.addWidget(self.frame_19)
 
         self.frame_7 = QFrame(self.frame_2)
         self.frame_7.setObjectName(u"frame_7")
@@ -304,148 +314,57 @@ class Ui_MainWindow(object):
         self.stackedWidget.setObjectName(u"stackedWidget")
         self.percentage_bar_chart = QWidget()
         self.percentage_bar_chart.setObjectName(u"percentage_bar_chart")
-        self.verticalLayout_7 = QVBoxLayout(self.percentage_bar_chart)
-        self.verticalLayout_7.setObjectName(u"verticalLayout_7")
-        self.frame_13 = QFrame(self.percentage_bar_chart)
-        self.frame_13.setObjectName(u"frame_13")
-        self.frame_13.setFrameShape(QFrame.StyledPanel)
-        self.frame_13.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_8 = QVBoxLayout(self.frame_13)
-        self.verticalLayout_8.setObjectName(u"verticalLayout_8")
-        self.label_5 = QLabel(self.frame_13)
-        self.label_5.setObjectName(u"label_5")
-        self.label_5.setAlignment(Qt.AlignCenter)
-
-        self.verticalLayout_8.addWidget(self.label_5, 0, Qt.AlignTop)
-
-
-        self.verticalLayout_7.addWidget(self.frame_13, 0, Qt.AlignTop)
-
         self.frame_14 = QFrame(self.percentage_bar_chart)
         self.frame_14.setObjectName(u"frame_14")
+        self.frame_14.setGeometry(QRect(9, 49, 18, 18))
         sizePolicy2.setHeightForWidth(self.frame_14.sizePolicy().hasHeightForWidth())
         self.frame_14.setSizePolicy(sizePolicy2)
         self.frame_14.setFrameShape(QFrame.StyledPanel)
         self.frame_14.setFrameShadow(QFrame.Raised)
         self.gridLayout = QGridLayout(self.frame_14)
         self.gridLayout.setObjectName(u"gridLayout")
-
-        self.verticalLayout_7.addWidget(self.frame_14)
-
         self.stackedWidget.addWidget(self.percentage_bar_chart)
         self.temperature_bar_chart = QWidget()
         self.temperature_bar_chart.setObjectName(u"temperature_bar_chart")
-        self.verticalLayout_10 = QVBoxLayout(self.temperature_bar_chart)
-        self.verticalLayout_10.setObjectName(u"verticalLayout_10")
-        self.frame_15 = QFrame(self.temperature_bar_chart)
-        self.frame_15.setObjectName(u"frame_15")
-        self.frame_15.setFrameShape(QFrame.StyledPanel)
-        self.frame_15.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_9 = QVBoxLayout(self.frame_15)
-        self.verticalLayout_9.setObjectName(u"verticalLayout_9")
-        self.label_6 = QLabel(self.frame_15)
-        self.label_6.setObjectName(u"label_6")
-        self.label_6.setAlignment(Qt.AlignCenter)
-
-        self.verticalLayout_9.addWidget(self.label_6, 0, Qt.AlignTop)
-
-
-        self.verticalLayout_10.addWidget(self.frame_15)
-
         self.frame_16 = QFrame(self.temperature_bar_chart)
         self.frame_16.setObjectName(u"frame_16")
+        self.frame_16.setGeometry(QRect(9, 49, 18, 18))
         sizePolicy2.setHeightForWidth(self.frame_16.sizePolicy().hasHeightForWidth())
         self.frame_16.setSizePolicy(sizePolicy2)
         self.frame_16.setFrameShape(QFrame.StyledPanel)
         self.frame_16.setFrameShadow(QFrame.Raised)
         self.gridLayout_2 = QGridLayout(self.frame_16)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
-
-        self.verticalLayout_10.addWidget(self.frame_16)
-
         self.stackedWidget.addWidget(self.temperature_bar_chart)
         self.nested_donuts = QWidget()
         self.nested_donuts.setObjectName(u"nested_donuts")
-        self.verticalLayout_12 = QVBoxLayout(self.nested_donuts)
-        self.verticalLayout_12.setObjectName(u"verticalLayout_12")
-        self.frame_17 = QFrame(self.nested_donuts)
-        self.frame_17.setObjectName(u"frame_17")
-        self.frame_17.setFrameShape(QFrame.StyledPanel)
-        self.frame_17.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_11 = QVBoxLayout(self.frame_17)
-        self.verticalLayout_11.setObjectName(u"verticalLayout_11")
-        self.label_7 = QLabel(self.frame_17)
-        self.label_7.setObjectName(u"label_7")
-        self.label_7.setAlignment(Qt.AlignCenter)
-
-        self.verticalLayout_11.addWidget(self.label_7, 0, Qt.AlignTop)
-
-
-        self.verticalLayout_12.addWidget(self.frame_17)
-
         self.frame_18 = QFrame(self.nested_donuts)
         self.frame_18.setObjectName(u"frame_18")
+        self.frame_18.setGeometry(QRect(9, 49, 18, 18))
         sizePolicy2.setHeightForWidth(self.frame_18.sizePolicy().hasHeightForWidth())
         self.frame_18.setSizePolicy(sizePolicy2)
         self.frame_18.setFrameShape(QFrame.StyledPanel)
         self.frame_18.setFrameShadow(QFrame.Raised)
         self.gridLayout_3 = QGridLayout(self.frame_18)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
-
-        self.verticalLayout_12.addWidget(self.frame_18)
-
         self.stackedWidget.addWidget(self.nested_donuts)
         self.line_charts = QWidget()
         self.line_charts.setObjectName(u"line_charts")
-        self.verticalLayout_14 = QVBoxLayout(self.line_charts)
-        self.verticalLayout_14.setObjectName(u"verticalLayout_14")
-        self.frame_19 = QFrame(self.line_charts)
-        self.frame_19.setObjectName(u"frame_19")
-        self.frame_19.setFrameShape(QFrame.StyledPanel)
-        self.frame_19.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_13 = QVBoxLayout(self.frame_19)
-        self.verticalLayout_13.setObjectName(u"verticalLayout_13")
-        self.label_8 = QLabel(self.frame_19)
-        self.label_8.setObjectName(u"label_8")
-        self.label_8.setAlignment(Qt.AlignCenter)
-
-        self.verticalLayout_13.addWidget(self.label_8, 0, Qt.AlignTop)
-
-
-        self.verticalLayout_14.addWidget(self.frame_19)
-
         self.frame_20 = QFrame(self.line_charts)
         self.frame_20.setObjectName(u"frame_20")
+        self.frame_20.setGeometry(QRect(9, 49, 18, 18))
         sizePolicy2.setHeightForWidth(self.frame_20.sizePolicy().hasHeightForWidth())
         self.frame_20.setSizePolicy(sizePolicy2)
         self.frame_20.setFrameShape(QFrame.StyledPanel)
         self.frame_20.setFrameShadow(QFrame.Raised)
         self.gridLayout_4 = QGridLayout(self.frame_20)
         self.gridLayout_4.setObjectName(u"gridLayout_4")
-
-        self.verticalLayout_14.addWidget(self.frame_20)
-
         self.stackedWidget.addWidget(self.line_charts)
-        self.bar_charts = QWidget()
-        self.bar_charts.setObjectName(u"bar_charts")
-        self.verticalLayout_16 = QVBoxLayout(self.bar_charts)
+        self._home_page = QWidget()
+        self._home_page.setObjectName(u"_home_page")
+        self.verticalLayout_16 = QVBoxLayout(self._home_page)
         self.verticalLayout_16.setObjectName(u"verticalLayout_16")
-        self.frame_21 = QFrame(self.bar_charts)
-        self.frame_21.setObjectName(u"frame_21")
-        self.frame_21.setFrameShape(QFrame.StyledPanel)
-        self.frame_21.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_15 = QVBoxLayout(self.frame_21)
-        self.verticalLayout_15.setObjectName(u"verticalLayout_15")
-        self.label_9 = QLabel(self.frame_21)
-        self.label_9.setObjectName(u"label_9")
-        self.label_9.setAlignment(Qt.AlignCenter)
-
-        self.verticalLayout_15.addWidget(self.label_9, 0, Qt.AlignTop)
-
-
-        self.verticalLayout_16.addWidget(self.frame_21)
-
-        self.frame_22 = QFrame(self.bar_charts)
+        self.frame_22 = QFrame(self._home_page)
         self.frame_22.setObjectName(u"frame_22")
         sizePolicy2.setHeightForWidth(self.frame_22.sizePolicy().hasHeightForWidth())
         self.frame_22.setSizePolicy(sizePolicy2)
@@ -456,7 +375,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_16.addWidget(self.frame_22)
 
-        self.stackedWidget.addWidget(self.bar_charts)
+        self.stackedWidget.addWidget(self._home_page)
 
         self.verticalLayout_6.addWidget(self.stackedWidget)
 
@@ -507,6 +426,9 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
+        self.stackedWidget.setCurrentIndex(4)
+
+
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
 
@@ -518,18 +440,13 @@ class Ui_MainWindow(object):
         self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"Temperature Records", None))
         self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Nested Donuts", None))
         self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"Line Charts", None))
-        self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"Bar Charts", None))
         self.pushButton_6.setText("")
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"MENU", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"DASHBOARD", None))
         self.pushButton_9.setText("")
         self.pushButton_8.setText("")
         self.pushButton_7.setText("")
-        self.label_5.setText(QCoreApplication.translate("MainWindow", u"Percentage Bar Chart", None))
-        self.label_6.setText(QCoreApplication.translate("MainWindow", u"Temperature Records", None))
-        self.label_7.setText(QCoreApplication.translate("MainWindow", u"Nested Donuts", None))
-        self.label_8.setText(QCoreApplication.translate("MainWindow", u"Line Charts", None))
-        self.label_9.setText(QCoreApplication.translate("MainWindow", u"Bar Charts", None))
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u"Home", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Copyright", None))
     # retranslateUi
 
