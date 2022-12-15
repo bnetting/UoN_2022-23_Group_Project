@@ -87,7 +87,11 @@ class MainWindow(QMainWindow):
         wealth = {}
         rowCount = 0
         
-        with open('billionaires.csv') as csvFile:
+        with open("billionaires.csv", 'r') as f_in:
+            for line in f_in:
+                print(line)
+        
+        with open('UIPrototype\interactiveUI\billionaires.csv') as csvFile:
             csvReader = csv.reader(csvFile, delimiter=',')
             for row in csvReader:
                 if rowCount > 0:
