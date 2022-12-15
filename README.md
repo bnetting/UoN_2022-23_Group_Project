@@ -5,5 +5,5 @@
 - psyaj3: Anderson Jolly
 - psyvv2: Viren Vadhvana
 - psynp2: Nayan Patel
-- psypb8:
+- psypb8: Parsa Bahrami
 - psyer2: Ethan Rowley
