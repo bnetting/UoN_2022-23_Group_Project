@@ -13,7 +13,13 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">border: none;</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">background-color: #232742;</string>
+   </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item alignment="Qt::AlignTop">
      <widget class="QFrame" name="frame">
@@ -52,10 +58,12 @@
            <widget class="QLabel" name="label">
             <property name="font">
              <font>
-              <family>Yu Gothic</family>
               <pointsize>30</pointsize>
               <bold>true</bold>
              </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: white;</string>
             </property>
             <property name="text">
              <string>Login</string>
@@ -91,6 +99,12 @@
          <layout class="QGridLayout" name="gridLayout">
           <item row="1" column="1">
            <widget class="QLineEdit" name="lineEdit_2">
+            <property name="styleSheet">
+             <string notr="true">color: white;
+border-radius: 20px;
+padding: 10px;
+border: 1px solid white;</string>
+            </property>
             <property name="placeholderText">
              <string comment="Username" extracomment="Username:"/>
             </property>
@@ -101,6 +115,9 @@
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="label_2">
+            <property name="styleSheet">
+             <string notr="true">color: white;</string>
+            </property>
             <property name="text">
              <string>Username: </string>
             </property>
@@ -120,6 +137,12 @@
          <layout class="QGridLayout" name="gridLayout_2">
           <item row="1" column="1">
            <widget class="QLineEdit" name="lineEdit">
+            <property name="styleSheet">
+             <string notr="true">color: white;
+border-radius: 20px;
+padding: 10px;
+border: 1px solid white;</string>
+            </property>
             <property name="placeholderText">
              <string comment="Password:" extracomment="Password:"/>
             </property>
@@ -130,6 +153,9 @@
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="label_3">
+            <property name="styleSheet">
+             <string notr="true">color: white;</string>
+            </property>
             <property name="text">
              <string>Password: </string>
             </property>
@@ -157,13 +183,15 @@
             </property>
             <property name="font">
              <font>
-              <family>Segoe UI</family>
               <bold>true</bold>
               <underline>true</underline>
              </font>
             </property>
             <property name="layoutDirection">
              <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: white;</string>
             </property>
             <property name="text">
              <string>Register</string>

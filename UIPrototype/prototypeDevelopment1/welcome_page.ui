@@ -13,8 +13,29 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">border: none;</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">background-color: #232742 ;</string>
+   </property>
    <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
     <item>
      <widget class="QFrame" name="frame_2">
       <property name="frameShape">
@@ -24,6 +45,21 @@
        <enum>QFrame::Raised</enum>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
        <item>
         <widget class="QFrame" name="frame">
          <property name="sizePolicy">
@@ -56,6 +92,9 @@
           </property>
           <item>
            <widget class="QFrame" name="frame_3">
+            <property name="styleSheet">
+             <string notr="true">color: white;</string>
+            </property>
             <property name="frameShape">
              <enum>QFrame::StyledPanel</enum>
             </property>
@@ -83,6 +122,9 @@
                <property name="enabled">
                 <bool>true</bool>
                </property>
+               <property name="styleSheet">
+                <string notr="true">color: white;</string>
+               </property>
                <property name="text">
                 <string/>
                </property>
@@ -103,23 +145,54 @@
          </layout>
         </widget>
        </item>
-       <item alignment="Qt::AlignHCenter">
-        <widget class="QPushButton" name="pushButton">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
+       <item>
+        <widget class="QFrame" name="frame_4">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>250</height>
+          </size>
          </property>
-         <property name="font">
-          <font>
-           <pointsize>30</pointsize>
-           <bold>true</bold>
-          </font>
+         <property name="styleSheet">
+          <string notr="true">background-color: #8D3CDA;
+border-top-left-radius: 80px 80px;
+border-top-right-radius: 80px 80px;</string>
          </property>
-         <property name="text">
-          <string>Welcome</string>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
          </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <widget class="QPushButton" name="pushButton">
+          <property name="geometry">
+           <rect>
+            <x>310</x>
+            <y>150</y>
+            <width>133</width>
+            <height>36</height>
+           </rect>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>30</pointsize>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: white;
+min-width: 100%;</string>
+          </property>
+          <property name="text">
+           <string>Welcome</string>
+          </property>
+         </widget>
         </widget>
        </item>
       </layout>
