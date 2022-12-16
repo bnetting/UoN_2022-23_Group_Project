@@ -1,5 +1,6 @@
 #  pyuic6 -x welcome_page.ui -o ui_welcome_page.py
 #  pyrcc5 resources.qrc -o resources_rc.py -- Change PyQt5 to PyQt6 in generated file
+#  Ensure welcome.py is the at the top of the stack before compiling.
 
 import os
 import sys # sys variables needed to run UI
