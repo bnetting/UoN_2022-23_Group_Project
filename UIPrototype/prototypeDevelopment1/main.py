@@ -13,15 +13,12 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         self.ui = Ui_MainWindow() #puts ui_welcome_Page into variable
         self.ui.setupUi(self) #sets up the screen
         
-        self.ui.pushButton.clicked.connect(self.changePageLogin)
-        self.ui.commandLinkButton.clicked.connect(self.changePageRegister)
-        self.ui.pushButton_5.clicked.connect(self.changePageLogin)
+        self.ui.pushButton.clicked.connect(lambda: self.changePage(0,1))
+        self.ui.commandLinkButton.clicked.connect(lambda: self.changePage(1,2))
+        self.ui.pushButton_5.clicked.connect(lambda: self.changePage(2,1))
         
-    def changePageLogin(self):
-        self.ui.stackedWidget.setCurrentIndex(1)
-        
-    def changePageRegister(self):
-        self.ui.stackedWidget.setCurrentIndex(2)
+    def changePage(self,currentPageIndex, newPageIndex):
+        self.ui.stackedWidget.setCurrentIndex(newPageIndex)
         
 app = QApplication(sys.argv)
 
