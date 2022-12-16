@@ -12,6 +12,7 @@ Author - Anderson Jolly
 """
 import time
 
+import numpy as np
 import pandas as pd
 import json
 import requests
@@ -19,6 +20,7 @@ from bs4 import BeautifulSoup
 
 writer = pd.ExcelWriter('threats.xlsx', engine='xlsxwriter')
 
+# these arrays are to create the dictionary of data for each vulnerability
 ID = []
 DESC = []
 DATE = []
@@ -32,6 +34,7 @@ LINK1 = []
 LINK2 = []
 
 
+# This function will get the threat data when given a URL
 def getData(url):
     r = requests.get(url)
     # gets data into JSON
@@ -40,87 +43,85 @@ def getData(url):
     vulnerabilities = data['vulnerabilities']
     # DATA FOR EACH THREAT
     # for item in vulnerabilities:
-    for i in range(0, 10):
+    for i in range(0, 100):
         item = vulnerabilities[i]
-        # print(item)
-        try:
+        try:  # ID
             CVE_ID = item['cve']['id']
             ID.append(CVE_ID)
         except:
             CVE_ID = ""
             print("MISSING ID")
-        try:
+        try:  # Description
             CVE_DESC = item['cve']['descriptions'][0]['value']
             DESC.append(CVE_DESC)
         except:
-            CVE_DESC = ""
+            CVE_DESC = np.nan
             print("MISSING DESC")
             DESC.append(CVE_DESC)
 
-        try:
+        try:  # Date
             CVE_DATE = item['cve']['lastModified']
             DATE.append(CVE_DATE)
         except:
             CVE_DATE = ""
             print("MISSING DATE")
-            DATE.append(CVE_DATE)
+            DATE.append(np.nan)
 
-        try:
+        try:  # Threat level
             CVE_SEVERITY_SCORE = item['cve']['metrics']['cvssMetricV2'][0]['cvssData']['baseScore']
             SCORE.append(CVE_SEVERITY_SCORE)
         except:
             CVE_SEVERITY_SCORE = ""
             print("MISSING SEVERITY SCORE")
-            SCORE.append(CVE_SEVERITY_SCORE)
+            SCORE.append(np.nan)
 
-        try:
-            # print(item['cve']['metrics']['cvssMetricV2'][0]['baseSeverity'])
+        try:  # Severity score
             CVE_SEVERITY = item['cve']['metrics']['cvssMetricV2'][0]['baseSeverity']
             SEVERITY.append(CVE_SEVERITY)
         except:
             CVE_SEVERITY = ""
             print("MISSING SEVERITY")
-            SEVERITY.append(CVE_SEVERITY)
+            SEVERITY.append(np.nan)
 
-        try:
+        try:  # Threat type
             CVE_TYPE = item['cve']['metrics']['cvssMetricV2'][0]['cvssData']['accessVector']
             TYPE.append(CVE_TYPE)
         except:
             CVE_TYPE = ""
             print("MISSING CVE TYPE")
-            TYPE.append(CVE_TYPE)
+            TYPE.append(np.nan)
 
-        try:
-            CVE_LINK = item['cve']['references'][0]['url']
-            LINK1.append(CVE_LINK)
-        except:
-            CVE_LINK = ""
-            print("MISSING CVE LINK")
-            LINK1.append(CVE_LINK)
-
-        try:
-            CVE_LINK_2 = item['cve']['references'][1]['url']
-            LINK2.append(CVE_LINK_2)
-        except:
-            CVE_LINK_2 = ""
-            print("MISSING CVE LINK 2")
-            LINK2.append(CVE_LINK_2)
-
-        try:
+        try:  # Exploitability
             CVE_EXPLOITABILITY_SCORE = item['cve']['metrics']['cvssMetricV2'][0]['exploitabilityScore']
             EXPLOITABILITY.append(CVE_EXPLOITABILITY_SCORE)
         except:
             CVE_EXPLOITABILITY_SCORE = ""
             print("MISSING CVE EXPLOITABILITY")
-            EXPLOITABILITY.append(CVE_EXPLOITABILITY_SCORE)
+            EXPLOITABILITY.append(np.nan)
 
-        try:
+        try:  # Impact
             CVE_IMPACT_SCORE = item['cve']['metrics']['cvssMetricV2'][0]['impactScore']
             IMPACT.append(CVE_IMPACT_SCORE)
         except:
             CVE_IMPACT_SCORE = ""
             print("MISSING CVE IMPACT")
-            IMPACT.append(CVE_IMPACT_SCORE)
+            IMPACT.append(np.nan)
+
+        try:  # Link 1
+            CVE_LINK = item['cve']['references'][0]['url']
+            LINK1.append(CVE_LINK)
+        except:
+            CVE_LINK = ""
+            print("MISSING CVE LINK")
+            LINK1.append(np.nan)
+
+        try:  # Link 2
+            CVE_LINK_2 = item['cve']['references'][1]['url']
+            LINK2.append(CVE_LINK_2)
+        except:
+            CVE_LINK_2 = ''
+            print("MISSING CVE LINK 2")
+            LINK2.append(CVE_LINK_2)
 
         print(f"ID: {CVE_ID} \n"
               f"TYPE: {CVE_TYPE} \n"
@@ -134,6 +135,7 @@ def getData(url):
               f"SECONDARY LINK: {CVE_LINK_2} \n")
 
 
+# This function writes the data frame to the Excel spreadsheet
 def writeData():
     df = pd.DataFrame({'ID': ID,
                        'TYPE': TYPE,
@@ -146,19 +148,22 @@ def writeData():
                        'DATE': DATE,
                        'LINK': LINK1,
                        'OTHER': LINK2})
-
+    print(df)
     df = df.dropna()
 
     df.to_excel(writer, index=True, header=True)
     writer.close()
 
 
+# Function to get the total number of vulnerabilities from the NVD
 def getTotal():
     r = requests.get('https://services.nvd.nist.gov/rest/json/cves/2.0')
     data = json.loads(r.text)
     return data['totalResults']
 
 
+# Function to query the CVE website to extract the sub-type of category
+# TODO need to be threaded
 def getCategory(url):
     threat_names = ['Denial Of Service', 'Execute Code', 'Overflow', 'Memory corruption',
                     'Sql Injection',
@@ -171,9 +176,9 @@ def getCategory(url):
     try:
         category = soup.findAll('span')
         subCategory = category[21].text
-        print(subCategory)
+        # print(subCategory)
         if subCategory == "-":
-            CATEGORY.append("")
+            CATEGORY.append(np.nan)
         else:
             CATEGORY.append(subCategory)
     except:
@@ -181,8 +186,6 @@ def getCategory(url):
 
 
 if __name__ == '__main__':
-    # total = getTotal()
-    # print(total)
     getData('https://services.nvd.nist.gov/rest/json/cves/2.0')
     '''for i in range(0, total, 2000):
         #print(i)
@@ -197,6 +200,8 @@ if __name__ == '__main__':
     print(len(LINK1))
     print(len(DATE))
     print(len(LINK1))
+    print(len(LINK2))
+
     for x in ID:
         getCategory(x)
 
