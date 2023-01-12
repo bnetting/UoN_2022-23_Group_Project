@@ -57,7 +57,7 @@ This document will give a detailed description for our program "<!-- Add app nam
 
 
 ## 1.2 Scope
-The program [<!-- Add app name here -->] will be used to visualize potential cyber security threats a business may face and provide suitable countermeasures with a list of details on aspects such as countermeasure type, price, ROI, etc. This application will use data from previous threats to predict all the previously mentioned details to the best possible accuracy. It will split the users into 3 different levels and give each a certain amount of control over the application, each user will be able to enter a certain set of data into the program for which it will reply with the optimal solutions using an [<!-- AI OR MATHS MODEL -->].
+The program [<!-- Add app name here -->] will be used to visualize potential cyber security threats a business may face and provide suitable countermeasures with a list of details on aspects such as countermeasure type, price, ROI, etc. This application will use data from previous threats to predict all the previously mentioned details to the best possible accuracy. It will split the users into 4 different levels and give each a certain amount of control over the application, each user will be able to enter a certain set of data into the program for which it will reply with the optimal solutions using an [<!-- AI OR MATHS MODEL -->].
 
 ## 1.3 Definitions
 
@@ -212,14 +212,36 @@ We will create two systems that will work together to create this program:
 
 ## 4.1 User Stories
 
-### 4.1.1 Occupant
- 
+### 4.1.1 Manager
+
+* **4.1.1.1** As a manager, I want to view the most effective method for securing our network in order to maximize our ROI
+
+* **4.1.1.2** As a manager, I want to be able to view a simplified summary of threats to our network, to make a well-informed decision on how to act 
+
 ---
-### 4.1.2 Viewer
+### 4.1.2 User (everyone)
 
-### 4.1.3 Letting Agency
+* **4.1.2.1** As a user, I wish to be able to login to the software to view the potential threats to the company network
 
-### 4.1.4 Landlord
+* **4.1.2.2** As a user, I wish to be able to see more information about a particular threat in order to understand its severity and how to combat it 
+
+* **4.1.2.3** As a user, I wish to view an in-depth description of threats to better understand the effects of them on the company
+
+---
+### 4.1.3 Cyber Expert
+
+* **4.1.3.1** As a professional, I wish to be able to change the data set provided to make the models used up to date and as accurate as possible
+
+* **4.1.3.2** As a professional, I wish to view the most recent cyber-attacks to see what areas of the company’s infrastructure are most vulnerable 
+
+* **4.1.3.3** As a professional, I wish to see the system activity in order to see any new threats
+
+* **4.1.3.4** As a professional, I wish to view in depth details on cyber attacks
+
+---
+### 4.1.4 Victim
+
+* **4.1.4.1** As a cyber-attack victim, I wish to input information regarding recent attacks for the managers to make a well-informed decision. 
 
 
 ### 4.1.5 Quality Inspection Team
