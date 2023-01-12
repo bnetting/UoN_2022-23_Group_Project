@@ -4,6 +4,7 @@
   - [1.1 Purpose](#11-purpose)
   - [1.2 Scope](#12-scope)
   - [1.3 Definitions](#13-definitions)
+  - [1.4 Breakdown](#14-breakdown)
 - [2.0 Specification](#20-specification)
   - [2.1 Non-functional](#21-non-functional)
   - [2.2 Functional](#22-functional)
@@ -56,13 +57,40 @@ This document will give a detailed description for our program "<!-- Add app nam
 
 
 ## 1.2 Scope
-The program "<!-- Add app name here -->" will be used to visualize potential cyber security threats a business may face and provide suitable countermeasures with a list of details on aspects such as countermeasure type, price, ROI, etc. This application will use data from previous threats to predict all the previously mentioned details to the best possible accuracy. It will split the users into 3 different levels and give each a certain amount of control over the application, each user will be able to enter a certain set of data into the program for which it will reply with the optimal solutions using an [<!-- AI OR MATHS MODEL -->]
+The program [<!-- Add app name here -->] will be used to visualize potential cyber security threats a business may face and provide suitable countermeasures with a list of details on aspects such as countermeasure type, price, ROI, etc. This application will use data from previous threats to predict all the previously mentioned details to the best possible accuracy. It will split the users into 3 different levels and give each a certain amount of control over the application, each user will be able to enter a certain set of data into the program for which it will reply with the optimal solutions using an [<!-- AI OR MATHS MODEL -->].
 
 ## 1.3 Definitions
 
 * *ROI : Return of Investment*
 
 * *Priority : Priority is the importance a certain requirment/specification is to the system, scaling from High(Highest priority) to Medium to Low(Lowest priority), with an additional "optional priority"*
+
+## 1.4 Breakdown
+
+We will create two systems that will work together to create this program:  
+1. Visualization System:
+    - Log in system
+    - Registration system
+    - Database for above with a log in system
+    - General Home page
+      - Graph
+      - Recent attack breakdown
+      - System status
+    - Info Page
+      - Threat information
+    - Countermeasures - optimal choice
+      - Safest
+      - Optimal
+      - Cheapest
+2. Decision Making:
+    - Log in database
+    - Web scraper to get database of all the threats
+    - Data aggregation -> filter threats, classify threats
+    - Database for system status
+    - Database for countermeasures
+      - Tier list
+      - Budget
+      - Cost
 
 # 2.0 Specification
 ## 2.1 Non-functional
