@@ -7,9 +7,11 @@ Libraries needed "pip install <>"
 - xlsxwriter
 - xlrd
 - openpyxl
+- thread
 
 Author - Anderson Jolly
 """
+import threading
 import time
 
 import numpy as np
@@ -17,21 +19,58 @@ import pandas as pd
 import json
 import requests
 from bs4 import BeautifulSoup
+from threading import Thread
+import threading
 
 writer = pd.ExcelWriter('threats.xlsx', engine='xlsxwriter')
-
+THREATS_PER_PAGE = 2000
+NUMBER_OF_THREADS = 4
+NUMBER_OF_CATEGORY_THREADS = 64
+scraperThreads = []
+categoryThreads = []
 # these arrays are to create the dictionary of data for each vulnerability
 ID = []
+idLock = threading.Lock()
 DESC = []
+descLock = threading.Lock()
 DATE = []
+dateLock = threading.Lock()
 TYPE = []
-CATEGORY = []
+typeLock = threading.Lock()
+CATEGORY = [None] * (THREATS_PER_PAGE * NUMBER_OF_THREADS)
+catLock = threading.Lock()
 SEVERITY = []
+severityLock = threading.Lock()
 SCORE = []
+scoreLock = threading.Lock()
 EXPLOITABILITY = []
+exploitLock = threading.Lock()
 IMPACT = []
+impactLock = threading.Lock()
 LINK1 = []
+link1Lock = threading.Lock()
 LINK2 = []
+link2Lock = threading.Lock()
+
+categoryID = []
+catIDLock = threading.Lock()
+
+
+def addCell(data, array, lock):
+    lock.acquire()
+    array.append(data)
+    lock.release()
+
+
+def addCellIndex(data, array, lock, id):
+    idLock.acquire()
+    index = ID.index(id)
+    # print("---- ", ID[index])
+    lock.acquire()
+    array[index] = data
+    # print("ADDED in Place", str(index))
+    lock.release()
+    idLock.release()
 
 
 # This function will get the threat data when given a URL
@@ -43,96 +82,84 @@ def getData(url):
     vulnerabilities = data['vulnerabilities']
     # DATA FOR EACH THREAT
     # for item in vulnerabilities:
-    for i in range(0, 100):
+    for i in range(0, THREATS_PER_PAGE):
         item = vulnerabilities[i]
         try:  # ID
             CVE_ID = item['cve']['id']
-            ID.append(CVE_ID)
+            addCell(CVE_ID, ID, idLock)
         except:
             CVE_ID = ""
-            print("MISSING ID")
+            addCell(CVE_ID, ID, idLock)
+            # print("MISSING ID")
         try:  # Description
             CVE_DESC = item['cve']['descriptions'][0]['value']
-            DESC.append(CVE_DESC)
+            addCell(CVE_DESC, DESC, descLock)
         except:
             CVE_DESC = np.nan
-            print("MISSING DESC")
-            DESC.append(CVE_DESC)
+            # print("MISSING DESC")
+            addCell(CVE_DESC, DESC, descLock)
 
         try:  # Date
             CVE_DATE = item['cve']['lastModified']
-            DATE.append(CVE_DATE)
+            addCell(CVE_DATE, DATE, dateLock)
+
         except:
-            CVE_DATE = ""
-            print("MISSING DATE")
-            DATE.append(np.nan)
+            CVE_DATE = np.nan
+            addCell(CVE_DATE, DATE, dateLock)
 
         try:  # Threat level
             CVE_SEVERITY_SCORE = item['cve']['metrics']['cvssMetricV2'][0]['cvssData']['baseScore']
-            SCORE.append(CVE_SEVERITY_SCORE)
+            addCell(CVE_SEVERITY_SCORE, SCORE, severityLock)
+
         except:
-            CVE_SEVERITY_SCORE = ""
-            print("MISSING SEVERITY SCORE")
-            SCORE.append(np.nan)
+            CVE_SEVERITY_SCORE = np.nan
+            addCell(CVE_SEVERITY_SCORE, SCORE, severityLock)
 
         try:  # Severity score
             CVE_SEVERITY = item['cve']['metrics']['cvssMetricV2'][0]['baseSeverity']
-            SEVERITY.append(CVE_SEVERITY)
+            addCell(CVE_SEVERITY, SEVERITY, scoreLock)
+
         except:
-            CVE_SEVERITY = ""
-            print("MISSING SEVERITY")
-            SEVERITY.append(np.nan)
+            CVE_SEVERITY = np.nan
+            addCell(CVE_SEVERITY, SEVERITY, scoreLock)
 
         try:  # Threat type
             CVE_TYPE = item['cve']['metrics']['cvssMetricV2'][0]['cvssData']['accessVector']
-            TYPE.append(CVE_TYPE)
+            addCell(CVE_TYPE, TYPE, typeLock)
+
         except:
-            CVE_TYPE = ""
-            print("MISSING CVE TYPE")
-            TYPE.append(np.nan)
+            CVE_TYPE = np.nan
+            addCell(CVE_TYPE, TYPE, typeLock)
 
         try:  # Exploitability
             CVE_EXPLOITABILITY_SCORE = item['cve']['metrics']['cvssMetricV2'][0]['exploitabilityScore']
-            EXPLOITABILITY.append(CVE_EXPLOITABILITY_SCORE)
+            addCell(CVE_EXPLOITABILITY_SCORE, EXPLOITABILITY, exploitLock)
+
         except:
-            CVE_EXPLOITABILITY_SCORE = ""
-            print("MISSING CVE EXPLOITABILITY")
-            EXPLOITABILITY.append(np.nan)
+            CVE_EXPLOITABILITY_SCORE = np.nan
+            addCell(CVE_EXPLOITABILITY_SCORE, EXPLOITABILITY, exploitLock)
 
         try:  # Impact
             CVE_IMPACT_SCORE = item['cve']['metrics']['cvssMetricV2'][0]['impactScore']
-            IMPACT.append(CVE_IMPACT_SCORE)
+            addCell(CVE_IMPACT_SCORE, IMPACT, impactLock)
         except:
-            CVE_IMPACT_SCORE = ""
-            print("MISSING CVE IMPACT")
-            IMPACT.append(np.nan)
+            CVE_IMPACT_SCORE = np.nan
+            addCell(CVE_IMPACT_SCORE, IMPACT, impactLock)
 
         try:  # Link 1
             CVE_LINK = item['cve']['references'][0]['url']
-            LINK1.append(CVE_LINK)
+            addCell(CVE_LINK, LINK1, link1Lock)
+
         except:
-            CVE_LINK = ""
-            print("MISSING CVE LINK")
-            LINK1.append(np.nan)
+            CVE_LINK = np.nan
+            addCell(CVE_LINK, LINK1, link1Lock)
 
         try:  # Link 2
-            CVE_LINK_2 = item['cve']['references'][1]['url']
-            LINK2.append(CVE_LINK_2)
+            CVE_LINK_2 = 'https://www.cvedetails.com/cve/' + CVE_ID + '/'
+            addCell(CVE_LINK_2, LINK2, link2Lock)
         except:
             CVE_LINK_2 = ''
-            print("MISSING CVE LINK 2")
-            LINK2.append(CVE_LINK_2)
-
-        print(f"ID: {CVE_ID} \n"
-              f"TYPE: {CVE_TYPE} \n"
-              f"DESCRIPTION: {CVE_DESC} \n"
-              f"DATE: {CVE_DATE} \n"
-              f"THREAT LEVEL: {CVE_SEVERITY} \n"
-              f"BASE SEVERITY: {CVE_SEVERITY_SCORE} \n"
-              f"EXPLOITABILITY: {CVE_EXPLOITABILITY_SCORE} \n"
-              f"IMPACT: {CVE_IMPACT_SCORE} \n"
-              f"LINK: {CVE_LINK} \n"
-              f"SECONDARY LINK: {CVE_LINK_2} \n")
+            addCell(CVE_LINK_2, LINK2, link2Lock)
 
 
 # This function writes the data frame to the Excel spreadsheet
@@ -148,11 +175,12 @@ def writeData():
                        'DATE': DATE,
                        'LINK': LINK1,
                        'OTHER': LINK2})
-    print(df)
+    # print(df)
     df = df.dropna()
 
     df.to_excel(writer, index=True, header=True)
     writer.close()
+    print("WRITE SUCCESS")
 
 
 # Function to get the total number of vulnerabilities from the NVD
@@ -164,33 +192,81 @@ def getTotal():
 
 # Function to query the CVE website to extract the sub-type of category
 # TODO need to be threaded
-def getCategory(url):
+def getCategory(IDs, threadNo):
     threat_names = ['Denial Of Service', 'Execute Code', 'Overflow', 'Memory corruption',
                     'Sql Injection',
                     'Cross Site Scripting', 'Directory Traversal', 'Http response splitting',
                     'Bypass a restriction or similar',
                     'Obtain Information', 'Gain privileges', 'CSRF', 'File Inclusion']
-    r = requests.get('https://www.cvedetails.com/cve/' + url + '/')
-    htmlText = r.text  # raw html text
-    soup = BeautifulSoup(htmlText, 'lxml')
-    try:
-        category = soup.findAll('span')
-        subCategory = category[21].text
-        # print(subCategory)
-        if subCategory == "-":
-            CATEGORY.append(np.nan)
-        else:
-            CATEGORY.append(subCategory)
-    except:
-        CATEGORY.append("")
+    # pop
+    while True:
 
+        catIDLock.acquire()
+        cve = IDs.pop(0)
+        # print(cve)
+        print("Thread", str(threadNo), " - " + str(len(IDs)))
+        catIDLock.release()
+
+        if cve:
+            link = 'https://www.cvedetails.com/cve/' + cve + '/'
+            r = requests.get(link)
+            htmlText = r.text  # raw html text
+            soup = BeautifulSoup(htmlText, 'lxml')
+            try:
+                category = soup.findAll('span')
+                subCategory = category[21].text
+                #  print("index = " + str(index) + " Cat = " + subCategory, "CVE = " + str(url) + "\n")
+                if subCategory == "-" or subCategory == " ":
+                    # print("found fuck all at " + str(cve) + "index " + str(ID.index(cve)))
+                    addCellIndex(np.nan, CATEGORY, catLock, cve)
+                else:
+                    addCellIndex(subCategory, CATEGORY, catLock, cve)
+            except:
+                print("THREAD " + str(threadNo) + " SLEEPING")
+        if len(IDs) == 0:
+            False
+            break
+            #  addCellIndex(np.nan, CATEGORY, catLock, cve)
+
+            subCategory = ""
+            # addCellIndex(subCategory, CATEGORY, catLock, url)
+        # catIDLock.release()
+
+
+# idLock.release()
 
 if __name__ == '__main__':
-    getData('https://services.nvd.nist.gov/rest/json/cves/2.0')
-    '''for i in range(0, total, 2000):
-        #print(i)
-        getData('https://services.nvd.nist.gov/rest/json/cves/2.0?startIndex='+str(i))
-        time.sleep(10)'''
+
+    for i in range(0, NUMBER_OF_THREADS):
+        print("THREAD CREATION THREATS\n", str(i) + "\n")
+        url = "https://services.nvd.nist.gov/rest/json/cves/2.0?startIndex=" + str(i * 2000)
+        print(url)
+        t = threading.Thread(target=getData, args=(url,))
+        scraperThreads.append(t)
+
+    for i in range(0, NUMBER_OF_THREADS):
+        scraperThreads[i].start()
+        time.sleep(1)
+
+    for i in range(0, NUMBER_OF_THREADS):
+        scraperThreads[i].join()
+
+    IDs = ID.copy()
+    for x in range(0, len(ID)):
+        print(ID[x])
+    print(len(IDs), " LENGTH")
+
+    for i in range(0, NUMBER_OF_CATEGORY_THREADS):
+        t = threading.Thread(target=getCategory, args=(IDs, i))
+        categoryThreads.append(t)
+
+    for i in range(0, NUMBER_OF_CATEGORY_THREADS):
+        categoryThreads[i].start()
+
+    for i in range(0, NUMBER_OF_CATEGORY_THREADS):
+        categoryThreads[i].join()
+    print("Writing")
+
     print(len(ID))
     print(len(TYPE))
     print(len(SEVERITY))
@@ -201,8 +277,5 @@ if __name__ == '__main__':
     print(len(DATE))
     print(len(LINK1))
     print(len(LINK2))
-
-    for x in ID:
-        getCategory(x)
-
+    print(len(CATEGORY))
     writeData()
