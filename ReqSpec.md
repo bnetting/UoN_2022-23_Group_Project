@@ -1,10 +1,11 @@
-# Coursework 1  
+# Documentation
 ## Contents:  
 - [1.0 Overview](#10-overview)
   - [1.1 Purpose](#11-purpose)
   - [1.2 Scope](#12-scope)
   - [1.3 Definitions](#13-definitions)
   - [1.4 Breakdown](#14-breakdown)
+  - [1.5 Timeline](#15-product-road-map)
 - [2.0 Specification](#20-specification)
   - [2.1 Non-functional](#21-non-functional)
   - [2.2 Functional](#22-functional)
@@ -41,12 +42,6 @@
     - [4.6.2 Reasons for using a State Diagram](#462-reasons-for-using-class-diagram)
     - [4.6.3 Assumptions](#463-assumptions)
 - [5.0 Prototype](#50-prototype)
-  - [5.1 Login page](#51-login-page)
-  - [5.2 Property list view](#52-property-list-view)
-  - [5.3 Specific property view](#53-specific-property-view)
-  - [5.4 Landlord page](#54-landlord-page)
-  - [5.5 Agency page](#55-agency-page)
-  - [5.6 Assumptions](#56-assumptions)
 # 1.0 Overview
 
 ## 1.1 Purpose
@@ -88,6 +83,10 @@ We will create two systems that will work together to create this program:
       - Tier list
       - Budget
       - Cost
+
+## 1.5 Product Road Map
+
+![Diagram](/Images/csa_product_roadmap.png "Product Road Map")
 
 # 2.0 Specification
 ## 2.1 Non-functional
@@ -253,6 +252,7 @@ We chose user stories because dealing with cyber threats at a business is often 
 ## 4.2 Use Case Diagram (Requirements)
 
 ### 4.2.1 Diagram
+
 ![Diagram](/Images/UseCaseDiagram.jpg "Use Case Diagram")
 
 ### 4.2.2 Reasons for using a Use Case Diagram
@@ -316,16 +316,4 @@ Class diagram allow us to show the entity relations between different aspects of
 
 # 5.0 Prototype
 
-## 5.1 Login page
-
-## 5.2 Property list view
-
-## 5.3 Specific property view
-
-## 5.4 Landlord page
-
-
-## 5.5 Agency page
-
-
-### 5.6 Assumptions
+![Diagram](/Images/Prototype1.png "Prototype 1")
