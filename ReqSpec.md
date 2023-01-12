@@ -17,7 +17,7 @@
     - [4.1.2 Viewer](#412-viewer)
     - [4.1.3 Letting Agency](#413-letting-agency)
     - [4.1.4 Landlord](#414-landlord)
-    - [4.1.5 Quality Inspection Team](#415-quality-inspection-team)s
+    - [4.1.5 Quality Inspection Team](#415-quality-inspection-team)
     - [4.1.6 Reasons for using User Stories](#416-reasons-for-using-user-stories)
   - [4.2 Use Case Diagram](#42-use-case-diagram)
     - [4.2.1 Diagram (Requirements)](#421-diagram-requirements)
@@ -95,7 +95,58 @@ We will create two systems that will work together to create this program:
 # 2.0 Specification
 ## 2.1 Non-functional
 
+* **2.1.1** The System should take in data from a CSV and analyze and pre-process for use in the GUI
+  * *Priority: High*
+
+* **2.1.2** The system will use a database with hashed passwords to authenticate users of different access levels
+  * *Priority: High*
+
+* **2.1.3** The system will provide a status for 0 – 10 systems
+  * *Priority: High*
+
+* **2.1.4** The system should be able to generate three countermeasures from the dataset within 1 and 8 seconds 
+  * *Priority: High*
+
+* **2.1.5** The system results of the models will be authenticated with online resources to ensure accuracy 
+  * *Priority: High*
+
+* **2.1.6** The system should allow the user to toggle currency, changing all values based off an exchange rate 
+  * *Priority: Medium*
+
 ## 2.2 Functional
+
+* **2.2.1** The system should provide a login system that provides account creation, password change for 2 different user bases
+  * *Priority: High*
+
+* **2.2.2** The system should provide a live view of the systems for the company. Updated by an admin user
+  * *Priority: Low*
+
+* **2.2.3** The system should allow admin to add company services and alter the status of services 
+  * *Priority: Low*
+
+* **2.2.4** The system should take the dataset, pre-processes for threat type, distribution, frequency. Display the data in the form of a graph
+  * *Priority: High*
+
+* **2.2.5** The system should display 3 counter measures for a given threat the user is hovering over
+  * *Priority: High*
+
+* **2.2.6** The system will provide a model to calculate the Best, Optimal and Cheapest countermeasures for a given threat
+  * *Priority: High*
+
+* **2.2.7** The system will display technical details of varying complexity based on the type of user
+  * *Priority: High*
+
+* **2.2.8** The system should provide a search functionality to be able to return a countermeasure and a brief description
+  * *Priority: Medium*
+
+* **2.2.9** The system should provide a search functionality to allow the user to search for any given threat from the database and return relevant information
+  * *Priority: Medium*
+
+* **2.2.10** The system shall provide a page based on a given threat and visualize the cost and display relevant links to the threat
+  * *Priority: High*
+
+* **2.2.11** The system will display technical details of varying complexity based on the type of user
+  * *Priority: High*
 
 # 3.0 Requirements
 
