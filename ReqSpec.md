@@ -41,7 +41,18 @@
     - [4.6.1 Diagram (Specification)](#461-diagram)
     - [4.6.2 Reasons for using a State Diagram](#462-reasons-for-using-class-diagram)
     - [4.6.3 Assumptions](#463-assumptions)
-- [5.0 Prototype](#50-prototype)
+- [5.0 Concepts](#50-concepts)
+- [6.0 Front-end Development](#60-front-end-development)
+  - [6.1 Proof of Concept](#61-proof-of-concept)
+- [7.0 Front-end Development](#70-back-end-development)
+  - [7.1 Proof of Concept](#71-proof-of-concept)
+- [8.0 Prototype 1](#80-prototype-1)
+- [9.0 Prototype 2](#90-prototype-2)
+- [10.0 Prototype 3](#100-prototype-3)
+- [11.0 Prototype 4](#110-prototype-4)
+
+
+
 # 1.0 Overview
 
 ## 1.1 Purpose
@@ -314,6 +325,22 @@ Class diagram allow us to show the entity relations between different aspects of
 
 ### 4.6.3 Assumptions
 
-# 5.0 Prototype
+# 5.0 Concepts
 
-![Diagram](/Images/Prototype1.png "Prototype 1")
+![Diagram](/Images/Prototype1.png "Concept 1")
+
+# 6.0 Front-end Development
+
+## 6.1 Proof of concept
+
+# 7.0 Back-end Development
+
+## 7.1 Proof of concept
+
+# 8.0 Prototype 1
+
+# 9.0 Prototype 2
+
+# 10.0 Prototype 3
+
+# 11.0 Prototype 4
