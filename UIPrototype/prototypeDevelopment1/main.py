@@ -5,10 +5,21 @@
 import time
 import os
 import sys # sys variables needed to run UI
+import pandas as pd
+import matplotlib.pyplot as plt
 from main_user_interface import * # Python version of the UI file for welcome page
 from PyQt6.QtWidgets import QMainWindow, QApplication, QGraphicsOpacityEffect
 from PyQt6.QtCore import QPropertyAnimation, QEasingCurve, QTimer
 import resources_rc
+
+
+# DATA CLEANING AND GRAPHING AREA
+#--------------------------------------------
+df = pd.read_excel(r'UIPrototype\prototypeDevelopment1\threats.xlsx') # May need to do a 'pip install pandas' and 'pip install openpyxl' for this to work.
+
+#--------------------------------------------
+
+
 
 class MainWindow(QMainWindow): #Setup code for welcome page
     def __init__(self, parent=None): 
@@ -336,13 +347,6 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         timer.singleShot(1000, self.openLogin)
             
 app = QApplication(sys.argv)
-
-# DATA CLEANING AND GRAPHING AREA
-#--------------------------------------------
-
-
-
-#--------------------------------------------
 
 window = MainWindow()
 window.show()
