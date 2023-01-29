@@ -10,8 +10,6 @@ from PyQt6.QtWidgets import QMainWindow, QApplication, QGraphicsOpacityEffect
 from PyQt6.QtCore import QPropertyAnimation, QEasingCurve, QTimer
 import resources_rc
 
-
-
 class MainWindow(QMainWindow): #Setup code for welcome page
     def __init__(self, parent=None): 
         QMainWindow.__init__(self) 
@@ -20,11 +18,21 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         self.nextPage = 0        
         self.openWelcome() #Run when the program first starts. Hides the welcome page elements and brings them in with an animation
         
-        self.ui.pushButton.clicked.connect(lambda: self.changePage(0,1))
-        self.ui.commandLinkButton.clicked.connect(lambda: self.changePage(1,2))
-        self.ui.pushButton_5.clicked.connect(lambda: self.changePage(2,1))
+        self.ui.pushButton.clicked.connect(lambda: self.changePage(0,1)) #Runs if the 'Welcome' button is pushed on the welcome page
+        self.ui.commandLinkButton.clicked.connect(lambda: self.changePage(1,2))#Runs if the '-> Register' button is pushed on the login page
+        self.ui.pushButton_5.clicked.connect(lambda: self.changePage(2,1))#Runs if the 'Register!' button is pushed on the register page
         
-    def changePage(self,currentPageIndex, newPageIndex):
+    # changePage()
+    #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------    
+    # The point of this function is to manage when a button that should take the user to a new page is pressed. The function will take 2 inputs.
+    # 'currentPageIndex' is the page index of the current page, i.e the welcome page is 0, login is 1, register is 2, etc... . Some pages can only transition to one other page,
+    # i.e. you can only go from the Welcome page to the Login page and not back, so in this case the closeWelcome() function also opens the login page for us. In other cases, like the 
+    # login page, there are multiple paths, i.e. from login page we can log the user in and take them to their home page, or, take them to the register page. To fix this, we use the 
+    # second parameter newPageindex to decide what page we go to next depending on what button is pressed, and the variable nextPage is updated to reflect which page needs to be 
+    # loaded up after the current one has been faded out.
+    #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    
+    def changePage(self,currentPageIndex, newPageIndex): 
         if (currentPageIndex == 0):
             self.closeWelcome()
         if (currentPageIndex == 1):
@@ -36,7 +44,7 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         
     def openWelcome(self): #Setup the welcome page and show animations 
 
-        self.ui.bottom_tab.setMaximumHeight(0)
+        self.ui.bottom_tab.setMaximumHeight(0) #Set tab size to 0 before it is displayed to the user on startup (makes them look like they come from off screen)
         
         self.ui.animation1 = QPropertyAnimation(self.ui.bottom_tab, b"maximumHeight")
         self.ui.animation1.setDuration(1500)
@@ -44,13 +52,13 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         self.ui.animation1.setEndValue(250)
         self.ui.animation1.setEasingCurve(QEasingCurve.Type.InOutQuart)
                 
-        self.ui.animation2 = QPropertyAnimation(self.ui.bottom_tab, b"maximumHeight")
+        self.ui.animation2 = QPropertyAnimation(self.ui.bottom_tab, b"maximumHeight") #Note this code has been repeated from above because it makes these kind of transitions much smoother for some reason,
         self.ui.animation2.setDuration(1500)
         self.ui.animation2.setStartValue(0)
         self.ui.animation2.setEndValue(250)
         self.ui.animation2.setEasingCurve(QEasingCurve.Type.InOutQuart)
         
-        self.ui.effect1 = QGraphicsOpacityEffect()
+        self.ui.effect1 = QGraphicsOpacityEffect() #Fades the widgets into view to make their transitions seem smoother
         self.ui.middle_widget.setGraphicsEffect(self.ui.effect1)
         self.ui.animation3 = QPropertyAnimation(self.ui.effect1, b"opacity")
         self.ui.animation3.setDuration(3500)
@@ -109,7 +117,7 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         self.ui.animation3.start()
         self.ui.animation4.start()
         
-        timer.singleShot(1000, self.openLogin) # Used to create a delay when the closing animation has completed before the new animation begins
+        timer.singleShot(1000, self.openLogin) # Used to create a delay when the closing animation has completed before the new page is loaded in and the animations begin again.
         
         
     def openLogin(self): #Opens the login page and animations
@@ -220,7 +228,7 @@ class MainWindow(QMainWindow): #Setup code for welcome page
             timer.singleShot(1000, self.openRegister) #Going to the register page
         
         
-    def openRegister(self):
+    def openRegister(self): # Open the register page and animations
         self.ui.stackedWidget.setCurrentIndex(2)
 
         self.ui.frame_19.setMaximumHeight(0)
@@ -328,6 +336,13 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         timer.singleShot(1000, self.openLogin)
             
 app = QApplication(sys.argv)
+
+# DATA CLEANING AND GRAPHING AREA
+#--------------------------------------------
+
+
+
+#--------------------------------------------
 
 window = MainWindow()
 window.show()
