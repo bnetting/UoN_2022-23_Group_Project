@@ -15,7 +15,7 @@ import resources_rc
 
 # DATA CLEANING AND GRAPHING AREA
 #--------------------------------------------
-df = pd.read_excel(r'UIPrototype\prototypeDevelopment1\threats.xlsx') # May need to do a 'pip install pandas' and 'pip install openpyxl' for this to work.
+df = pd.read_excel(r'prototypeDevelopment1\threats.xlsx') # May need to do a 'pip install pandas' and 'pip install openpyxl' for this to work.
 
 #--------------------------------------------
 
