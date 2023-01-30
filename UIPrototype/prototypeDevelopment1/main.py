@@ -7,27 +7,19 @@ import os
 import sys # sys variables needed to run UI
 import random
 import pandas as pd
-import matplotlib
-matplotlib.use("QtAgg")
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg, NavigationToolbar2QT as NavigationToolbar
-from matplotlib.figure import Figure
 from main_user_interface import * # Python version of the UI file for welcome page
-from PyQt6.QtWidgets import QMainWindow, QApplication, QGraphicsOpacityEffect
-from PyQt6.QtCore import QPropertyAnimation, QEasingCurve, QTimer
 import resources_rc
-
+from PyQt6.QtWidgets import QMainWindow, QApplication, QGraphicsOpacityEffect, QSizePolicy
+from PyQt6.QtCore import QPropertyAnimation, QEasingCurve, QTimer, QSize
+from PyQt6.QtGui import QPainter
+from PyQt6 import QtCharts # pip install PyQt6-Charts
+from PyQt6.QtCharts import QChart
 
 # DATA CLEANING AND GRAPHING AREA
 #--------------------------------------------
 df = pd.read_excel(r'prototypeDevelopment1\threats.xlsx') # May need to do a 'pip install pandas' and 'pip install openpyxl' for this to work.
 
 #--------------------------------------------
-class MplCanvas(FigureCanvasQTAgg):
-    def __init__(self, parent=None, width = 5, height = 4, dpi = 100):
-        fig = Figure(figsize=(width,height), dpi = dpi)
-        self.axes = fig.add_subplot(111)
-        super(MplCanvas, self).__init__(fig)
 
 
 class MainWindow(QMainWindow): #Setup code for welcome page
@@ -365,17 +357,36 @@ class MainWindow(QMainWindow): #Setup code for welcome page
     def openHome(self):
         self.ui.stackedWidget.setCurrentIndex(3)
         
-        sc = MplCanvas(self, width = 5, height = 5, dpi = 100)
-
-        df = pd.DataFrame([[0,10],[5,15],[2,20],[15,25],[4,10],], columns=["A","B"])
+        series = QtCharts.QPieSeries()
         
-        df.plot(ax=sc.axes)
+        series.append("Phishing",120)
+        series.append("DDoS",60)
+        series.append("MitM",25)
+        series.append("SQL Injection",70)
+        series.append("Password Attack",40)
         
-        layout = QtWidgets.QVBoxLayout()
-        layout.addWidget(sc)
+        chart = QtCharts.QChart()
         
-        self.ui.frame_25.setLayout(layout)
+        chart.addSeries(series)
+        chart.setAnimationOptions(QtCharts.QChart.AnimationOption.SeriesAnimations)
+        chart.createDefaultAxes()
+        chart.setTitle("Test graph")
         
+        self.ui.chartView = QtCharts.QChartView(chart)
+        self.ui.chartView.setRenderHint(QPainter.RenderHint.Antialiasing)
+        self.ui.chartView.chart().setTheme(QtCharts.QChart.ChartTheme.ChartThemeDark)
+        
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        sizePolicy.setHeightForWidth(self.ui.chartView.sizePolicy().hasHeightForWidth())
+        
+        self.ui.chartView.setSizePolicy(sizePolicy)
+        self.ui.chartView.setMinimumSize(QSize(0,300))
+        
+        self.ui.widget_25.setContentsMargins(0,0,0,0)
+        
+        layout = QtWidgets.QHBoxLayout(self.ui.widget_25)
+        layout.setContentsMargins(0,0,0,0)
+        layout.addWidget(self.ui.chartView)
         
         
 app = QApplication(sys.argv)

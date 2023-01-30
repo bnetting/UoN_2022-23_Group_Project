@@ -530,19 +530,15 @@ class Ui_MainWindow(object):
         self.home_page.setObjectName(u"home_page")
         self.verticalLayout_7 = QVBoxLayout(self.home_page)
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
-        self.frame_25 = QFrame(self.home_page)
-        self.frame_25.setObjectName(u"frame_25")
-        self.frame_25.setFrameShape(QFrame.StyledPanel)
-        self.frame_25.setFrameShadow(QFrame.Raised)
+        self.widget_25 = QWidget(self.home_page)
+        self.widget_25.setObjectName(u"widget_25")
 
-        self.verticalLayout_7.addWidget(self.frame_25)
+        self.verticalLayout_7.addWidget(self.widget_25)
 
-        self.frame_26 = QFrame(self.home_page)
-        self.frame_26.setObjectName(u"frame_26")
-        self.frame_26.setFrameShape(QFrame.StyledPanel)
-        self.frame_26.setFrameShadow(QFrame.Raised)
+        self.widget_26 = QWidget(self.home_page)
+        self.widget_26.setObjectName(u"widget_26")
 
-        self.verticalLayout_7.addWidget(self.frame_26)
+        self.verticalLayout_7.addWidget(self.widget_26)
 
         self.stackedWidget.addWidget(self.home_page)
 
