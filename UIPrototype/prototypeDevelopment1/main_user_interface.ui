@@ -932,6 +932,30 @@ font-size: 50px;</string>
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="home_page">
+       <layout class="QVBoxLayout" name="verticalLayout_7">
+        <item>
+         <widget class="QFrame" name="frame_25">
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="frame_26">
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
    </layout>

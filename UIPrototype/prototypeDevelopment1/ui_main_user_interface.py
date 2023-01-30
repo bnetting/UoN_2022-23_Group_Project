@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'main_user_interface.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.4.0
+## Created by: Qt User Interface Compiler version 6.4.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -526,6 +526,25 @@ class Ui_MainWindow(object):
         self.horizontalLayout_5.addWidget(self.frame_16)
 
         self.stackedWidget.addWidget(self.register_page)
+        self.home_page = QWidget()
+        self.home_page.setObjectName(u"home_page")
+        self.verticalLayout_7 = QVBoxLayout(self.home_page)
+        self.verticalLayout_7.setObjectName(u"verticalLayout_7")
+        self.frame_25 = QFrame(self.home_page)
+        self.frame_25.setObjectName(u"frame_25")
+        self.frame_25.setFrameShape(QFrame.StyledPanel)
+        self.frame_25.setFrameShadow(QFrame.Raised)
+
+        self.verticalLayout_7.addWidget(self.frame_25)
+
+        self.frame_26 = QFrame(self.home_page)
+        self.frame_26.setObjectName(u"frame_26")
+        self.frame_26.setFrameShape(QFrame.StyledPanel)
+        self.frame_26.setFrameShadow(QFrame.Raised)
+
+        self.verticalLayout_7.addWidget(self.frame_26)
+
+        self.stackedWidget.addWidget(self.home_page)
 
         self.verticalLayout.addWidget(self.stackedWidget)
 

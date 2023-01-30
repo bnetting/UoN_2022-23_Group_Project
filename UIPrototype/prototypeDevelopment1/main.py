@@ -5,8 +5,13 @@
 import time
 import os
 import sys # sys variables needed to run UI
+import random
 import pandas as pd
-import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use("QtAgg")
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg, NavigationToolbar2QT as NavigationToolbar
+from matplotlib.figure import Figure
 from main_user_interface import * # Python version of the UI file for welcome page
 from PyQt6.QtWidgets import QMainWindow, QApplication, QGraphicsOpacityEffect
 from PyQt6.QtCore import QPropertyAnimation, QEasingCurve, QTimer
@@ -18,7 +23,11 @@ import resources_rc
 df = pd.read_excel(r'prototypeDevelopment1\threats.xlsx') # May need to do a 'pip install pandas' and 'pip install openpyxl' for this to work.
 
 #--------------------------------------------
-
+class MplCanvas(FigureCanvasQTAgg):
+    def __init__(self, parent=None, width = 5, height = 4, dpi = 100):
+        fig = Figure(figsize=(width,height), dpi = dpi)
+        self.axes = fig.add_subplot(111)
+        super(MplCanvas, self).__init__(fig)
 
 
 class MainWindow(QMainWindow): #Setup code for welcome page
@@ -26,12 +35,14 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         QMainWindow.__init__(self) 
         self.ui = Ui_MainWindow() #puts ui_welcome_Page into variable
         self.ui.setupUi(self) #sets up the screen
-        self.nextPage = 0        
+        self.nextPage = 0 
+        
         self.openWelcome() #Run when the program first starts. Hides the welcome page elements and brings them in with an animation
         
         self.ui.pushButton.clicked.connect(lambda: self.changePage(0,1)) #Runs if the 'Welcome' button is pushed on the welcome page
         self.ui.commandLinkButton.clicked.connect(lambda: self.changePage(1,2))#Runs if the '-> Register' button is pushed on the login page
         self.ui.pushButton_5.clicked.connect(lambda: self.changePage(2,1))#Runs if the 'Register!' button is pushed on the register page
+        self.ui.pushButton_6.clicked.connect(lambda: self.changePage(1,3))#Runs if the 'Login' button is pushed on the login page
         
     # changePage()
     #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------    
@@ -49,7 +60,9 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         if (currentPageIndex == 1):
             if (newPageIndex == 2):
                 self.nextPage = 2
-                self.closeLogin()
+            elif (newPageIndex == 3):
+                self.nextPage = 3
+            self.closeLogin()
         if (currentPageIndex == 2):
             self.closeRegister()
         
@@ -237,6 +250,8 @@ class MainWindow(QMainWindow): #Setup code for welcome page
                 
         if(self.nextPage == 2):
             timer.singleShot(1000, self.openRegister) #Going to the register page
+        elif(self.nextPage == 3):
+            timer.singleShot(1000, self.openHome)#Going to the home page
         
         
     def openRegister(self): # Open the register page and animations
@@ -346,6 +361,23 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         
         timer.singleShot(1000, self.openLogin)
             
+            
+    def openHome(self):
+        self.ui.stackedWidget.setCurrentIndex(3)
+        
+        sc = MplCanvas(self, width = 5, height = 5, dpi = 100)
+
+        df = pd.DataFrame([[0,10],[5,15],[2,20],[15,25],[4,10],], columns=["A","B"])
+        
+        df.plot(ax=sc.axes)
+        
+        layout = QtWidgets.QVBoxLayout()
+        layout.addWidget(sc)
+        
+        self.ui.frame_25.setLayout(layout)
+        
+        
+        
 app = QApplication(sys.argv)
 
 window = MainWindow()
