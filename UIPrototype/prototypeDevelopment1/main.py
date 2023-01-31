@@ -2,23 +2,17 @@
 #  pyrcc5 resources.qrc -o resources_rc.py -- Change PyQt5 to PyQt6 in generated file
 #  Ensure welcome.py is the at the top of the stack before compiling.
 
-import time
-import os
 import sys # sys variables needed to run UI
-import random
 import pandas as pd
 from main_user_interface import * # Python version of the UI file for welcome page
-import resources_rc
 from PyQt6.QtWidgets import QMainWindow, QApplication, QGraphicsOpacityEffect, QSizePolicy
 from PyQt6.QtCore import QPropertyAnimation, QEasingCurve, QTimer, QSize, QUrl
 from PyQt6.QtGui import QPainter
 from PyQt6 import QtCharts # pip install PyQt6-Charts
-from PyQt6.QtWebEngineWidgets import * # pip install PyQt6-WebEngine
-from PyQt6.QtWebEngineWidgets import QWebEngineView as view
 
 # DATA CLEANING AND GRAPHING AREA
 #--------------------------------------------
-df = pd.read_excel(r'UIPrototype\prototypeDevelopment1\threats.xlsx') # May need to do a 'pip install pandas' and 'pip install openpyxl' for this to work.
+df = pd.read_excel(r'prototypeDevelopment1\threats.xlsx') # May need to do a 'pip install pandas' and 'pip install openpyxl' for this to work.
 
 #--------------------------------------------
 
@@ -28,7 +22,7 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         QMainWindow.__init__(self) 
         self.ui = Ui_MainWindow() #puts ui_welcome_Page into variable
         self.ui.setupUi(self) #sets up the screen
-        self.nextPage = 0 
+        self.nextPage = 0
         
         self.openWelcome() #Run when the program first starts. Hides the welcome page elements and brings them in with an animation
         
@@ -358,7 +352,7 @@ class MainWindow(QMainWindow): #Setup code for welcome page
     def openHome(self):
         self.ui.stackedWidget.setCurrentIndex(3)
         
-        # Graph 1 - QtGraphs
+        # Graph 1 - QtGraphs (Donut)
         series = QtCharts.QPieSeries()
         
         series.append("Phishing",120)
@@ -389,24 +383,38 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         layout = QtWidgets.QHBoxLayout(self.ui.widget_25)
         layout.setContentsMargins(0,0,0,0)
         layout.addWidget(self.ui.chartView)
-
-        # Graph 2 - 
         
-        self.ui.testWidget = QtWidgets.QWidget()
+        # Graph 2 - QtGraphs (Bar)
+        series = QtCharts.QBarSeries()
         
+        series.append("Phishing",20)
+        series.append("DDoS",80)
+        series.append("MitM",35)
+        series.append("SQL Injection",75)
+        series.append("Password Attack",45)
         
-        self.ui.centralWidget = QtWidgets.QWidget(self.ui.testWidget)
+        chart = QtCharts.QChart()
         
-        self.ui.webView = view(self.ui.centralwidget)
-        self.ui.webView.load(QUrl().fromLocalFile(os.path.split(os.path.abspath(__file__))[0]+r'UIPrototype\prototypeDevelopment1\test.html'))
+        chart.addSeries(series)
+        chart.setAnimationOptions(QtCharts.QChart.AnimationOption.SeriesAnimations)
+        chart.createDefaultAxes()
+        chart.setTitle("Test graph")
         
-        self.ui.testWidget.show()
+        self.ui.chartView = QtCharts.QChartView(chart)
+        self.ui.chartView.setRenderHint(QPainter.RenderHint.Antialiasing)
+        self.ui.chartView.chart().setTheme(QtCharts.QChart.ChartTheme.ChartThemeDark)
         
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        sizePolicy.setHeightForWidth(self.ui.chartView.sizePolicy().hasHeightForWidth())
         
-        testLayout = QtWidgets.QHBoxLayout(self.ui.widget_26)
-        testLayout.setContentsMargins(0,0,0,0)
-        testLayout.addWidget(self.ui.testWidget)
+        self.ui.chartView.setSizePolicy(sizePolicy)
+        self.ui.chartView.setMinimumSize(QSize(0,300))
         
+        self.ui.widget_26.setContentsMargins(0,0,0,0)
+        
+        layout = QtWidgets.QHBoxLayout(self.ui.widget_26)
+        layout.setContentsMargins(0,0,0,0)
+        layout.addWidget(self.ui.chartView)        
         
         
 app = QApplication(sys.argv)
