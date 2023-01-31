@@ -10,14 +10,15 @@ import pandas as pd
 from main_user_interface import * # Python version of the UI file for welcome page
 import resources_rc
 from PyQt6.QtWidgets import QMainWindow, QApplication, QGraphicsOpacityEffect, QSizePolicy
-from PyQt6.QtCore import QPropertyAnimation, QEasingCurve, QTimer, QSize
+from PyQt6.QtCore import QPropertyAnimation, QEasingCurve, QTimer, QSize, QUrl
 from PyQt6.QtGui import QPainter
 from PyQt6 import QtCharts # pip install PyQt6-Charts
-from PyQt6.QtCharts import QChart
+from PyQt6.QtWebEngineWidgets import * # pip install PyQt6-WebEngine
+from PyQt6.QtWebEngineWidgets import QWebEngineView as view
 
 # DATA CLEANING AND GRAPHING AREA
 #--------------------------------------------
-df = pd.read_excel(r'prototypeDevelopment1\threats.xlsx') # May need to do a 'pip install pandas' and 'pip install openpyxl' for this to work.
+df = pd.read_excel(r'UIPrototype\prototypeDevelopment1\threats.xlsx') # May need to do a 'pip install pandas' and 'pip install openpyxl' for this to work.
 
 #--------------------------------------------
 
@@ -357,6 +358,7 @@ class MainWindow(QMainWindow): #Setup code for welcome page
     def openHome(self):
         self.ui.stackedWidget.setCurrentIndex(3)
         
+        # Graph 1 - QtGraphs
         series = QtCharts.QPieSeries()
         
         series.append("Phishing",120)
@@ -387,6 +389,24 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         layout = QtWidgets.QHBoxLayout(self.ui.widget_25)
         layout.setContentsMargins(0,0,0,0)
         layout.addWidget(self.ui.chartView)
+
+        # Graph 2 - 
+        
+        self.ui.testWidget = QtWidgets.QWidget()
+        
+        
+        self.ui.centralWidget = QtWidgets.QWidget(self.ui.testWidget)
+        
+        self.ui.webView = view(self.ui.centralwidget)
+        self.ui.webView.load(QUrl().fromLocalFile(os.path.split(os.path.abspath(__file__))[0]+r'UIPrototype\prototypeDevelopment1\test.html'))
+        
+        self.ui.testWidget.show()
+        
+        
+        testLayout = QtWidgets.QHBoxLayout(self.ui.widget_26)
+        testLayout.setContentsMargins(0,0,0,0)
+        testLayout.addWidget(self.ui.testWidget)
+        
         
         
 app = QApplication(sys.argv)
