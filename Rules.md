@@ -49,8 +49,6 @@
 
 ## Coding Convention
 
-### Class structure
+Use Google's Python coding conventions:
 
-### Brackets
-
-### Comments
+https://google.github.io/styleguide/pyguide.html
