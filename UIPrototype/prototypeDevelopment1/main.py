@@ -9,20 +9,14 @@ from PyQt6.QtWidgets import QMainWindow, QApplication, QGraphicsOpacityEffect, Q
 from PyQt6.QtCore import QPropertyAnimation, QEasingCurve, QTimer, QSize, QUrl
 from PyQt6.QtGui import QPainter
 from PyQt6 import QtCharts # pip install PyQt6-Charts
-
-# DATA CLEANING AND GRAPHING AREA
-#--------------------------------------------
-df = pd.read_excel(r'prototypeDevelopment1\threats.xlsx') # May need to do a 'pip install pandas' and 'pip install openpyxl' for this to work.
-
-#--------------------------------------------
-
-
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
 class MainWindow(QMainWindow): #Setup code for welcome page
-    def __init__(self, parent=None): 
+    def __init__(self, parent=None):  
         QMainWindow.__init__(self) 
         self.ui = Ui_MainWindow() #puts ui_welcome_Page into variable
         self.ui.setupUi(self) #sets up the screen
         self.nextPage = 0
+        self.sideMenuNum = 1 #Tells the program the state of the side bar on home page. If this is 1 it is visible, if it is 0 it is non visable
         
         self.openWelcome() #Run when the program first starts. Hides the welcome page elements and brings them in with an animation
         
@@ -30,6 +24,7 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         self.ui.commandLinkButton.clicked.connect(lambda: self.changePage(1,2))#Runs if the '-> Register' button is pushed on the login page
         self.ui.pushButton_5.clicked.connect(lambda: self.changePage(2,1))#Runs if the 'Register!' button is pushed on the register page
         self.ui.pushButton_6.clicked.connect(lambda: self.changePage(1,3))#Runs if the 'Login' button is pushed on the login page
+        self.ui.pushButton_7.clicked.connect(lambda: self.moveSideMenu)
         
     # changePage()
     #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------    
@@ -378,43 +373,65 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         self.ui.chartView.setSizePolicy(sizePolicy)
         self.ui.chartView.setMinimumSize(QSize(0,300))
         
-        self.ui.widget_25.setContentsMargins(0,0,0,0)
+        self.ui.widget_27.setContentsMargins(0,0,0,0)
         
-        layout = QtWidgets.QHBoxLayout(self.ui.widget_25)
+        layout = QtWidgets.QHBoxLayout(self.ui.widget_27)
         layout.setContentsMargins(0,0,0,0)
         layout.addWidget(self.ui.chartView)
         
         # Graph 2 - QtGraphs (Bar)
-        series = QtCharts.QBarSeries()
         
-        series.append("Phishing",20)
-        series.append("DDoS",80)
-        series.append("MitM",35)
-        series.append("SQL Injection",75)
-        series.append("Password Attack",45)
         
-        chart = QtCharts.QChart()
+        set0 = QtCharts.QBarSet("Test1")
+        set1 = QtCharts.QBarSet("Test2")
+        set2 = QtCharts.QBarSet("Test3")
+        set3 = QtCharts.QBarSet("Test4")
+        set4 = QtCharts.QBarSet("Test5")
         
-        chart.addSeries(series)
-        chart.setAnimationOptions(QtCharts.QChart.AnimationOption.SeriesAnimations)
-        chart.createDefaultAxes()
-        chart.setTitle("Test graph")
+        set0 << 1 << 2 << 3 << 4 << 5 << 1
+        set1 << 2 << 2 << 2 << 2 << 2 << 2
+        set2 << 3 << 12 << 0 << 3 << 0 << 3
+        set3 << 1 << 6 << 3 << 4 << 5 << 4
+        set4 << 5 << 7 << 9 << 5 << 7 << 0
         
-        self.ui.chartView = QtCharts.QChartView(chart)
-        self.ui.chartView.setRenderHint(QPainter.RenderHint.Antialiasing)
-        self.ui.chartView.chart().setTheme(QtCharts.QChart.ChartTheme.ChartThemeDark)
+        series2 = QtCharts.QBarSeries()
         
-        sizePolicy = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
-        sizePolicy.setHeightForWidth(self.ui.chartView.sizePolicy().hasHeightForWidth())
+        series2.append(set0)
+        series2.append(set1)
+        series2.append(set2)
+        series2.append(set3)
+        series2.append(set4)
         
-        self.ui.chartView.setSizePolicy(sizePolicy)
-        self.ui.chartView.setMinimumSize(QSize(0,300))
+        chart2 = QtCharts.QChart()
+        chart2.addSeries(series2)
+        chart2.setTitle("Test bar graph")
+        chart2.setAnimationOptions(QtCharts.QChart.AnimationOption.SeriesAnimations)
         
-        self.ui.widget_26.setContentsMargins(0,0,0,0)
+        categories = ["Tst1","Tst2","Tst3","Tst4","Tst5","Tst6"]
+        axis = QtCharts.QBarCategoryAxis()
+        axis.append(categories)
+        chart2.createDefaultAxes()
+        # chart2.setAxisX(axis, series2) not working for some reason
         
-        layout = QtWidgets.QHBoxLayout(self.ui.widget_26)
-        layout.setContentsMargins(0,0,0,0)
-        layout.addWidget(self.ui.chartView)        
+        chart2.legend().setVisible(True)
+        chart2.legend().setAlignment(QtCore.Qt.AlignmentFlag.AlignBottom)
+        
+        self.ui.chartView2 = QtCharts.QChartView(chart2)
+        self.ui.chartView2.setRenderHint(QPainter.RenderHint.Antialiasing)
+        self.ui.chartView2.chart().setTheme(QtCharts.QChart.ChartTheme.ChartThemeDark)
+        
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Expanding,QSizePolicy.Policy.Expanding)
+        sizePolicy2.setHeightForWidth(self.ui.chartView2.sizePolicy().hasHeightForWidth())
+        
+        self.ui.chartView2.setSizePolicy(sizePolicy2)
+        self.ui.chartView2.setMinimumSize(QSize(0,300))
+        
+        self.ui.widget_28.setContentsMargins(0,0,0,0)
+        
+        layout2 = QtWidgets.QHBoxLayout(self.ui.widget_28)
+        layout2.setContentsMargins(0,0,0,0)
+        layout2.addWidget(self.ui.chartView2)
+        
         
         
 app = QApplication(sys.argv)
