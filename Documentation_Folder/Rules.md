@@ -52,3 +52,22 @@
 Use Google's Python coding conventions:
 
 https://google.github.io/styleguide/pyguide.html
+
+## Project structure
+
+- Each sprint a Milestone for should be created for the following:
+    - Documentation
+    - Front-end
+    - Back-end
+
+- At the end of each sprint, the following branches should be merged into the 
+"official software" branch:
+    - Documentation
+    - Front-end
+    - Back-end
+
+- These will then be re-branched out to their own branches if necessary,
+otherwise a "being worked on" branch will be created
+
+- The changelog will be updated depending on all the changes of the previous sprint,
+so it will be common for it to fall behind, in the final sprint, this will be brought back to the latest release before delivery
