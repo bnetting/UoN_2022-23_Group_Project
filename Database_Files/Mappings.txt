@@ -1,0 +1,19 @@
+NETWORK:0
+LOCAL:1
+
+LOW:0
+MEDIUM:1
+HIGH:2
+
+Execute Code: 0
+Overflow: 1
+Gain privileges: 2
+Bypass a restriction or similar: 3
+Denial Of Service: 4
+CSRF: 5
+File Inclusion: 6
+Cross Site Scripting: 7
+Sql Injection: 8
+Obtain Information: 9
+Directory traversal: 10
+Http response splitting: 11
