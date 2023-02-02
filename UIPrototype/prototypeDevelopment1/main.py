@@ -8,6 +8,7 @@ from PyQt6.QtWidgets import QMainWindow, QApplication, QGraphicsOpacityEffect, Q
 from PyQt6.QtCore import QPropertyAnimation, QEasingCurve, QTimer, QSize
 from PyQt6.QtGui import QPainter
 from PyQt6 import QtCharts # pip install PyQt6-Charts
+from dataCleaner import *
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
 class MainWindow(QMainWindow): #Setup code for welcome page
     def __init__(self, parent=None):  
@@ -380,33 +381,28 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         
         # Graph 2 - QtGraphs (Bar)
         
+        x = 0
         
-        set0 = QtCharts.QBarSet("Test1")
-        set1 = QtCharts.QBarSet("Test2")
-        set2 = QtCharts.QBarSet("Test3")
-        set3 = QtCharts.QBarSet("Test4")
-        set4 = QtCharts.QBarSet("Test5")
-        
-        set0 << 1 << 2 << 3 << 4 << 5 << 1
-        set1 << 2 << 2 << 2 << 2 << 2 << 2
-        set2 << 3 << 12 << 0 << 3 << 0 << 3
-        set3 << 1 << 6 << 3 << 4 << 5 << 4
-        set4 << 5 << 7 << 9 << 5 << 7 << 0
-        
-        series2 = QtCharts.QBarSeries()
-        
-        series2.append(set0)
-        series2.append(set1)
-        series2.append(set2)
-        series2.append(set3)
-        series2.append(set4)
+        topics = [Execute_Code,Overflow,CSRF,Sql_Injection,Obtain_Information]
         
         chart2 = QtCharts.QChart()
-        chart2.addSeries(series2)
+        
+        while(x < 5):
+            meanScore = getAverageMetricFromCat('SCORE',topics[x])
+            set = QtCharts.QBarSet("tst"+str(x))
+            # print(meanScore[0])
+            set << meanScore[0]
+            seriesHere = QtCharts.QBarSeries()
+            seriesHere.append(set)
+            chart2.addSeries(seriesHere)
+            
+            x += 1
+        
         chart2.setTitle("Test bar graph")
         chart2.setAnimationOptions(QtCharts.QChart.AnimationOption.SeriesAnimations)
         
         categories = ["Tst1","Tst2","Tst3","Tst4","Tst5","Tst6"]
+        #categories = []
         axis = QtCharts.QBarCategoryAxis()
         axis.append(categories)
         chart2.createDefaultAxes()
