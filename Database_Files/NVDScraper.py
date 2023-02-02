@@ -24,7 +24,7 @@ import threading
 
 writer = pd.ExcelWriter('threats.xlsx', engine='xlsxwriter')
 THREATS_PER_PAGE = 2000
-NUMBER_OF_THREADS = 4
+NUMBER_OF_THREADS = 5
 NUMBER_OF_CATEGORY_THREADS = 64
 scraperThreads = []
 categoryThreads = []
@@ -101,7 +101,10 @@ def getData(url):
 
         try:  # Date
             CVE_DATE = item['cve']['lastModified']
-            addCell(CVE_DATE, DATE, dateLock)
+            DateString=str(CVE_DATE) #Converts CVE_DATE to a string
+            Date_filtered=DateString[:DateString.index("T")] #Removes the time portion from the date 
+            print(Date_filtered)
+            addCell(Date_filtered, DATE, dateLock)
 
         except:
             CVE_DATE = np.nan
