@@ -526,6 +526,124 @@ class Ui_MainWindow(object):
         self.horizontalLayout_5.addWidget(self.frame_16)
 
         self.stackedWidget.addWidget(self.register_page)
+        self.home_page = QWidget()
+        self.home_page.setObjectName(u"home_page")
+        self.horizontalLayout_6 = QHBoxLayout(self.home_page)
+        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
+        self.left_menu_frame = QFrame(self.home_page)
+        self.left_menu_frame.setObjectName(u"left_menu_frame")
+        self.left_menu_frame.setMaximumSize(QSize(150, 16777215))
+        self.left_menu_frame.setFrameShape(QFrame.StyledPanel)
+        self.left_menu_frame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_7 = QVBoxLayout(self.left_menu_frame)
+        self.verticalLayout_7.setObjectName(u"verticalLayout_7")
+        self.logo_frame = QFrame(self.left_menu_frame)
+        self.logo_frame.setObjectName(u"logo_frame")
+        self.logo_frame.setMaximumSize(QSize(16777215, 60))
+        self.logo_frame.setFrameShape(QFrame.StyledPanel)
+        self.logo_frame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_7 = QHBoxLayout(self.logo_frame)
+        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
+        self.label_7 = QLabel(self.logo_frame)
+        self.label_7.setObjectName(u"label_7")
+        font4 = QFont()
+        font4.setPointSize(22)
+        self.label_7.setFont(font4)
+        self.label_7.setTextFormat(Qt.PlainText)
+
+        self.horizontalLayout_7.addWidget(self.label_7)
+
+
+        self.verticalLayout_7.addWidget(self.logo_frame)
+
+        self.selection_buttons_frame = QFrame(self.left_menu_frame)
+        self.selection_buttons_frame.setObjectName(u"selection_buttons_frame")
+        self.selection_buttons_frame.setFrameShape(QFrame.StyledPanel)
+        self.selection_buttons_frame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_12 = QVBoxLayout(self.selection_buttons_frame)
+        self.verticalLayout_12.setObjectName(u"verticalLayout_12")
+        self.pushButton_2 = QPushButton(self.selection_buttons_frame)
+        self.pushButton_2.setObjectName(u"pushButton_2")
+
+        self.verticalLayout_12.addWidget(self.pushButton_2)
+
+        self.pushButton_3 = QPushButton(self.selection_buttons_frame)
+        self.pushButton_3.setObjectName(u"pushButton_3")
+
+        self.verticalLayout_12.addWidget(self.pushButton_3)
+
+        self.pushButton_4 = QPushButton(self.selection_buttons_frame)
+        self.pushButton_4.setObjectName(u"pushButton_4")
+
+        self.verticalLayout_12.addWidget(self.pushButton_4)
+
+
+        self.verticalLayout_7.addWidget(self.selection_buttons_frame)
+
+
+        self.horizontalLayout_6.addWidget(self.left_menu_frame)
+
+        self.main_home_screen_frame = QFrame(self.home_page)
+        self.main_home_screen_frame.setObjectName(u"main_home_screen_frame")
+        self.main_home_screen_frame.setFrameShape(QFrame.StyledPanel)
+        self.main_home_screen_frame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_13 = QVBoxLayout(self.main_home_screen_frame)
+        self.verticalLayout_13.setObjectName(u"verticalLayout_13")
+        self.frame_25 = QFrame(self.main_home_screen_frame)
+        self.frame_25.setObjectName(u"frame_25")
+        sizePolicy6 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Minimum)
+        sizePolicy6.setHorizontalStretch(0)
+        sizePolicy6.setVerticalStretch(0)
+        sizePolicy6.setHeightForWidth(self.frame_25.sizePolicy().hasHeightForWidth())
+        self.frame_25.setSizePolicy(sizePolicy6)
+        self.frame_25.setFrameShape(QFrame.StyledPanel)
+        self.frame_25.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_14 = QVBoxLayout(self.frame_25)
+        self.verticalLayout_14.setObjectName(u"verticalLayout_14")
+        self.pushButton_7 = QPushButton(self.frame_25)
+        self.pushButton_7.setObjectName(u"pushButton_7")
+
+        self.verticalLayout_14.addWidget(self.pushButton_7)
+
+
+        self.verticalLayout_13.addWidget(self.frame_25)
+
+        self.frame_26 = QFrame(self.main_home_screen_frame)
+        self.frame_26.setObjectName(u"frame_26")
+        self.frame_26.setFrameShape(QFrame.StyledPanel)
+        self.frame_26.setFrameShadow(QFrame.Raised)
+        self.gridLayout_4 = QGridLayout(self.frame_26)
+        self.gridLayout_4.setObjectName(u"gridLayout_4")
+        self.stackedWidget_2 = QStackedWidget(self.frame_26)
+        self.stackedWidget_2.setObjectName(u"stackedWidget_2")
+        self.testPage1 = QWidget()
+        self.testPage1.setObjectName(u"testPage1")
+        self.verticalLayout_15 = QVBoxLayout(self.testPage1)
+        self.verticalLayout_15.setObjectName(u"verticalLayout_15")
+        self.widget_27 = QWidget(self.testPage1)
+        self.widget_27.setObjectName(u"widget_27")
+
+        self.verticalLayout_15.addWidget(self.widget_27)
+
+        self.widget_28 = QWidget(self.testPage1)
+        self.widget_28.setObjectName(u"widget_28")
+
+        self.verticalLayout_15.addWidget(self.widget_28)
+
+        self.stackedWidget_2.addWidget(self.testPage1)
+        self.testPage2 = QWidget()
+        self.testPage2.setObjectName(u"testPage2")
+        self.stackedWidget_2.addWidget(self.testPage2)
+
+        self.gridLayout_4.addWidget(self.stackedWidget_2, 0, 0, 1, 1)
+
+
+        self.verticalLayout_13.addWidget(self.frame_26)
+
+
+        self.horizontalLayout_6.addWidget(self.main_home_screen_frame)
+
+        self.stackedWidget.addWidget(self.home_page)
 
         self.verticalLayout.addWidget(self.stackedWidget)
 
@@ -560,5 +678,10 @@ class Ui_MainWindow(object):
         self.lineEdit_8.setText(QCoreApplication.translate("MainWindow", u"company", None))
         self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"Register!", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"Register", None))
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"Test Title", None))
+        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"TestButton1", None))
+        self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"TestButton2", None))
+        self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"TestButton3", None))
+        self.pushButton_7.setText(QCoreApplication.translate("MainWindow", u"SlideButton", None))
     # retranslateUi
 

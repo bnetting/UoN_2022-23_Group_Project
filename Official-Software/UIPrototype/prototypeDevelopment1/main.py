@@ -2,41 +2,56 @@
 #  pyrcc5 resources.qrc -o resources_rc.py -- Change PyQt5 to PyQt6 in generated file
 #  Ensure welcome.py is the at the top of the stack before compiling.
 
-import time
-import os
 import sys # sys variables needed to run UI
 from main_user_interface import * # Python version of the UI file for welcome page
-from PyQt6.QtWidgets import QMainWindow, QApplication, QGraphicsOpacityEffect
-from PyQt6.QtCore import QPropertyAnimation, QEasingCurve, QTimer
-import resources_rc
-
-
-
+from PyQt6.QtWidgets import QMainWindow, QApplication, QGraphicsOpacityEffect, QSizePolicy
+from PyQt6.QtCore import QPropertyAnimation, QEasingCurve, QTimer, QSize
+from PyQt6.QtGui import QPainter
+from PyQt6 import QtCharts # pip install PyQt6-Charts
+from dataCleaner import *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
 class MainWindow(QMainWindow): #Setup code for welcome page
-    def __init__(self, parent=None): 
+    def __init__(self, parent=None):  
         QMainWindow.__init__(self) 
         self.ui = Ui_MainWindow() #puts ui_welcome_Page into variable
         self.ui.setupUi(self) #sets up the screen
-        self.nextPage = 0        
+        self.nextPage = 0
+        self.sideMenuNum = 1 #Tells the program the state of the side bar on home page. If this is 1 it is visible, if it is 0 it is non visable
+        self.topics = [Execute_Code,Overflow,CSRF,Sql_Injection,Obtain_Information]
+        
         self.openWelcome() #Run when the program first starts. Hides the welcome page elements and brings them in with an animation
         
-        self.ui.pushButton.clicked.connect(lambda: self.changePage(0,1))
-        self.ui.commandLinkButton.clicked.connect(lambda: self.changePage(1,2))
-        self.ui.pushButton_5.clicked.connect(lambda: self.changePage(2,1))
+        self.ui.pushButton.clicked.connect(lambda: self.changePage(0,1)) #Runs if the 'Welcome' button is pushed on the welcome page
+        self.ui.commandLinkButton.clicked.connect(lambda: self.changePage(1,2))#Runs if the '-> Register' button is pushed on the login page
+        self.ui.pushButton_5.clicked.connect(lambda: self.changePage(2,1))#Runs if the 'Register!' button is pushed on the register page
+        self.ui.pushButton_6.clicked.connect(lambda: self.changePage(1,3))#Runs if the 'Login' button is pushed on the login page
+        self.ui.pushButton_7.clicked.connect(lambda: self.moveSideMenu)
         
-    def changePage(self,currentPageIndex, newPageIndex):
+    # changePage()
+    #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------    
+    # The point of this function is to manage when a button that should take the user to a new page is pressed. The function will take 2 inputs.
+    # 'currentPageIndex' is the page index of the current page, i.e the welcome page is 0, login is 1, register is 2, etc... . Some pages can only transition to one other page,
+    # i.e. you can only go from the Welcome page to the Login page and not back, so in this case the closeWelcome() function also opens the login page for us. In other cases, like the 
+    # login page, there are multiple paths, i.e. from login page we can log the user in and take them to their home page, or, take them to the register page. To fix this, we use the 
+    # second parameter newPageindex to decide what page we go to next depending on what button is pressed, and the variable nextPage is updated to reflect which page needs to be 
+    # loaded up after the current one has been faded out.
+    #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    
+    def changePage(self,currentPageIndex, newPageIndex): 
         if (currentPageIndex == 0):
             self.closeWelcome()
         if (currentPageIndex == 1):
             if (newPageIndex == 2):
                 self.nextPage = 2
-                self.closeLogin()
+            elif (newPageIndex == 3):
+                self.nextPage = 3
+            self.closeLogin()
         if (currentPageIndex == 2):
             self.closeRegister()
         
     def openWelcome(self): #Setup the welcome page and show animations 
 
-        self.ui.bottom_tab.setMaximumHeight(0)
+        self.ui.bottom_tab.setMaximumHeight(0) #Set tab size to 0 before it is displayed to the user on startup (makes them look like they come from off screen)
         
         self.ui.animation1 = QPropertyAnimation(self.ui.bottom_tab, b"maximumHeight")
         self.ui.animation1.setDuration(1500)
@@ -44,13 +59,13 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         self.ui.animation1.setEndValue(250)
         self.ui.animation1.setEasingCurve(QEasingCurve.Type.InOutQuart)
                 
-        self.ui.animation2 = QPropertyAnimation(self.ui.bottom_tab, b"maximumHeight")
+        self.ui.animation2 = QPropertyAnimation(self.ui.bottom_tab, b"maximumHeight") #Note this code has been repeated from above because it makes these kind of transitions much smoother for some reason,
         self.ui.animation2.setDuration(1500)
         self.ui.animation2.setStartValue(0)
         self.ui.animation2.setEndValue(250)
         self.ui.animation2.setEasingCurve(QEasingCurve.Type.InOutQuart)
         
-        self.ui.effect1 = QGraphicsOpacityEffect()
+        self.ui.effect1 = QGraphicsOpacityEffect() #Fades the widgets into view to make their transitions seem smoother
         self.ui.middle_widget.setGraphicsEffect(self.ui.effect1)
         self.ui.animation3 = QPropertyAnimation(self.ui.effect1, b"opacity")
         self.ui.animation3.setDuration(3500)
@@ -109,7 +124,7 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         self.ui.animation3.start()
         self.ui.animation4.start()
         
-        timer.singleShot(1000, self.openLogin) # Used to create a delay when the closing animation has completed before the new animation begins
+        timer.singleShot(1000, self.openLogin) # Used to create a delay when the closing animation has completed before the new page is loaded in and the animations begin again.
         
         
     def openLogin(self): #Opens the login page and animations
@@ -218,9 +233,11 @@ class MainWindow(QMainWindow): #Setup code for welcome page
                 
         if(self.nextPage == 2):
             timer.singleShot(1000, self.openRegister) #Going to the register page
+        elif(self.nextPage == 3):
+            timer.singleShot(1000, self.openHome)#Going to the home page
         
         
-    def openRegister(self):
+    def openRegister(self): # Open the register page and animations
         self.ui.stackedWidget.setCurrentIndex(2)
 
         self.ui.frame_19.setMaximumHeight(0)
@@ -327,6 +344,97 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         
         timer.singleShot(1000, self.openLogin)
             
+            
+    def openHome(self):
+        self.ui.stackedWidget.setCurrentIndex(3)
+        
+        # Graph 1 - QtGraphs (Donut)
+        series = QtCharts.QPieSeries()
+        
+        # series.append("Phishing",120)
+        # series.append("DDoS",60)
+        # series.append("MitM",25)
+        # series.append("SQL Injection",70)
+        # series.append("Password Attack",40)
+        
+        x = 0
+        
+        while(x < 5):
+            meanScore = getAverageMetricFromCat('SCORE',self.topics[x])
+            series.append("tst"+str(x),meanScore[0])
+            x += 1            
+        
+        chart = QtCharts.QChart()
+        
+        chart.addSeries(series)
+        chart.setAnimationOptions(QtCharts.QChart.AnimationOption.SeriesAnimations)
+        chart.createDefaultAxes()
+        chart.setTitle("Test graph")
+        
+        self.ui.chartView = QtCharts.QChartView(chart)
+        self.ui.chartView.setRenderHint(QPainter.RenderHint.Antialiasing)
+        self.ui.chartView.chart().setTheme(QtCharts.QChart.ChartTheme.ChartThemeDark)
+        
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        sizePolicy.setHeightForWidth(self.ui.chartView.sizePolicy().hasHeightForWidth())
+        
+        self.ui.chartView.setSizePolicy(sizePolicy)
+        self.ui.chartView.setMinimumSize(QSize(0,300))
+        
+        self.ui.widget_27.setContentsMargins(0,0,0,0)
+        
+        layout = QtWidgets.QHBoxLayout(self.ui.widget_27)
+        layout.setContentsMargins(0,0,0,0)
+        layout.addWidget(self.ui.chartView)
+        
+        # Graph 2 - QtGraphs (Bar)
+        
+        x = 0
+        
+        chart2 = QtCharts.QChart()
+        
+        while(x < 5):
+            meanScore = getAverageMetricFromCat('SCORE',self.topics[x])
+            set = QtCharts.QBarSet("tst"+str(x))
+            # print(meanScore[0])
+            set << meanScore[0]
+            seriesHere = QtCharts.QBarSeries()
+            seriesHere.append(set)
+            chart2.addSeries(seriesHere)
+            
+            x += 1
+        
+        chart2.setTitle("Test bar graph")
+        chart2.setAnimationOptions(QtCharts.QChart.AnimationOption.SeriesAnimations)
+        
+        categories = ["Tst1","Tst2","Tst3","Tst4","Tst5","Tst6"]
+        #categories = []
+        axis = QtCharts.QBarCategoryAxis()
+        axis.append(categories)
+        chart2.createDefaultAxes()
+        # chart2.setAxisX(axis, series2) not working for some reason
+        
+        chart2.legend().setVisible(True)
+        chart2.legend().setAlignment(QtCore.Qt.AlignmentFlag.AlignBottom)
+        
+        self.ui.chartView2 = QtCharts.QChartView(chart2)
+        self.ui.chartView2.setRenderHint(QPainter.RenderHint.Antialiasing)
+        self.ui.chartView2.chart().setTheme(QtCharts.QChart.ChartTheme.ChartThemeDark)
+        
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Expanding,QSizePolicy.Policy.Expanding)
+        sizePolicy2.setHeightForWidth(self.ui.chartView2.sizePolicy().hasHeightForWidth())
+        
+        self.ui.chartView2.setSizePolicy(sizePolicy2)
+        self.ui.chartView2.setMinimumSize(QSize(0,300))
+        
+        self.ui.widget_28.setContentsMargins(0,0,0,0)
+        
+        layout2 = QtWidgets.QHBoxLayout(self.ui.widget_28)
+        layout2.setContentsMargins(0,0,0,0)
+        layout2.addWidget(self.ui.chartView2)
+        
+        
+        
 app = QApplication(sys.argv)
 
 window = MainWindow()
