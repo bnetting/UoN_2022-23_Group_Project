@@ -17,6 +17,7 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         self.ui.setupUi(self) #sets up the screen
         self.nextPage = 0
         self.sideMenuNum = 1 #Tells the program the state of the side bar on home page. If this is 1 it is visible, if it is 0 it is non visable
+        self.topics = [Execute_Code,Overflow,CSRF,Sql_Injection,Obtain_Information]
         
         self.openWelcome() #Run when the program first starts. Hides the welcome page elements and brings them in with an animation
         
@@ -350,11 +351,18 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         # Graph 1 - QtGraphs (Donut)
         series = QtCharts.QPieSeries()
         
-        series.append("Phishing",120)
-        series.append("DDoS",60)
-        series.append("MitM",25)
-        series.append("SQL Injection",70)
-        series.append("Password Attack",40)
+        # series.append("Phishing",120)
+        # series.append("DDoS",60)
+        # series.append("MitM",25)
+        # series.append("SQL Injection",70)
+        # series.append("Password Attack",40)
+        
+        x = 0
+        
+        while(x < 5):
+            meanScore = getAverageMetricFromCat('SCORE',self.topics[x])
+            series.append("tst"+str(x),meanScore[0])
+            x += 1            
         
         chart = QtCharts.QChart()
         
@@ -383,12 +391,10 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         
         x = 0
         
-        topics = [Execute_Code,Overflow,CSRF,Sql_Injection,Obtain_Information]
-        
         chart2 = QtCharts.QChart()
         
         while(x < 5):
-            meanScore = getAverageMetricFromCat('SCORE',topics[x])
+            meanScore = getAverageMetricFromCat('SCORE',self.topics[x])
             set = QtCharts.QBarSet("tst"+str(x))
             # print(meanScore[0])
             set << meanScore[0]
