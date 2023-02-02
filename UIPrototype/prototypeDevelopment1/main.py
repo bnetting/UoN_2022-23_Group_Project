@@ -3,10 +3,9 @@
 #  Ensure welcome.py is the at the top of the stack before compiling.
 
 import sys # sys variables needed to run UI
-import pandas as pd
 from main_user_interface import * # Python version of the UI file for welcome page
 from PyQt6.QtWidgets import QMainWindow, QApplication, QGraphicsOpacityEffect, QSizePolicy
-from PyQt6.QtCore import QPropertyAnimation, QEasingCurve, QTimer, QSize, QUrl
+from PyQt6.QtCore import QPropertyAnimation, QEasingCurve, QTimer, QSize
 from PyQt6.QtGui import QPainter
 from PyQt6 import QtCharts # pip install PyQt6-Charts
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
