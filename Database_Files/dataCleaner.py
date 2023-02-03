@@ -10,7 +10,6 @@ Author - Anderson Jolly
 import math
 import pandas as pd
 
-
 # TODO add data to excel
 # TODO getters and setters for values
 global df
@@ -36,7 +35,7 @@ Directory_traversal = 10
 Http_response_splitting = 11
 
 df = pd.read_excel('threats.xlsx', engine='openpyxl', index_col=0)
-print(df.describe())
+
 
 class Threat:
     def __init__(self, id, type, category, description, severity, score, exploitability, impact, date, link1, link2):
@@ -52,6 +51,39 @@ class Threat:
         self.link1 = link1
         self.link2 = link2
 
+    def getID(self):
+        return self.cve
+
+    def getType(self):
+        return self.type
+
+    def getCategory(self):
+        return self.category
+
+    def getDescription(self):
+        return self.description
+
+    def getSeverity(self):
+        return self.severity
+
+    def getScore(self):
+        return self.score
+
+    def getExploitability(self):
+        return self.exploitability
+
+    def getImpact(self):
+        return self.impact
+
+    def getDate(self):
+        return self.date
+
+    def getLink1(self):
+        return self.link1
+
+    def getLink2(self):
+        return self.link2
+
     def addEntry(self, df):
         df2 = pd.DataFrame(
             {'ID': [self.cve], 'TYPE': [self.type], 'CATEGORY': [self.category], 'DESCRIPTION': [self.description],
@@ -59,19 +91,12 @@ class Threat:
              'IMPACT': [self.impact], 'DATE': [self.date], 'LINK': [self.link1], 'OTHER': [self.link2]})
         print(df2)
         df = df.append(df2, ignore_index=True)
-
-
         writer = pd.ExcelWriter('threats.xlsx', engine='xlsxwriter')
         df.to_excel(writer, index=True, header=True)
         writer.close()
         print("WRITE SUCCESS")
 
-
         print("SUCCESS")
-
-
-
-
 
 
 # MAPPING
@@ -84,7 +109,7 @@ def mapData():
          'Obtain Information': 9, 'Directory traversal': 10, 'Http response splitting': 11})
 
 
-def getTheatTypes():
+def getThreatTypes():
     temp = (df['CATEGORY'].unique()).tolist()
     return temp
 
@@ -162,30 +187,26 @@ def searchByDesc(text: str):
 # Testing
 
 def main():
-
-    #mapData()
-    getAverageMetricFromCol("SCORE")
+    print(getAverageMetricFromCol("EXPLOITABILITY"))
     print(getAverageMetricFromCat("SCORE", Overflow))
     print(getModalFromCol("CATEGORY"))
     print(getModalFromCol("TYPE"))
     print(getCountFromCat(Overflow))
+    print(getThreatTypes())
 
-    print(getTheatTypes())
-
-    searchByID("CVE-1999-0095")
+    print(searchByID("CVE-1999-0095").getDate())
     search = searchByDesc("SunOS")
-    print(search[0].category)
-   # result = filterByMetric('SEVERITY', LOW)[0].score
- #   print(result)
+    print(search[0].getCategory())
+    #  result = filterByMetric('SEVERITY', LOW)[0].score
+    #   print(result)
     result = filterByMetric('IMPACT', 10)[0].exploitability
     print(result)
 
     print("------------\n")
 
-    print(len(df))
     new = Threat("hello", "NETWORK", "MITM", 'messed up mate', 'MEDIUM', 4.5, 6.2, 4.2, '2023', 'df', 'fe')
     new.addEntry(df)
-    print(len(df))
     print("SUCCESS")
+
 
 main()
