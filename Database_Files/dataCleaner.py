@@ -117,7 +117,8 @@ def getThreatTypes():
 def getAverageMetricFromCol(column: str):  # Average metric of a column
     temp: int = df[column].mean()
     math.trunc(temp)
-    return temp
+    test=str(round(temp,2))
+    return test
 
 
 def getModalFromCol(column: str):  # Most common metric from a column
@@ -187,7 +188,7 @@ def searchByDesc(text: str):
 # Testing
 
 def main():
-    print(getAverageMetricFromCol("EXPLOITABILITY"))
+    print(getAverageMetricFromCol("IMPACT"))
     print(getAverageMetricFromCat("SCORE", Overflow))
     print(getModalFromCol("CATEGORY"))
     print(getModalFromCol("TYPE"))
