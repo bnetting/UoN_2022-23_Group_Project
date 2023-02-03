@@ -10,12 +10,10 @@ Author - Anderson Jolly
 import math
 import pandas as pd
 
-# TODO add data to excel
-global df
 
-# open excel database
-df = pd.read_excel(r'threats.xlsx')  # read in the data
-df.pop(df.columns[0])  # remove first column
+# TODO add data to excel
+# TODO getters and setters for values
+global df
 
 NETWORK = 0
 LOCAL = 1
@@ -37,6 +35,8 @@ Obtain_Information = 9
 Directory_traversal = 10
 Http_response_splitting = 11
 
+df = pd.read_excel('threats.xlsx', engine='openpyxl', index_col=0)
+print(df.describe())
 
 class Threat:
     def __init__(self, id, type, category, description, severity, score, exploitability, impact, date, link1, link2):
@@ -51,6 +51,27 @@ class Threat:
         self.date = date
         self.link1 = link1
         self.link2 = link2
+
+    def addEntry(self, df):
+        df2 = pd.DataFrame(
+            {'ID': [self.cve], 'TYPE': [self.type], 'CATEGORY': [self.category], 'DESCRIPTION': [self.description],
+             'SEVERITY': [self.severity], 'SCORE': [self.score], 'EXPLOITABILITY': [self.exploitability],
+             'IMPACT': [self.impact], 'DATE': [self.date], 'LINK': [self.link1], 'OTHER': [self.link2]})
+        print(df2)
+        df = df.append(df2, ignore_index=True)
+
+
+        writer = pd.ExcelWriter('threats.xlsx', engine='xlsxwriter')
+        df.to_excel(writer, index=True, header=True)
+        writer.close()
+        print("WRITE SUCCESS")
+
+
+        print("SUCCESS")
+
+
+
+
 
 
 # MAPPING
@@ -141,7 +162,8 @@ def searchByDesc(text: str):
 # Testing
 
 def main():
-    mapData()
+
+    #mapData()
     getAverageMetricFromCol("SCORE")
     print(getAverageMetricFromCat("SCORE", Overflow))
     print(getModalFromCol("CATEGORY"))
@@ -153,10 +175,17 @@ def main():
     searchByID("CVE-1999-0095")
     search = searchByDesc("SunOS")
     print(search[0].category)
-    result = filterByMetric('SEVERITY', LOW)[1].score
-    print(result)
-    result = filterByMetric('IMPACT', 10)[1].exploitability
+   # result = filterByMetric('SEVERITY', LOW)[0].score
+ #   print(result)
+    result = filterByMetric('IMPACT', 10)[0].exploitability
     print(result)
 
+    print("------------\n")
+
+    print(len(df))
+    new = Threat("hello", "NETWORK", "MITM", 'messed up mate', 'MEDIUM', 4.5, 6.2, 4.2, '2023', 'df', 'fe')
+    new.addEntry(df)
+    print(len(df))
+    print("SUCCESS")
 
 main()
