@@ -1,5 +1,4 @@
-Threat, Score
-Alpha, 1
-Beta, 4.3
-Gamma, 6.7
-Delta, 10
+Alpha 1
+Beta 4.3
+Gamma 6.7
+Delta 10

@@ -1,0 +1,11 @@
+Given the two tables, the countermeasures needs to be tabulated in the following way:
+
+Countermeasure	E_Alpha	    E_Beta      E_Gamma     E_Delta	    Cost
+A	            0.8 	    0	        0	        0	        500
+B	            0.25	    0.65	    0	        0	        400
+C 	            0	        0.75	    0.4	        0.05	    750
+D	            0	        0	        0	        0.4	        100
+
+Where E_x is the effectiveness of the countermeasure against the threat "x"
+
+
