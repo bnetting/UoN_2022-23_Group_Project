@@ -9,6 +9,7 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 from utility import *
 
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -116,9 +117,6 @@ class Ui_MainWindow(object):
         self.pushButton_4 = QtWidgets.QPushButton(parent=self.frame_12)
         self.pushButton_4.setGeometry(QtCore.QRect(100, 220, 80, 26))
         self.pushButton_4.setObjectName("pushButton_4")
-
-
-
         self.label_6 = QtWidgets.QLabel(parent=self.frame_12)
         self.label_6.setGeometry(QtCore.QRect(110, 100, 58, 16))
         self.label_6.setObjectName("label_6")
@@ -138,6 +136,12 @@ class Ui_MainWindow(object):
         self.frame_10.setObjectName("frame_10")
         self.verticalLayout_6.addWidget(self.frame_10)
         self.stackedWidget.addWidget(self.page_3)
+        self.page_5 = QtWidgets.QWidget()
+        self.page_5.setObjectName("page_5")
+        self.label_5 = QtWidgets.QLabel(parent=self.page_5)
+        self.label_5.setGeometry(QtCore.QRect(340, 240, 211, 101))
+        self.label_5.setObjectName("label_5")
+        self.stackedWidget.addWidget(self.page_5)
         self.page_4 = QtWidgets.QWidget()
         self.page_4.setObjectName("page_4")
         self.label_4 = QtWidgets.QLabel(parent=self.page_4)
@@ -155,13 +159,9 @@ class Ui_MainWindow(object):
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
-
         self.retranslateUi(MainWindow)
         self.stackedWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-
-        self.pushButton_4.clicked.connect(lambda: util_try_login(self.stackedWidget,self.lineEdit_5.text(), self.lineEdit_6.text()))
-        self.pushButton_5.clicked.connect(lambda: util_navigate_login(self.stackedWidget))
 
 
     def retranslateUi(self, MainWindow):
@@ -176,7 +176,8 @@ class Ui_MainWindow(object):
         self.pushButton_4.setText(_translate("MainWindow", "Log In"))
         self.label_6.setText(_translate("MainWindow", "Username"))
         self.label_7.setText(_translate("MainWindow", "Password"))
-        self.label_4.setText(_translate("MainWindow", "LOGGED IN"))
+        self.label_5.setText(_translate("MainWindow", "Logged In - user level 2"))
+        self.label_4.setText(_translate("MainWindow", "LOGGED IN - User level 1"))
 
 
 if __name__ == "__main__":

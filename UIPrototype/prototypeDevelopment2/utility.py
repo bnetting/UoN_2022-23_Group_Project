@@ -8,6 +8,9 @@ ACCESS_LEVEL = [1, 2]
 # 1 = Admin
 # 2 = User
 
+# self.pushButton_4.clicked.connect(lambda: util_try_login(self.stackedWidget,self.lineEdit_5.text(), self.lineEdit_6.text()))
+# self.pushButton_5.clicked.connect(lambda: util_navigate_login(self.stackedWidget))
+
 
 def util_navigate_login(stackWidget):
     stackWidget.setCurrentIndex(2)
@@ -16,7 +19,10 @@ def util_navigate_login(stackWidget):
 def util_try_login(stackWidget, username, password):
     print("OUT: ",username, password)
     if (username == USERNAMES[0] and password == PASSWORDS[0]):
-        stackWidget.setCurrentIndex(3)
+        if (ACCESS_LEVEL[0] == 1):
+            stackWidget.setCurrentIndex(4)
+        elif (ACCESS_LEVEL[0] == 2):
+            stackWidget.setCurrentIndex(5)
     else:
         print("Error")
 
