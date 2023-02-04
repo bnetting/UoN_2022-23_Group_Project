@@ -21,16 +21,16 @@ CREATE TABLE IF NOT EXISTS userdata (
 id INTEGER PRIMARY KEY,
 username VARCHAR(255) NOT NULL,
 password VARCHAR(255) NOT NULL,
-email VARCHAR(255) NOT NULL)
+clearance INTEGER NOT NULL)
 """)
 
     def establishConnection(self):
         return self.connection, self.cursor
 
-    def createUser(self, email: str, username: str, password: str):
+    def createUser(self, clearance: str, username: str, password: str):
         password = hashlib.sha256(password.encode()).hexdigest()
         self.cursor.execute("INSERT INTO userdata (username, password, email) VALUES (?, ?, ?)",
-                            (username, password, email))
+                            (username, password, clearance))
         self.connection.commit()
 
     def getAll(self):
@@ -60,6 +60,6 @@ email VARCHAR(255) NOT NULL)
             return False
 
 db = Database()
-#db.createUser("andersonjolly@gmail.com", "psyaj3", "password")
+#db.createUser(1", "psyaj3", "password")
 db.authenticateUser("psyaj3", "password".encode())
 print(db.getAll())
