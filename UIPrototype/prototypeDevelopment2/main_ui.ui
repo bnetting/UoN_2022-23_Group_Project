@@ -18,9 +18,9 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
-      <widget class="QWidget" name="page">
+      <widget class="QWidget" name="WelcomePage">
        <layout class="QVBoxLayout" name="verticalLayout_4">
         <item>
          <layout class="QVBoxLayout" name="verticalLayout">
@@ -36,7 +36,7 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_4">
           <item>
-           <widget class="QPushButton" name="pushButton_5">
+           <widget class="QPushButton" name="moveToLoginButton">
             <property name="styleSheet">
              <string notr="true">padding: 50;</string>
             </property>
@@ -46,7 +46,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="moveToRegisterButton">
             <property name="styleSheet">
              <string notr="true">padding: 50;</string>
             </property>
@@ -59,7 +59,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="page_2">
+      <widget class="QWidget" name="RegisterPage">
        <layout class="QVBoxLayout" name="verticalLayout_5">
         <item>
          <widget class="QFrame" name="frame">
@@ -81,14 +81,14 @@
             </widget>
            </item>
            <item>
-            <widget class="QFrame" name="frame_3">
+            <widget class="QFrame" name="registerFrame">
              <property name="frameShape">
               <enum>QFrame::StyledPanel</enum>
              </property>
              <property name="frameShadow">
               <enum>QFrame::Raised</enum>
              </property>
-             <widget class="QLineEdit" name="lineEdit_2">
+             <widget class="QLineEdit" name="passwordRegisterLineEdit">
               <property name="geometry">
                <rect>
                 <x>80</x>
@@ -111,7 +111,7 @@
                <string>Username</string>
               </property>
              </widget>
-             <widget class="QLineEdit" name="lineEdit">
+             <widget class="QLineEdit" name="usernameRegisterLineEdit">
               <property name="geometry">
                <rect>
                 <x>80</x>
@@ -134,7 +134,7 @@
                <string>Password</string>
               </property>
              </widget>
-             <widget class="QPushButton" name="pushButton_2">
+             <widget class="QPushButton" name="registerButton">
               <property name="geometry">
                <rect>
                 <x>90</x>
@@ -174,7 +174,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="page_3">
+      <widget class="QWidget" name="LoginPage">
        <layout class="QVBoxLayout" name="verticalLayout_6">
         <item>
          <widget class="QFrame" name="frame_6">
@@ -196,14 +196,14 @@
             </widget>
            </item>
            <item>
-            <widget class="QFrame" name="frame_12">
+            <widget class="QFrame" name="loginPage">
              <property name="frameShape">
               <enum>QFrame::StyledPanel</enum>
              </property>
              <property name="frameShadow">
               <enum>QFrame::Raised</enum>
              </property>
-             <widget class="QLineEdit" name="lineEdit_5">
+             <widget class="QLineEdit" name="usernameLoginLineEdit">
               <property name="geometry">
                <rect>
                 <x>80</x>
@@ -213,7 +213,7 @@
                </rect>
               </property>
              </widget>
-             <widget class="QLineEdit" name="lineEdit_6">
+             <widget class="QLineEdit" name="passwordLoginLineEdit">
               <property name="geometry">
                <rect>
                 <x>80</x>
@@ -223,7 +223,7 @@
                </rect>
               </property>
              </widget>
-             <widget class="QPushButton" name="pushButton_4">
+             <widget class="QPushButton" name="loginPushButton">
               <property name="geometry">
                <rect>
                 <x>100</x>
@@ -289,7 +289,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="page_5">
+      <widget class="QWidget" name="UserHomePage">
        <widget class="QLabel" name="label_5">
         <property name="geometry">
          <rect>
@@ -300,11 +300,11 @@
          </rect>
         </property>
         <property name="text">
-         <string>Logged In - user level 2</string>
+         <string>Logged In - user level 2 - User</string>
         </property>
        </widget>
       </widget>
-      <widget class="QWidget" name="page_4">
+      <widget class="QWidget" name="AdminHomePage">
        <widget class="QLabel" name="label_4">
         <property name="geometry">
          <rect>
@@ -318,7 +318,7 @@
          <string notr="true"/>
         </property>
         <property name="text">
-         <string>LOGGED IN - User level 1</string>
+         <string>LOGGED IN - User level 1 - Admin</string>
         </property>
        </widget>
       </widget>
@@ -326,17 +326,6 @@
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>903</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>
