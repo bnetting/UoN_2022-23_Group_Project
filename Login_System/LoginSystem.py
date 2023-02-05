@@ -14,7 +14,7 @@ DATABASE_NAME = "userdata.db"
 
 class Database:
     def __init__(self):
-        self.connection = sqlite3.connect(DATABASE_NAME)
+        self.connection = sqlite3.connect(DATABASE_NAME,check_same_thread=False)
         self.cursor = self.connection.cursor()
         self.cursor.execute("""
 CREATE TABLE IF NOT EXISTS userdata (
@@ -28,8 +28,8 @@ clearance INTEGER NOT NULL)
         return self.connection, self.cursor
 
     def createUser(self, clearance: str, username: str, password: str):
-        password = hashlib.sha256(password.encode()).hexdigest()
-        self.cursor.execute("INSERT INTO userdata (username, password, email) VALUES (?, ?, ?)",
+        password = hashlib.sha256(password).hexdigest()
+        self.cursor.execute("INSERT INTO userdata (username, password,clearance) VALUES (?, ?, ?)",
                             (username, password, clearance))
         self.connection.commit()
 
@@ -47,19 +47,21 @@ clearance INTEGER NOT NULL)
     def authenticateUser(self, username, password):
         password = hashlib.sha256(password).hexdigest()
         #print(username, password)
-        message = "SELECT * FROM userdata WHERE username = '"+username+"' AND password = '"+password+"'"
+        message = "SELECT * FROM userdata WHERE username=? AND password =?",(username,password)#redundant variable now 
         #print(message)
-        self.cursor.execute(message)
+        self.cursor.execute("SELECT * FROM userdata WHERE username=? AND password =?",(username,password))#sends SQL query
         self.connection.commit()
-        result = self.cursor.fetchall()
-        if result:
-            print(result[0])
+        result = self.cursor.fetchone()#fetches the next row from the database
+        if result !=None:
+            print(result)
             return True
         else:
-            print("fucked")
+            print("ERROR: NOT FOUND")
+            print(username,password)#debugging print statement
             return False
 
 db = Database()
 #db.createUser(1", "psyaj3", "password")
-db.authenticateUser("psyaj3", "password".encode())
+db.createUser("LEVEL 1","psyaj3","password".encode())
+print(db.authenticateUser("psyaj3", "password".encode()))
 print(db.getAll())
