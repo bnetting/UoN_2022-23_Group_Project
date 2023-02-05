@@ -2,6 +2,8 @@
 
 # Utility functions for main gui
 from dictionary import *
+from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg
+from matplotlib.figure import Figure
 
 USERNAMES = ['psyer2','u','u2']
 PASSWORDS = ['password','p','p2']
@@ -28,3 +30,12 @@ def util_try_login(username, password):
 # A function to add a new user to the user databse
 def util_try_register():
     pass
+
+# A class to construct graphs of a given size and return them to go in a layout frame
+class MplCanvas(FigureCanvasQTAgg,):
+    def __init__(self, parent=None, width=Figure_Width, height=Figure_Height, dpi = Figure_DPI):
+        fig = Figure(figsize=(width,height), dpi=dpi)
+        self.axes = fig.add_subplot(111)
+        super(MplCanvas, self).__init__(fig)
+        
+        

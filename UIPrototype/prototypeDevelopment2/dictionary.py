@@ -10,3 +10,8 @@ Admin_Home_Page = 4
 # --------- Access Levels ----------
 User_Access_Level = 2
 Admin_Access_Level = 1
+
+# --------- Figure Sizes and Settings ----------
+Figure_Width = 5
+Figure_Height = 4
+Figure_DPI = 100

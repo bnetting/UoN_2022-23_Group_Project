@@ -2,10 +2,8 @@
 from main_ui import * # Python version of the UI file for welcome page
 from utility import *
 from dictionary import *
-from PyQt6.QtWidgets import QMainWindow, QApplication, QGraphicsOpacityEffect, QSizePolicy
+from PyQt6.QtWidgets import QMainWindow, QApplication, QVBoxLayout
 import sys
-
-
 
 class MainWindow(QMainWindow): #Setup code for welcome page
     def __init__(self, parent=None):
@@ -19,12 +17,16 @@ class MainWindow(QMainWindow): #Setup code for welcome page
 
         self.ui.moveToLoginButton.clicked.connect(lambda: self.changePage(Welcome_Page,Login_Page))
         self.ui.loginPushButton.clicked.connect(lambda: self.checkLoginDetails())
+        self.ui.adminToggleSideMenuButton.clicked.connect(lambda : self.toggleSideBar(self.ui.adminSidePanelFrame))
 
 
+
+        
+        
     # Function takes current and desired page indexes and calls corresponding functions
     # NOTE - Sent to close___() functions, which then call the desired open___() function.
     # self.nextPage global variable also updated for functions with multiple potential pages to possibly go to
-    
+            
     def changePage(self, currentPageIndex, nextPageIndex):
         self.nextPage = nextPageIndex
         if(currentPageIndex == Welcome_Page):
@@ -35,6 +37,8 @@ class MainWindow(QMainWindow): #Setup code for welcome page
             elif(nextPageIndex == User_Home_Page):
                 self.nextPage = User_Home_Page
             self.closeLoginPage()
+            
+            
             
     def openWelcomePage(self):
         self.ui.stackedWidget.setCurrentIndex(Welcome_Page)
@@ -63,8 +67,31 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         elif(self.nextPage == User_Home_Page):
             self.openUserHomePage()
             
+            
     def openAdminHomePage(self):
-        self.ui.stackedWidget.setCurrentIndex(Admin_Home_Page)
+        self.ui.stackedWidget.setCurrentIndex(Admin_Home_Page)#
+        
+        self.ui.adminSidePanelFrame.setMaximumWidth(0)
+
+        #///////////// TEST DATA \\\\\\\\\\\\\\\
+            
+        sc1 = MplCanvas(self)
+        sc2 = MplCanvas(self)
+        
+        sc1.axes.plot([0,1,2,3,4], [10,1,20,3,40])
+        sc2.axes.plot([10,1,20,3,40], [0,1,2,3,4])
+        
+        layout1 = QVBoxLayout()
+        layout1.addWidget(sc1)
+        
+        layout2 = QVBoxLayout()
+        layout2.addWidget(sc2)
+        
+        self.ui.adminThreatsFrame1.setLayout(layout1)
+        self.ui.adminThreatsFrame2.setLayout(layout2)
+        #////////////////////\\\\\\\\\\\\\\\\\\\\\
+        
+        
         #-------------------------------------
         #ANIMATIONS
         #-------------------------------------
@@ -85,6 +112,10 @@ class MainWindow(QMainWindow): #Setup code for welcome page
             print("To user page!")
             self.changePage(Login_Page, User_Home_Page)
     
+
+
+# Class for drawing a figure into a layout and onto a frame
+
 
 # - Running the GUI
 app = QApplication(sys.argv)

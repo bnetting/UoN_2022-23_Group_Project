@@ -15,9 +15,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
-    QLineEdit, QMainWindow, QPushButton, QSizePolicy,
-    QStackedWidget, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QHBoxLayout,
+    QLabel, QLineEdit, QMainWindow, QPushButton,
+    QSizePolicy, QStackedWidget, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -184,10 +184,172 @@ class Ui_MainWindow(object):
         self.stackedWidget.addWidget(self.UserHomePage)
         self.AdminHomePage = QWidget()
         self.AdminHomePage.setObjectName(u"AdminHomePage")
-        self.label_4 = QLabel(self.AdminHomePage)
+        self.horizontalLayout_2 = QHBoxLayout(self.AdminHomePage)
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.adminSidePanelFrame = QFrame(self.AdminHomePage)
+        self.adminSidePanelFrame.setObjectName(u"adminSidePanelFrame")
+        self.adminSidePanelFrame.setMaximumSize(QSize(150, 16777215))
+        self.adminSidePanelFrame.setFrameShape(QFrame.StyledPanel)
+        self.adminSidePanelFrame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_2 = QVBoxLayout(self.adminSidePanelFrame)
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.adminTitleFrame = QFrame(self.adminSidePanelFrame)
+        self.adminTitleFrame.setObjectName(u"adminTitleFrame")
+        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.adminTitleFrame.sizePolicy().hasHeightForWidth())
+        self.adminTitleFrame.setSizePolicy(sizePolicy)
+        self.adminTitleFrame.setMaximumSize(QSize(16777215, 60))
+        self.adminTitleFrame.setFrameShape(QFrame.StyledPanel)
+        self.adminTitleFrame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_7 = QVBoxLayout(self.adminTitleFrame)
+        self.verticalLayout_7.setObjectName(u"verticalLayout_7")
+        self.label_4 = QLabel(self.adminTitleFrame)
         self.label_4.setObjectName(u"label_4")
-        self.label_4.setGeometry(QRect(330, 200, 281, 181))
-        self.label_4.setStyleSheet(u"")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.MinimumExpanding)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
+        self.label_4.setSizePolicy(sizePolicy1)
+        font = QFont()
+        font.setPointSize(14)
+        font.setBold(True)
+        self.label_4.setFont(font)
+
+        self.verticalLayout_7.addWidget(self.label_4)
+
+
+        self.verticalLayout_2.addWidget(self.adminTitleFrame)
+
+        self.adminPageSelectionFrame = QFrame(self.adminSidePanelFrame)
+        self.adminPageSelectionFrame.setObjectName(u"adminPageSelectionFrame")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.adminPageSelectionFrame.sizePolicy().hasHeightForWidth())
+        self.adminPageSelectionFrame.setSizePolicy(sizePolicy2)
+        self.adminPageSelectionFrame.setFrameShape(QFrame.StyledPanel)
+        self.adminPageSelectionFrame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_8 = QVBoxLayout(self.adminPageSelectionFrame)
+        self.verticalLayout_8.setObjectName(u"verticalLayout_8")
+        self.adminThreatButton = QPushButton(self.adminPageSelectionFrame)
+        self.adminThreatButton.setObjectName(u"adminThreatButton")
+        font1 = QFont()
+        font1.setPointSize(13)
+        self.adminThreatButton.setFont(font1)
+
+        self.verticalLayout_8.addWidget(self.adminThreatButton)
+
+        self.adminCountermeasuresButton = QPushButton(self.adminPageSelectionFrame)
+        self.adminCountermeasuresButton.setObjectName(u"adminCountermeasuresButton")
+        font2 = QFont()
+        font2.setPointSize(10)
+        self.adminCountermeasuresButton.setFont(font2)
+
+        self.verticalLayout_8.addWidget(self.adminCountermeasuresButton)
+
+        self.pushButton_3 = QPushButton(self.adminPageSelectionFrame)
+        self.pushButton_3.setObjectName(u"pushButton_3")
+        self.pushButton_3.setFont(font1)
+
+        self.verticalLayout_8.addWidget(self.pushButton_3)
+
+
+        self.verticalLayout_2.addWidget(self.adminPageSelectionFrame)
+
+
+        self.horizontalLayout_2.addWidget(self.adminSidePanelFrame)
+
+        self.adminContentFrame = QFrame(self.AdminHomePage)
+        self.adminContentFrame.setObjectName(u"adminContentFrame")
+        self.adminContentFrame.setFrameShape(QFrame.StyledPanel)
+        self.adminContentFrame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_9 = QVBoxLayout(self.adminContentFrame)
+        self.verticalLayout_9.setObjectName(u"verticalLayout_9")
+        self.adminHeadBarFrame = QFrame(self.adminContentFrame)
+        self.adminHeadBarFrame.setObjectName(u"adminHeadBarFrame")
+        self.adminHeadBarFrame.setMaximumSize(QSize(16777215, 60))
+        self.adminHeadBarFrame.setFrameShape(QFrame.StyledPanel)
+        self.adminHeadBarFrame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_5 = QHBoxLayout(self.adminHeadBarFrame)
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.frame_3 = QFrame(self.adminHeadBarFrame)
+        self.frame_3.setObjectName(u"frame_3")
+        self.frame_3.setMaximumSize(QSize(60, 400))
+        self.frame_3.setFrameShape(QFrame.StyledPanel)
+        self.frame_3.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_6 = QHBoxLayout(self.frame_3)
+        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
+        self.adminToggleSideMenuButton = QPushButton(self.frame_3)
+        self.adminToggleSideMenuButton.setObjectName(u"adminToggleSideMenuButton")
+
+        self.horizontalLayout_6.addWidget(self.adminToggleSideMenuButton)
+
+
+        self.horizontalLayout_5.addWidget(self.frame_3)
+
+        self.frame_7 = QFrame(self.adminHeadBarFrame)
+        self.frame_7.setObjectName(u"frame_7")
+        self.frame_7.setFrameShape(QFrame.StyledPanel)
+        self.frame_7.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_10 = QVBoxLayout(self.frame_7)
+        self.verticalLayout_10.setObjectName(u"verticalLayout_10")
+        self.adminPageLabel = QLabel(self.frame_7)
+        self.adminPageLabel.setObjectName(u"adminPageLabel")
+        font3 = QFont()
+        font3.setPointSize(15)
+        font3.setBold(True)
+        font3.setUnderline(True)
+        self.adminPageLabel.setFont(font3)
+
+        self.verticalLayout_10.addWidget(self.adminPageLabel, 0, Qt.AlignHCenter)
+
+
+        self.horizontalLayout_5.addWidget(self.frame_7)
+
+
+        self.verticalLayout_9.addWidget(self.adminHeadBarFrame)
+
+        self.adminMainFrame = QFrame(self.adminContentFrame)
+        self.adminMainFrame.setObjectName(u"adminMainFrame")
+        self.adminMainFrame.setFrameShape(QFrame.StyledPanel)
+        self.adminMainFrame.setFrameShadow(QFrame.Raised)
+        self.gridLayout = QGridLayout(self.adminMainFrame)
+        self.gridLayout.setObjectName(u"gridLayout")
+        self.adminContentStackedWidget = QStackedWidget(self.adminMainFrame)
+        self.adminContentStackedWidget.setObjectName(u"adminContentStackedWidget")
+        self.adminThreatsPage = QWidget()
+        self.adminThreatsPage.setObjectName(u"adminThreatsPage")
+        self.verticalLayout_11 = QVBoxLayout(self.adminThreatsPage)
+        self.verticalLayout_11.setObjectName(u"verticalLayout_11")
+        self.adminThreatsFrame1 = QFrame(self.adminThreatsPage)
+        self.adminThreatsFrame1.setObjectName(u"adminThreatsFrame1")
+        self.adminThreatsFrame1.setFrameShape(QFrame.StyledPanel)
+        self.adminThreatsFrame1.setFrameShadow(QFrame.Raised)
+
+        self.verticalLayout_11.addWidget(self.adminThreatsFrame1)
+
+        self.adminThreatsFrame2 = QFrame(self.adminThreatsPage)
+        self.adminThreatsFrame2.setObjectName(u"adminThreatsFrame2")
+        self.adminThreatsFrame2.setFrameShape(QFrame.StyledPanel)
+        self.adminThreatsFrame2.setFrameShadow(QFrame.Raised)
+
+        self.verticalLayout_11.addWidget(self.adminThreatsFrame2)
+
+        self.adminContentStackedWidget.addWidget(self.adminThreatsPage)
+        self.adminCountermeasuresPage = QWidget()
+        self.adminCountermeasuresPage.setObjectName(u"adminCountermeasuresPage")
+        self.adminContentStackedWidget.addWidget(self.adminCountermeasuresPage)
+
+        self.gridLayout.addWidget(self.adminContentStackedWidget, 0, 0, 1, 1)
+
+
+        self.verticalLayout_9.addWidget(self.adminMainFrame)
+
+
+        self.horizontalLayout_2.addWidget(self.adminContentFrame)
+
         self.stackedWidget.addWidget(self.AdminHomePage)
 
         self.verticalLayout_3.addWidget(self.stackedWidget)
@@ -214,6 +376,11 @@ class Ui_MainWindow(object):
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"Username", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"Password", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"Logged In - user level 2 - User", None))
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"LOGGED IN - User level 1 - Admin", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Admin Page", None))
+        self.adminThreatButton.setText(QCoreApplication.translate("MainWindow", u"Threats", None))
+        self.adminCountermeasuresButton.setText(QCoreApplication.translate("MainWindow", u"Countermeasures", None))
+        self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"???", None))
+        self.adminToggleSideMenuButton.setText(QCoreApplication.translate("MainWindow", u"Menu", None))
+        self.adminPageLabel.setText(QCoreApplication.translate("MainWindow", u"temp text", None))
     # retranslateUi
 
