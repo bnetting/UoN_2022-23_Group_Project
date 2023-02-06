@@ -59,9 +59,19 @@ class Client:
             print("Adding Failed")  # fail
             return False
 
+    def close(self): #Sends a message to the server to gracefully close the connection
+        exitMessage=""
+        self.client.send("99".encode()) #Sends exit code
+        exitMessage=(self.client.recv(1024).decode())
+        while(exitMessage!="GOODBYE"): #Waits for server to respond with exit message
+            exitMessage=(self.client.recv(1024).decode())
+        print(exitMessage)#Prints correct exit message sent by the server
+        self.client.close()#closes socket connection to the server
 
 client = Client("localhost", 9999)
 # client.login('psyaj3', "password", 1)
 # client.login('psyaj3', "password", 1)
 client.createUser('bob', 'bob1', "2")
-# client.createUser('bob','bob1',"2")
+client.createUser('bob2','bob12',"2")
+client.close()
+

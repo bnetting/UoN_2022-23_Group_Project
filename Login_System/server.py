@@ -15,7 +15,8 @@ from LoginSystem import Database
 # SERVER ACTIONS
 LOGIN = 0
 ADD_USER = 1
-
+WAITING=2
+EXIT=99
 
 class Server:
     def __init__(self, name: str, port: int):
@@ -28,12 +29,23 @@ class Server:
 
     # TODO is there a better way to do this????
     def handleConnection(self, client):  # Takes in the first command the client and decides what to do
-        action = int(client.recv(1024).decode())
-        client.send("Action Received".encode())
-        if action == LOGIN:
-            self.login(client)
-        elif action == ADD_USER:
-            self.addUser(client)
+        action=9
+        message=""
+        while(action!=EXIT):#while client does not wish to exit
+            message=(client.recv(1024).decode())
+            if(message==""): #If client hasn't sent anything, then the server will be in a waiting state
+                action=WAITING
+            else:
+              action = int(message)#action is set to action sent by ther user
+              client.send("Action Received".encode())#client notified that their action request has been recieved
+
+            if action == LOGIN:
+                self.login(client)#login method called is client wishes to login
+            elif action == ADD_USER:
+                self.addUser(client)#addUser method called if client wishes to add a new user to the database
+            
+        client.send("GOODBYE".encode())#Sends GOODBYE to client so client can close connection gracefully
+        
 
     def login(self, client):
         username = client.recv(1024).decode()  # decodes and retrieves the username
