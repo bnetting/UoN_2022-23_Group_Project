@@ -97,6 +97,9 @@
                 <height>22</height>
                </rect>
               </property>
+              <property name="echoMode">
+               <enum>QLineEdit::Password</enum>
+              </property>
              </widget>
              <widget class="QLabel" name="label_2">
               <property name="geometry">
@@ -221,6 +224,9 @@
                 <width>113</width>
                 <height>22</height>
                </rect>
+              </property>
+              <property name="echoMode">
+               <enum>QLineEdit::Password</enum>
               </property>
              </widget>
              <widget class="QPushButton" name="loginPushButton">

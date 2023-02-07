@@ -2,6 +2,7 @@
 from main_ui import * # Python version of the UI file for welcome page
 from utility import *
 from dictionary import *
+from dataCleaner import *
 from PyQt6.QtWidgets import QMainWindow, QApplication, QVBoxLayout
 import sys
 
@@ -78,7 +79,7 @@ class MainWindow(QMainWindow): #Setup code for welcome page
             
             
     def openAdminHomePage(self):
-        self.ui.stackedWidget.setCurrentIndex(Admin_Home_Page)#
+        self.ui.stackedWidget.setCurrentIndex(Admin_Home_Page)
         
         self.ui.adminSidePanelFrame.setMaximumWidth(0)
 
@@ -88,7 +89,7 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         sc2 = MplCanvas(self)
         
         sc1.axes.plot([0,1,2,3,4], [10,1,20,3,40])
-        sc2.axes.plot([10,1,20,3,40], [0,1,2,3,4])
+        sc1.axes.plot([0,1,2,3,4], [10,1,20,3,40])
         
         layout1 = QVBoxLayout()
         layout1.addWidget(sc1)

@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'main_ui.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.4.0
+## Created by: Qt User Interface Compiler version 6.4.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -86,6 +86,7 @@ class Ui_MainWindow(object):
         self.passwordRegisterLineEdit = QLineEdit(self.registerFrame)
         self.passwordRegisterLineEdit.setObjectName(u"passwordRegisterLineEdit")
         self.passwordRegisterLineEdit.setGeometry(QRect(80, 200, 113, 22))
+        self.passwordRegisterLineEdit.setEchoMode(QLineEdit.Password)
         self.label_2 = QLabel(self.registerFrame)
         self.label_2.setObjectName(u"label_2")
         self.label_2.setGeometry(QRect(100, 110, 58, 16))
@@ -146,6 +147,7 @@ class Ui_MainWindow(object):
         self.passwordLoginLineEdit = QLineEdit(self.loginPage)
         self.passwordLoginLineEdit.setObjectName(u"passwordLoginLineEdit")
         self.passwordLoginLineEdit.setGeometry(QRect(80, 170, 113, 22))
+        self.passwordLoginLineEdit.setEchoMode(QLineEdit.Password)
         self.loginPushButton = QPushButton(self.loginPage)
         self.loginPushButton.setObjectName(u"loginPushButton")
         self.loginPushButton.setGeometry(QRect(100, 220, 80, 26))

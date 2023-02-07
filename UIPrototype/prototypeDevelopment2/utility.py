@@ -18,7 +18,7 @@ def util_try_login(username, password):
     check = 0
     print("OUT: ",username, password)
     while(index < len(USERNAMES)):
-        if (username == USERNAMES[index] and password == PASSWORDS[index]): #Check iunputted U & P with sotred ones
+        if (username == USERNAMES[index] and password == PASSWORDS[index]): #Check inputted U & P with sotred ones
             if (ACCESS_LEVEL[index] == Admin_Access_Level):
                 check = Admin_Access_Level
             elif (ACCESS_LEVEL[index] == User_Access_Level):
@@ -31,6 +31,7 @@ def util_try_login(username, password):
 def util_try_register():
     pass
 
+# A function to perform an action when the user hovers over a graph
 def chart_hover(event):
     print("test")
 
