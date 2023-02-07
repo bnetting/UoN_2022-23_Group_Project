@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'main_ui.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.4.1
+## Created by: Qt User Interface Compiler version 6.4.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -23,7 +23,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(903, 732)
+        MainWindow.resize(925, 824)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayout_3 = QVBoxLayout(self.centralwidget)
@@ -180,9 +180,118 @@ class Ui_MainWindow(object):
         self.stackedWidget.addWidget(self.LoginPage)
         self.UserHomePage = QWidget()
         self.UserHomePage.setObjectName(u"UserHomePage")
-        self.label_5 = QLabel(self.UserHomePage)
-        self.label_5.setObjectName(u"label_5")
-        self.label_5.setGeometry(QRect(340, 240, 211, 101))
+        self.horizontalLayout_13 = QHBoxLayout(self.UserHomePage)
+        self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
+        self.menubar = QFrame(self.UserHomePage)
+        self.menubar.setObjectName(u"menubar")
+        self.menubar.setMinimumSize(QSize(0, 0))
+        self.menubar.setMaximumSize(QSize(150, 16777214))
+        self.verticalLayout_14 = QVBoxLayout(self.menubar)
+        self.verticalLayout_14.setObjectName(u"verticalLayout_14")
+        self.titlebox = QFrame(self.menubar)
+        self.titlebox.setObjectName(u"titlebox")
+        self.titlebox.setMinimumSize(QSize(0, 150))
+        self.titlebox.setMaximumSize(QSize(16777215, 150))
+        self.titlebox.setFrameShape(QFrame.StyledPanel)
+        self.titlebox.setFrameShadow(QFrame.Raised)
+        self.titlelabel = QLabel(self.titlebox)
+        self.titlelabel.setObjectName(u"titlelabel")
+        self.titlelabel.setGeometry(QRect(0, 0, 151, 151))
+        self.titlelabel.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_14.addWidget(self.titlebox)
+
+        self.menuoptions = QFrame(self.menubar)
+        self.menuoptions.setObjectName(u"menuoptions")
+        self.menuoptions.setFrameShape(QFrame.StyledPanel)
+        self.menuoptions.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_15 = QVBoxLayout(self.menuoptions)
+        self.verticalLayout_15.setObjectName(u"verticalLayout_15")
+        self.threatstbn = QPushButton(self.menuoptions)
+        self.threatstbn.setObjectName(u"threatstbn")
+
+        self.verticalLayout_15.addWidget(self.threatstbn)
+
+        self.countermeasurebtn = QPushButton(self.menuoptions)
+        self.countermeasurebtn.setObjectName(u"countermeasurebtn")
+
+        self.verticalLayout_15.addWidget(self.countermeasurebtn)
+
+        self.logoutbtn = QPushButton(self.menuoptions)
+        self.logoutbtn.setObjectName(u"logoutbtn")
+
+        self.verticalLayout_15.addWidget(self.logoutbtn)
+
+
+        self.verticalLayout_14.addWidget(self.menuoptions)
+
+
+        self.horizontalLayout_13.addWidget(self.menubar)
+
+        self.mainContainer = QFrame(self.UserHomePage)
+        self.mainContainer.setObjectName(u"mainContainer")
+        self.mainContainer.setMinimumSize(QSize(0, 0))
+        self.verticalLayout_16 = QVBoxLayout(self.mainContainer)
+        self.verticalLayout_16.setObjectName(u"verticalLayout_16")
+        self.titleBox = QFrame(self.mainContainer)
+        self.titleBox.setObjectName(u"titleBox")
+        self.titleBox.setFrameShape(QFrame.StyledPanel)
+        self.titleBox.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_11 = QHBoxLayout(self.titleBox)
+        self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
+        self.Menubtnbox = QFrame(self.titleBox)
+        self.Menubtnbox.setObjectName(u"Menubtnbox")
+        self.Menubtnbox.setMaximumSize(QSize(100, 16777215))
+        self.Menubtnbox.setFrameShape(QFrame.StyledPanel)
+        self.Menubtnbox.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_12 = QHBoxLayout(self.Menubtnbox)
+        self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
+        self.Menu = QPushButton(self.Menubtnbox)
+        self.Menu.setObjectName(u"Menu")
+
+        self.horizontalLayout_12.addWidget(self.Menu)
+
+
+        self.horizontalLayout_11.addWidget(self.Menubtnbox)
+
+        self.userBox = QFrame(self.titleBox)
+        self.userBox.setObjectName(u"userBox")
+        self.userBox.setFrameShape(QFrame.StyledPanel)
+        self.userBox.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_14 = QHBoxLayout(self.userBox)
+        self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
+        self.userlabel = QLabel(self.userBox)
+        self.userlabel.setObjectName(u"userlabel")
+
+        self.horizontalLayout_14.addWidget(self.userlabel)
+
+
+        self.horizontalLayout_11.addWidget(self.userBox, 0, Qt.AlignHCenter)
+
+
+        self.verticalLayout_16.addWidget(self.titleBox)
+
+        self.mainBody = QFrame(self.mainContainer)
+        self.mainBody.setObjectName(u"mainBody")
+        self.mainBody.setMinimumSize(QSize(0, 700))
+        self.mainBody.setMaximumSize(QSize(16777215, 750))
+        self.mainBody.setFrameShape(QFrame.StyledPanel)
+        self.mainBody.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_15 = QHBoxLayout(self.mainBody)
+        self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
+        self.frame_8 = QFrame(self.mainBody)
+        self.frame_8.setObjectName(u"frame_8")
+        self.frame_8.setFrameShape(QFrame.StyledPanel)
+        self.frame_8.setFrameShadow(QFrame.Raised)
+
+        self.horizontalLayout_15.addWidget(self.frame_8)
+
+
+        self.verticalLayout_16.addWidget(self.mainBody)
+
+
+        self.horizontalLayout_13.addWidget(self.mainContainer)
+
         self.stackedWidget.addWidget(self.UserHomePage)
         self.AdminHomePage = QWidget()
         self.AdminHomePage.setObjectName(u"AdminHomePage")
@@ -377,7 +486,12 @@ class Ui_MainWindow(object):
         self.loginPushButton.setText(QCoreApplication.translate("MainWindow", u"Log In", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"Username", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"Password", None))
-        self.label_5.setText(QCoreApplication.translate("MainWindow", u"Logged In - user level 2 - User", None))
+        self.titlelabel.setText(QCoreApplication.translate("MainWindow", u"User View", None))
+        self.threatstbn.setText(QCoreApplication.translate("MainWindow", u"Threats", None))
+        self.countermeasurebtn.setText(QCoreApplication.translate("MainWindow", u"Countermeasures", None))
+        self.logoutbtn.setText(QCoreApplication.translate("MainWindow", u"Log Out", None))
+        self.Menu.setText(QCoreApplication.translate("MainWindow", u"Menu", None))
+        self.userlabel.setText(QCoreApplication.translate("MainWindow", u"User View", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Admin Page", None))
         self.adminThreatButton.setText(QCoreApplication.translate("MainWindow", u"Threats", None))
         self.adminCountermeasuresButton.setText(QCoreApplication.translate("MainWindow", u"Countermeasures", None))

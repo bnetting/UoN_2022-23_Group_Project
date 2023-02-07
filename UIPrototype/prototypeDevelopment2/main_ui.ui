@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>925</width>
-    <height>814</height>
+    <height>824</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="WelcomePage">
        <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -96,6 +96,9 @@
                 <width>113</width>
                 <height>22</height>
                </rect>
+              </property>
+              <property name="echoMode">
+               <enum>QLineEdit::Password</enum>
               </property>
              </widget>
              <widget class="QLabel" name="label_2">
@@ -222,6 +225,9 @@
                 <height>22</height>
                </rect>
               </property>
+              <property name="echoMode">
+               <enum>QLineEdit::Password</enum>
+              </property>
              </widget>
              <widget class="QPushButton" name="loginPushButton">
               <property name="geometry">
@@ -295,13 +301,13 @@
          <widget class="QFrame" name="menubar">
           <property name="minimumSize">
            <size>
-            <width>150</width>
+            <width>0</width>
             <height>0</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>0</width>
+            <width>150</width>
             <height>16777214</height>
            </size>
           </property>

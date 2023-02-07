@@ -18,15 +18,14 @@ class MainWindow(QMainWindow): #Setup code for welcome page
 
         self.ui.moveToLoginButton.clicked.connect(lambda: self.changePage(Welcome_Page,Login_Page))
         self.ui.loginPushButton.clicked.connect(lambda: self.checkLoginDetails())
-        self.ui.adminToggleSideMenuButton.clicked.connect(lambda : self.toggleSideBar(self.ui.adminSidePanelFrame))
+        self.ui.adminToggleSideMenuButton.clicked.connect(lambda: self.toggleSideBar(self.ui.adminSidePanelFrame))
+        self.ui.Menu.clicked.connect(lambda: self.toggleSideBar(self.ui.menubar))
 
 
     #Toggles a side bar between hidden and shown by changing it's width between 0 and 150
     def toggleSideBar(self,targetBar):
         currentWidth = targetBar.width()
-        
-        print("Current side bar width = " + str(currentWidth))
-        
+                
         if(currentWidth == 0):
             targetBar.setMaximumWidth(150)
         else:
