@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>903</width>
-    <height>732</height>
+    <width>925</width>
+    <height>814</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="WelcomePage">
        <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -96,9 +96,6 @@
                 <width>113</width>
                 <height>22</height>
                </rect>
-              </property>
-              <property name="echoMode">
-               <enum>QLineEdit::Password</enum>
               </property>
              </widget>
              <widget class="QLabel" name="label_2">
@@ -225,9 +222,6 @@
                 <height>22</height>
                </rect>
               </property>
-              <property name="echoMode">
-               <enum>QLineEdit::Password</enum>
-              </property>
              </widget>
              <widget class="QPushButton" name="loginPushButton">
               <property name="geometry">
@@ -296,19 +290,199 @@
        </layout>
       </widget>
       <widget class="QWidget" name="UserHomePage">
-       <widget class="QLabel" name="label_5">
-        <property name="geometry">
-         <rect>
-          <x>340</x>
-          <y>240</y>
-          <width>211</width>
-          <height>101</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Logged In - user level 2 - User</string>
-        </property>
-       </widget>
+       <layout class="QHBoxLayout" name="horizontalLayout_13">
+        <item>
+         <widget class="QFrame" name="menubar">
+          <property name="minimumSize">
+           <size>
+            <width>150</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>0</width>
+            <height>16777214</height>
+           </size>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_14">
+           <item>
+            <widget class="QFrame" name="titlebox">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>150</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>150</height>
+              </size>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <widget class="QLabel" name="titlelabel">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>151</width>
+                <height>151</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>User View</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="menuoptions">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_15">
+              <item>
+               <widget class="QPushButton" name="threatstbn">
+                <property name="text">
+                 <string>Threats</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="countermeasurebtn">
+                <property name="text">
+                 <string>Countermeasures</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="logoutbtn">
+                <property name="text">
+                 <string>Log Out</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="mainContainer">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_16">
+           <item>
+            <widget class="QFrame" name="titleBox">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_11">
+              <item>
+               <widget class="QFrame" name="Menubtnbox">
+                <property name="maximumSize">
+                 <size>
+                  <width>100</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_12">
+                 <item>
+                  <widget class="QPushButton" name="Menu">
+                   <property name="text">
+                    <string>Menu</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item alignment="Qt::AlignHCenter">
+               <widget class="QFrame" name="userBox">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_14">
+                 <item>
+                  <widget class="QLabel" name="userlabel">
+                   <property name="text">
+                    <string>User View</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="mainBody">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>700</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>750</height>
+              </size>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_15">
+              <item>
+               <widget class="QFrame" name="frame_8">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
       </widget>
       <widget class="QWidget" name="AdminHomePage">
        <layout class="QHBoxLayout" name="horizontalLayout_2">
