@@ -31,11 +31,17 @@ def util_try_login(username, password):
 def util_try_register():
     pass
 
+def chart_hover(event):
+    print("test")
+
 # A class to construct graphs of a given size and return them to go in a layout frame
 class MplCanvas(FigureCanvasQTAgg,):
     def __init__(self, parent=None, width=Figure_Width, height=Figure_Height, dpi = Figure_DPI):
-        fig = Figure(figsize=(width,height), dpi=dpi)
+        fig = Figure(figsize=(width,height), dpi=dpi)    
         self.axes = fig.add_subplot(111)
+        
+        fig.canvas.mpl_connect("motion_notify_event", chart_hover)
+        
         super(MplCanvas, self).__init__(fig)
         
         

@@ -20,7 +20,16 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         self.ui.adminToggleSideMenuButton.clicked.connect(lambda : self.toggleSideBar(self.ui.adminSidePanelFrame))
 
 
-
+    #Toggles a side bar between hidden and shown by changing it's width between 0 and 150
+    def toggleSideBar(self,targetBar):
+        currentWidth = targetBar.width()
+        
+        print("Current side bar width = " + str(currentWidth))
+        
+        if(currentWidth == 0):
+            targetBar.setMaximumWidth(150)
+        else:
+            targetBar.setMaximumWidth(0)
         
         
     # Function takes current and desired page indexes and calls corresponding functions
@@ -111,10 +120,6 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         elif(loginResult == User_Access_Level):
             print("To user page!")
             self.changePage(Login_Page, User_Home_Page)
-    
-
-
-# Class for drawing a figure into a layout and onto a frame
 
 
 # - Running the GUI
