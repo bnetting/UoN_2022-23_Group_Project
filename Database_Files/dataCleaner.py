@@ -127,10 +127,11 @@ def getModalFromCol(column: str):  # Most common metric from a column
 
 
 # DATA FROM THREAT TYPES
-def getAverageMetricFromCat(column: str, category: int):  # Average metric per category
+def getAverageMetricFromCat(column: str, category: str):  # Average metric per category
     temp = df.loc[df['CATEGORY'] == category]
     mean = temp[column].mean()
-    return mean
+    meanFinal=str(round(mean,2))
+    return meanFinal
 
 
 def getModalMetricFromCat(column: str, category: int):  # Average metric per category
@@ -189,7 +190,7 @@ def searchByDesc(text: str):
 
 def main():
     print(getAverageMetricFromCol("IMPACT"))
-    print(getAverageMetricFromCat("SCORE", Overflow))
+    print(getAverageMetricFromCat("SCORE", 'Overflow'))
     print(getModalFromCol("CATEGORY"))
     print(getModalFromCol("TYPE"))
     print(getCountFromCat(Overflow))
