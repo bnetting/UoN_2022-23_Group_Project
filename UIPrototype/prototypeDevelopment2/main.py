@@ -108,7 +108,7 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         #-------------------------------------
 
 
-
+    # Detects which cell has been clicked
     def detectPress(self, selected, deselected):
         for cell in selected.indexes():
             print("Selected Cell: ", cell.data())
@@ -151,11 +151,16 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         # TODO: Navigate to templateThreats page with correct data and display it
         # TODO: Implement a search with a backend filter function
         # TODO: Populate returned data into table
+
+    # Opens the template page and pulls data from the global store
     def openSingleResult(self):
         self.ui.stackedWidget.setCurrentIndex(6)
         self.ui.templateTitleLabel.setText(store.title)
         self.ui.templateReturnBtn.clicked.connect(lambda: openThreatsPage(self))
 
+
+
+    # Opens the home page for user access users
     def openUserHomePage(self):
         self.ui.stackedWidget.setCurrentIndex(User_Home_Page)
 
