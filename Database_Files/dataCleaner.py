@@ -34,7 +34,7 @@ Obtain_Information = 9
 Directory_traversal = 10
 Http_response_splitting = 11
 
-df = pd.read_excel('threats.xlsx', engine='openpyxl', index_col=0)
+df = pd.read_excel('Database_files/threats.xlsx', engine='openpyxl', index_col=0)
 
 
 class Threat:
@@ -91,7 +91,7 @@ class Threat:
              'IMPACT': [self.impact], 'DATE': [self.date], 'LINK': [self.link1], 'OTHER': [self.link2]})
         print(df2)
         df = df.append(df2, ignore_index=True)
-        writer = pd.ExcelWriter('threats.xlsx', engine='xlsxwriter')
+        writer = pd.ExcelWriter('Database_files/threats.xlsx', engine='xlsxwriter')
         df.to_excel(writer, index=True, header=True)
         writer.close()
         print("WRITE SUCCESS")
