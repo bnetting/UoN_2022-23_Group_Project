@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>5</number>
+       <number>6</number>
       </property>
       <widget class="QWidget" name="WelcomePage">
        <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -879,93 +879,7 @@
                 </property>
                 <layout class="QHBoxLayout" name="horizontalLayout_9">
                  <item>
-                  <widget class="QTableWidget" name="tableWidget">
-                   <row>
-                    <property name="text">
-                     <string>0</string>
-                    </property>
-                   </row>
-                   <row>
-                    <property name="text">
-                     <string>1</string>
-                    </property>
-                   </row>
-                   <row>
-                    <property name="text">
-                     <string>2</string>
-                    </property>
-                   </row>
-                   <row>
-                    <property name="text">
-                     <string>3</string>
-                    </property>
-                   </row>
-                   <row>
-                    <property name="text">
-                     <string>4</string>
-                    </property>
-                   </row>
-                   <column>
-                    <property name="text">
-                     <string>Threat</string>
-                    </property>
-                   </column>
-                   <column>
-                    <property name="text">
-                     <string>Description</string>
-                    </property>
-                   </column>
-                   <item row="0" column="0">
-                    <property name="text">
-                     <string>DDOS</string>
-                    </property>
-                   </item>
-                   <item row="0" column="1">
-                    <property name="text">
-                     <string>An Attack</string>
-                    </property>
-                   </item>
-                   <item row="1" column="0">
-                    <property name="text">
-                     <string>Man In Middle</string>
-                    </property>
-                   </item>
-                   <item row="1" column="1">
-                    <property name="text">
-                     <string>Bad things</string>
-                    </property>
-                   </item>
-                   <item row="2" column="0">
-                    <property name="text">
-                     <string>Dos</string>
-                    </property>
-                   </item>
-                   <item row="2" column="1">
-                    <property name="text">
-                     <string>other words</string>
-                    </property>
-                   </item>
-                   <item row="3" column="0">
-                    <property name="text">
-                     <string>SQL Injection</string>
-                    </property>
-                   </item>
-                   <item row="3" column="1">
-                    <property name="text">
-                     <string>osc hard</string>
-                    </property>
-                   </item>
-                   <item row="4" column="0">
-                    <property name="text">
-                     <string>phishing</string>
-                    </property>
-                   </item>
-                   <item row="4" column="1">
-                    <property name="text">
-                     <string>HCI &gt;&gt;</string>
-                    </property>
-                   </item>
-                  </widget>
+                  <widget class="QTableWidget" name="tableWidget"/>
                  </item>
                 </layout>
                </widget>
@@ -978,7 +892,41 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="templateResultPage"/>
+      <widget class="QWidget" name="templateResultPage">
+       <widget class="QLabel" name="templateTitleLabel">
+        <property name="geometry">
+         <rect>
+          <x>270</x>
+          <y>30</y>
+          <width>371</width>
+          <height>151</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>48</pointsize>
+          <bold>true</bold>
+          <underline>true</underline>
+         </font>
+        </property>
+        <property name="text">
+         <string> placehold</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="templateReturnBtn">
+        <property name="geometry">
+         <rect>
+          <x>340</x>
+          <y>310</y>
+          <width>80</width>
+          <height>26</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>back</string>
+        </property>
+       </widget>
+      </widget>
      </widget>
     </item>
    </layout>

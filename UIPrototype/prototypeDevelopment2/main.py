@@ -3,7 +3,7 @@ from main_ui import * # Python version of the UI file for welcome page
 from utility import *
 from dictionary import *
 from dataCleaner import *
-from PyQt6.QtWidgets import QMainWindow, QApplication, QVBoxLayout, QHBoxLayout
+from PyQt6.QtWidgets import QMainWindow, QApplication, QVBoxLayout, QHBoxLayout, QTableWidgetItem
 import sys
 
 class MainWindow(QMainWindow): #Setup code for welcome page
@@ -107,6 +107,55 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         #ANIMATIONS
         #-------------------------------------
 
+
+
+    def detectPress(self, selected, deselected):
+        for cell in selected.indexes():
+            print("Selected Cell: ", cell.data())
+            util_editStore_title(cell.data()) # Update global store
+            self.openSingleResult() # open individal result page
+
+    # Makes method global, so it can be called within user home method
+    global openThreatsPage
+    def openThreatsPage(self):
+        self.ui.stackedWidget.setCurrentIndex(5)
+
+        # Ethan: I am hard coding the table values so that I have full control over them
+        #        and understand how the table works, please don't use the editor to add data as we will
+        #        need to iterate over data to add columns in the future anyway
+
+
+        self.ui.tableWidget.setColumnCount(2)
+        self.ui.tableWidget.setHorizontalHeaderLabels(["Threat","Description"])
+        self.ui.tableWidget.setRowCount(10)
+        # To Add a single item, TODO: put this in a loop
+        item = QTableWidgetItem()
+        item.setText("Test")
+        self.ui.tableWidget.setItem(0,0,item)
+
+        item = QTableWidgetItem()
+        item.setText("osc hard")
+        self.ui.tableWidget.setItem(1,0,item)
+
+        item = QTableWidgetItem()
+        item.setText("rip dms")
+        self.ui.tableWidget.setItem(2,0,item)
+
+
+        self.ui.tableWidget.selectionModel().selectionChanged.connect(self.detectPress)
+
+
+
+        # TODO: Populate the table with hardcoded data
+        # TODO: Allow table items to be clicked
+        # TODO: Navigate to templateThreats page with correct data and display it
+        # TODO: Implement a search with a backend filter function
+        # TODO: Populate returned data into table
+    def openSingleResult(self):
+        self.ui.stackedWidget.setCurrentIndex(6)
+        self.ui.templateTitleLabel.setText(store.title)
+        self.ui.templateReturnBtn.clicked.connect(lambda: openThreatsPage(self))
+
     def openUserHomePage(self):
         self.ui.stackedWidget.setCurrentIndex(User_Home_Page)
 
@@ -125,12 +174,9 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         bottomLayout.addWidget(barGraph)
         self.ui.frame_9.setLayout(bottomLayout)
 
-        # Navigates to the threats page
-        def navToThreats():
-            self.ui.stackedWidget.setCurrentIndex(5)
 
         # navigate to threats page from user overview
-        self.ui.threatstbn.clicked.connect(lambda: navToThreats())
+        self.ui.threatstbn.clicked.connect(lambda: openThreatsPage(self))
 
 
         #-------------------------------------
@@ -153,14 +199,6 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         else:
             print("Access Denied - Incorrect username or password detected")
 
-    def openThreatsPage(self):
-        self.ui.stackedWidget.setCurrentIndex(5)
-
-        # TODO: Populate the table with hardcoded data
-        # TODO: Allow table items to be clicked
-        # TODO: Navigate to templateThreats page with correct data and display it
-        # TODO: Implement a search with a backend filter function
-        # TODO: Populate returned data into table
 
 # Running the program
 app = QApplication(sys.argv)

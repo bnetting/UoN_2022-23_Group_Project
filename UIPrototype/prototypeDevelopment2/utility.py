@@ -4,6 +4,7 @@
 from dictionary import *
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
+import store
 
 USERNAMES = ['psyer2','u','u2']
 PASSWORDS = ['password','p','p2']
@@ -30,6 +31,11 @@ def util_try_login(username, password):
 # A function to add a new user to the user databse
 def util_try_register():
     pass
+
+
+# A function to edit the value stored in store
+def util_editStore_title(payload):
+    store.title = payload
 
 # A function to perform an action when the user hovers over a graph
 def chart_hover(event, graphID):
