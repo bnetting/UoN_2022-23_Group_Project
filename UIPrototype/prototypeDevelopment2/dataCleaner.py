@@ -34,7 +34,7 @@ Obtain_Information = 9
 Directory_traversal = 10
 Http_response_splitting = 11
 
-df = pd.read_excel('UIPrototype\\prototypeDevelopment2\\threats.xlsx', engine='openpyxl', index_col=0)
+df = pd.read_excel('threats.xlsx', engine='openpyxl', index_col=0)
 
 
 class Threat:
