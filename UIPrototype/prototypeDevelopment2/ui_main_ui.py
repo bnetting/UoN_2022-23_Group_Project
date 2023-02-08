@@ -16,14 +16,15 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QHBoxLayout,
-    QLabel, QLineEdit, QMainWindow, QPushButton,
-    QSizePolicy, QStackedWidget, QVBoxLayout, QWidget)
+    QHeaderView, QLabel, QLineEdit, QMainWindow,
+    QPushButton, QSizePolicy, QStackedWidget, QTableWidget,
+    QTableWidgetItem, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(925, 824)
+        MainWindow.resize(909, 830)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayout_3 = QVBoxLayout(self.centralwidget)
@@ -277,14 +278,23 @@ class Ui_MainWindow(object):
         self.mainBody.setMaximumSize(QSize(16777215, 750))
         self.mainBody.setFrameShape(QFrame.StyledPanel)
         self.mainBody.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_15 = QHBoxLayout(self.mainBody)
-        self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
+        self.verticalLayout_12 = QVBoxLayout(self.mainBody)
+        self.verticalLayout_12.setObjectName(u"verticalLayout_12")
         self.frame_8 = QFrame(self.mainBody)
         self.frame_8.setObjectName(u"frame_8")
+        self.frame_8.setMinimumSize(QSize(100, 100))
         self.frame_8.setFrameShape(QFrame.StyledPanel)
         self.frame_8.setFrameShadow(QFrame.Raised)
 
-        self.horizontalLayout_15.addWidget(self.frame_8)
+        self.verticalLayout_12.addWidget(self.frame_8)
+
+        self.frame_9 = QFrame(self.mainBody)
+        self.frame_9.setObjectName(u"frame_9")
+        self.frame_9.setMinimumSize(QSize(100, 100))
+        self.frame_9.setFrameShape(QFrame.StyledPanel)
+        self.frame_9.setFrameShadow(QFrame.Raised)
+
+        self.verticalLayout_12.addWidget(self.frame_9)
 
 
         self.verticalLayout_16.addWidget(self.mainBody)
@@ -462,6 +472,113 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.addWidget(self.adminContentFrame)
 
         self.stackedWidget.addWidget(self.AdminHomePage)
+        self.resultPage = QWidget()
+        self.resultPage.setObjectName(u"resultPage")
+        self.verticalLayout_13 = QVBoxLayout(self.resultPage)
+        self.verticalLayout_13.setObjectName(u"verticalLayout_13")
+        self.frame_12 = QFrame(self.resultPage)
+        self.frame_12.setObjectName(u"frame_12")
+        self.frame_12.setFrameShape(QFrame.StyledPanel)
+        self.frame_12.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_17 = QVBoxLayout(self.frame_12)
+        self.verticalLayout_17.setObjectName(u"verticalLayout_17")
+        self.frame_14 = QFrame(self.frame_12)
+        self.frame_14.setObjectName(u"frame_14")
+        self.frame_14.setMinimumSize(QSize(0, 150))
+        self.frame_14.setMaximumSize(QSize(16777215, 150))
+        self.frame_14.setFrameShape(QFrame.StyledPanel)
+        self.frame_14.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_7 = QHBoxLayout(self.frame_14)
+        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
+        self.label_5 = QLabel(self.frame_14)
+        self.label_5.setObjectName(u"label_5")
+        font4 = QFont()
+        font4.setPointSize(36)
+        font4.setBold(True)
+        self.label_5.setFont(font4)
+
+        self.horizontalLayout_7.addWidget(self.label_5, 0, Qt.AlignHCenter)
+
+
+        self.verticalLayout_17.addWidget(self.frame_14)
+
+        self.threatsContainer = QFrame(self.frame_12)
+        self.threatsContainer.setObjectName(u"threatsContainer")
+        self.threatsContainer.setMinimumSize(QSize(200, 0))
+        self.threatsContainer.setFrameShape(QFrame.StyledPanel)
+        self.threatsContainer.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_18 = QVBoxLayout(self.threatsContainer)
+        self.verticalLayout_18.setObjectName(u"verticalLayout_18")
+        self.frame_15 = QFrame(self.threatsContainer)
+        self.frame_15.setObjectName(u"frame_15")
+        self.frame_15.setMinimumSize(QSize(200, 125))
+        self.frame_15.setMaximumSize(QSize(16777215, 100))
+        self.frame_15.setFrameShape(QFrame.StyledPanel)
+        self.frame_15.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_8 = QHBoxLayout(self.frame_15)
+        self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
+        self.frame_17 = QFrame(self.frame_15)
+        self.frame_17.setObjectName(u"frame_17")
+        self.frame_17.setFrameShape(QFrame.StyledPanel)
+        self.frame_17.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_19 = QVBoxLayout(self.frame_17)
+        self.verticalLayout_19.setObjectName(u"verticalLayout_19")
+        self.label_8 = QLabel(self.frame_17)
+        self.label_8.setObjectName(u"label_8")
+
+        self.verticalLayout_19.addWidget(self.label_8)
+
+        self.lineEdit = QLineEdit(self.frame_17)
+        self.lineEdit.setObjectName(u"lineEdit")
+
+        self.verticalLayout_19.addWidget(self.lineEdit)
+
+        self.pushButton = QPushButton(self.frame_17)
+        self.pushButton.setObjectName(u"pushButton")
+
+        self.verticalLayout_19.addWidget(self.pushButton)
+
+
+        self.horizontalLayout_8.addWidget(self.frame_17)
+
+
+        self.verticalLayout_18.addWidget(self.frame_15, 0, Qt.AlignHCenter)
+
+        self.frame_16 = QFrame(self.threatsContainer)
+        self.frame_16.setObjectName(u"frame_16")
+        self.frame_16.setFrameShape(QFrame.StyledPanel)
+        self.frame_16.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_9 = QHBoxLayout(self.frame_16)
+        self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
+        self.tableWidget = QTableWidget(self.frame_16)
+        self.tableWidget.setObjectName(u"tableWidget")
+
+        self.horizontalLayout_9.addWidget(self.tableWidget)
+
+
+        self.verticalLayout_18.addWidget(self.frame_16)
+
+
+        self.verticalLayout_17.addWidget(self.threatsContainer)
+
+
+        self.verticalLayout_13.addWidget(self.frame_12)
+
+        self.stackedWidget.addWidget(self.resultPage)
+        self.templateResultPage = QWidget()
+        self.templateResultPage.setObjectName(u"templateResultPage")
+        self.templateTitleLabel = QLabel(self.templateResultPage)
+        self.templateTitleLabel.setObjectName(u"templateTitleLabel")
+        self.templateTitleLabel.setGeometry(QRect(270, 30, 371, 151))
+        font5 = QFont()
+        font5.setPointSize(48)
+        font5.setBold(True)
+        font5.setUnderline(True)
+        self.templateTitleLabel.setFont(font5)
+        self.templateReturnBtn = QPushButton(self.templateResultPage)
+        self.templateReturnBtn.setObjectName(u"templateReturnBtn")
+        self.templateReturnBtn.setGeometry(QRect(340, 310, 80, 26))
+        self.stackedWidget.addWidget(self.templateResultPage)
 
         self.verticalLayout_3.addWidget(self.stackedWidget)
 
@@ -469,7 +586,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(3)
+        self.stackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -498,5 +615,10 @@ class Ui_MainWindow(object):
         self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"???", None))
         self.adminToggleSideMenuButton.setText(QCoreApplication.translate("MainWindow", u"Menu", None))
         self.adminPageLabel.setText(QCoreApplication.translate("MainWindow", u"temp text", None))
+        self.label_5.setText(QCoreApplication.translate("MainWindow", u"Threats Page", None))
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u"Enter Threat:", None))
+        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Search", None))
+        self.templateTitleLabel.setText(QCoreApplication.translate("MainWindow", u" placehold", None))
+        self.templateReturnBtn.setText(QCoreApplication.translate("MainWindow", u"back", None))
     # retranslateUi
 
