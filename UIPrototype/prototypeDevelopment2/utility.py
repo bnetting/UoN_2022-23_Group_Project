@@ -32,17 +32,31 @@ def util_try_register():
     pass
 
 # A function to perform an action when the user hovers over a graph
-def chart_hover(event):
-    print("test")
+def chart_hover(event, graphID):
+    print(graphID)
 
 # A class to construct graphs of a given size and return them to go in a layout frame
-class MplCanvas(FigureCanvasQTAgg,):
-    def __init__(self, parent=None, width=Figure_Width, height=Figure_Height, dpi = Figure_DPI):
-        fig = Figure(figsize=(width,height), dpi=dpi)    
+class MplCanvas(FigureCanvasQTAgg):
+    def __init__(self, parent=None, typeOfGraph=int,xAxes=list,yAxes=list):     
+
+        fig = Figure(figsize=(Figure_Width,Figure_Height), dpi=Figure_DPI)    
         self.axes = fig.add_subplot(111)
         
-        fig.canvas.mpl_connect("motion_notify_event", chart_hover)
+        if(typeOfGraph == Line_Graph):
+            self.axes.plot(xAxes,yAxes,marker='*')
+            test = 1
+            
+        elif(typeOfGraph == Bar_Chart):
+            self.axes.bar(xAxes,yAxes)
+            test = 2
+            
+        # Parses the graph ID to the motion notification function in order to tell that function x & y coordinates of a cursor on a graph,
+        # and also which graph the cursor is hovering over. Maybe adding the axes and additional info being parsed in the future.
+        fig.canvas.mpl_connect("motion_notify_event",lambda event: chart_hover(event, test))
         
-        super(MplCanvas, self).__init__(fig)
+        super(MplCanvas, self).__init__(fig)    
+
+        
+
         
         

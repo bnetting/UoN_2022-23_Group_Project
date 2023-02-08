@@ -83,23 +83,23 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         self.ui.adminSidePanelFrame.setMaximumWidth(0)
 
         #///////////// TEST DATA \\\\\\\\\\\\\\\
-            
-        sc1 = MplCanvas(self)
-        sc2 = MplCanvas(self)
+        x1 = [0,1,2,3,4]
+        x2 = ['A','B','C','D','E']
+        y1 = [50,200,140,110,65]
+        y2 = [20,15,20,50,40]
+        #///////////////////\\\\\\\\\\\\\\\\\\\\
         
-        sc1.axes.plot([0,1,2,3,4], [10,1,20,3,40])
-        sc1.axes.plot([0,1,2,3,4], [10,1,20,3,40])
+        lineGraph = MplCanvas(self,Line_Graph,x1,y1)
+        barChart = MplCanvas(self,Bar_Chart,x2,y2)
         
         layout1 = QVBoxLayout()
-        layout1.addWidget(sc1)
+        layout1.addWidget(lineGraph)
         
         layout2 = QVBoxLayout()
-        layout2.addWidget(sc2)
+        layout2.addWidget(barChart)
         
         self.ui.adminThreatsFrame1.setLayout(layout1)
         self.ui.adminThreatsFrame2.setLayout(layout2)
-        #////////////////////\\\\\\\\\\\\\\\\\\\\\
-        
         
         #-------------------------------------
         #ANIMATIONS
@@ -111,18 +111,21 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         #ANIMATIONS
         #-------------------------------------
         
+    # Checks if the details inputted by the user on the login page are valid or not, and takes the user to the corresponding page if they are.
     def checkLoginDetails(self):
         loginResult = util_try_login(self.ui.usernameLoginLineEdit.text(), self.ui.passwordLoginLineEdit.text())        
         # Decides which page index to send the user to next depending on the result of the login check function
         if(loginResult == Admin_Access_Level):
-            print("To admin page!")
+            print("Access granted - Admin Login")
             self.changePage(Login_Page,Admin_Home_Page)
         elif(loginResult == User_Access_Level):
-            print("To user page!")
+            print("Access granted - Admin User")
             self.changePage(Login_Page, User_Home_Page)
+        else:
+            print("Access Denied - Incorrect username or password detected")
 
 
-# - Running the GUI
+# Running the program
 app = QApplication(sys.argv)
 window = MainWindow()
 window.show()
