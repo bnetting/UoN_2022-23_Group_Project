@@ -3,7 +3,7 @@ from main_ui import * # Python version of the UI file for welcome page
 from utility import *
 from dictionary import *
 from dataCleaner import *
-from PyQt6.QtWidgets import QMainWindow, QApplication, QVBoxLayout
+from PyQt6.QtWidgets import QMainWindow, QApplication, QVBoxLayout, QHBoxLayout, QTableWidgetItem
 import sys
 
 class MainWindow(QMainWindow): #Setup code for welcome page
@@ -100,17 +100,92 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         
         self.ui.adminThreatsFrame1.setLayout(layout1)
         self.ui.adminThreatsFrame2.setLayout(layout2)
-        
+
+        # TODO: @ben Link to threats page
+
         #-------------------------------------
         #ANIMATIONS
         #-------------------------------------
-        
+
+
+
+    def detectPress(self, selected, deselected):
+        for cell in selected.indexes():
+            print("Selected Cell: ", cell.data())
+            util_editStore_title(cell.data()) # Update global store
+            self.openSingleResult() # open individal result page
+
+    # Makes method global, so it can be called within user home method
+    global openThreatsPage
+    def openThreatsPage(self):
+        self.ui.stackedWidget.setCurrentIndex(5)
+
+        # Ethan: I am hard coding the table values so that I have full control over them
+        #        and understand how the table works, please don't use the editor to add data as we will
+        #        need to iterate over data to add columns in the future anyway
+
+
+        self.ui.tableWidget.setColumnCount(2)
+        self.ui.tableWidget.setHorizontalHeaderLabels(["Threat","Description"])
+        self.ui.tableWidget.setRowCount(10)
+        # To Add a single item, TODO: put this in a loop
+        item = QTableWidgetItem()
+        item.setText("Test")
+        self.ui.tableWidget.setItem(0,0,item)
+
+        item = QTableWidgetItem()
+        item.setText("osc hard")
+        self.ui.tableWidget.setItem(1,0,item)
+
+        item = QTableWidgetItem()
+        item.setText("rip dms")
+        self.ui.tableWidget.setItem(2,0,item)
+
+
+        self.ui.tableWidget.selectionModel().selectionChanged.connect(self.detectPress)
+
+
+
+        # TODO: Populate the table with hardcoded data
+        # TODO: Allow table items to be clicked
+        # TODO: Navigate to templateThreats page with correct data and display it
+        # TODO: Implement a search with a backend filter function
+        # TODO: Populate returned data into table
+    def openSingleResult(self):
+        self.ui.stackedWidget.setCurrentIndex(6)
+        self.ui.templateTitleLabel.setText(store.title)
+        self.ui.templateReturnBtn.clicked.connect(lambda: openThreatsPage(self))
+
     def openUserHomePage(self):
         self.ui.stackedWidget.setCurrentIndex(User_Home_Page)
+
+        x1 = [0, 1, 2, 3, 4]
+        y1 = [50, 200, 140, 110, 65]
+        lineGraph = MplCanvas(self, Line_Graph, x1, y1);
+
+        topLayout = QHBoxLayout()
+        topLayout.addWidget(lineGraph)
+        self.ui.frame_8.setLayout(topLayout)
+
+        x2 = ['A','B','C','D','E']
+        y2 = [20,15,20,50,40]
+        barGraph = MplCanvas(self, Bar_Chart, x2, y2)
+        bottomLayout = QHBoxLayout()
+        bottomLayout.addWidget(barGraph)
+        self.ui.frame_9.setLayout(bottomLayout)
+
+
+        # navigate to threats page from user overview
+        self.ui.threatstbn.clicked.connect(lambda: openThreatsPage(self))
+
+
         #-------------------------------------
         #ANIMATIONS
         #-------------------------------------
-        
+
+
+
+
     # Checks if the details inputted by the user on the login page are valid or not, and takes the user to the corresponding page if they are.
     def checkLoginDetails(self):
         loginResult = util_try_login(self.ui.usernameLoginLineEdit.text(), self.ui.passwordLoginLineEdit.text())        
