@@ -189,7 +189,7 @@ def searchByDesc(text: str):
 
 def main():
     print(getAverageMetricFromCol("IMPACT"))
-    print(getAverageMetricFromCat("SCORE", Overflow))
+    print(getAverageMetricFromCat("SCORE", 'Overflow'))
     print(getModalFromCol("CATEGORY"))
     print(getModalFromCol("TYPE"))
     print(getCountFromCat(Overflow))
