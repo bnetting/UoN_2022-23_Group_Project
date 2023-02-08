@@ -100,11 +100,13 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         
         self.ui.adminThreatsFrame1.setLayout(layout1)
         self.ui.adminThreatsFrame2.setLayout(layout2)
-        
+
+        # TODO: @ben Link to threats page
+
         #-------------------------------------
         #ANIMATIONS
         #-------------------------------------
-        
+
     def openUserHomePage(self):
         self.ui.stackedWidget.setCurrentIndex(User_Home_Page)
 
@@ -123,11 +125,21 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         bottomLayout.addWidget(barGraph)
         self.ui.frame_9.setLayout(bottomLayout)
 
+        # Navigates to the threats page
+        def navToThreats():
+            self.ui.stackedWidget.setCurrentIndex(5)
+
+        # navigate to threats page from user overview
+        self.ui.threatstbn.clicked.connect(lambda: navToThreats())
+
 
         #-------------------------------------
         #ANIMATIONS
         #-------------------------------------
-        
+
+
+
+
     # Checks if the details inputted by the user on the login page are valid or not, and takes the user to the corresponding page if they are.
     def checkLoginDetails(self):
         loginResult = util_try_login(self.ui.usernameLoginLineEdit.text(), self.ui.passwordLoginLineEdit.text())        
@@ -141,6 +153,14 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         else:
             print("Access Denied - Incorrect username or password detected")
 
+    def openThreatsPage(self):
+        self.ui.stackedWidget.setCurrentIndex(5)
+
+        # TODO: Populate the table with hardcoded data
+        # TODO: Allow table items to be clicked
+        # TODO: Navigate to templateThreats page with correct data and display it
+        # TODO: Implement a search with a backend filter function
+        # TODO: Populate returned data into table
 
 # Running the program
 app = QApplication(sys.argv)
