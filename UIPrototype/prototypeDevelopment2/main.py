@@ -3,7 +3,7 @@ from main_ui import * # Python version of the UI file for welcome page
 from utility import *
 from dictionary import *
 from dataCleaner import *
-from PyQt6.QtWidgets import QMainWindow, QApplication, QVBoxLayout
+from PyQt6.QtWidgets import QMainWindow, QApplication, QVBoxLayout, QHBoxLayout
 import sys
 
 class MainWindow(QMainWindow): #Setup code for welcome page
@@ -107,6 +107,23 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         
     def openUserHomePage(self):
         self.ui.stackedWidget.setCurrentIndex(User_Home_Page)
+
+        x1 = [0, 1, 2, 3, 4]
+        y1 = [50, 200, 140, 110, 65]
+        lineGraph = MplCanvas(self, Line_Graph, x1, y1);
+
+        topLayout = QHBoxLayout()
+        topLayout.addWidget(lineGraph)
+        self.ui.frame_8.setLayout(topLayout)
+
+        x2 = ['A','B','C','D','E']
+        y2 = [20,15,20,50,40]
+        barGraph = MplCanvas(self, Bar_Chart, x2, y2)
+        bottomLayout = QHBoxLayout()
+        bottomLayout.addWidget(barGraph)
+        self.ui.frame_9.setLayout(bottomLayout)
+
+
         #-------------------------------------
         #ANIMATIONS
         #-------------------------------------
