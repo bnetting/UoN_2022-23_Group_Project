@@ -230,6 +230,13 @@ def filterByMetric(metric: str, value):
     return threats
 
 
+def filterByDate():  # Sorts the dataframe by date (toggles)
+    temp = df['ID'].iloc[0]
+    df.sort_values(by='DATE', inplace=True, ascending=True)
+    if temp == df['ID'].iloc[0]:
+        df.sort_values(by='DATE', inplace=True, ascending=False)
+
+
 def searchByDesc(text: str):
     threats = []
     row = df[df['DESCRIPTION'].str.contains(text)]
