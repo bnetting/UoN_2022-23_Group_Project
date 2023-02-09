@@ -188,26 +188,27 @@ def searchByDesc(text: str):
 # Testing
 
 def main():
-    print(getAverageMetricFromCol("IMPACT"))
-    print(getAverageMetricFromCat("SCORE", 'Overflow'))
-    print(getModalFromCol("CATEGORY"))
-    print(getModalFromCol("TYPE"))
-    print(getCountFromCat(Overflow))
-    print(getThreatTypes())
+    # print(getAverageMetricFromCol("IMPACT"))
+    # print(getAverageMetricFromCat("SCORE", 'Overflow'))
+    # print(getModalFromCol("CATEGORY"))
+    # print(getModalFromCol("TYPE"))
+    # print(getCountFromCat(Overflow))
+    # print(getThreatTypes())
 
-    print(searchByID("CVE-1999-0095").getDate())
-    search = searchByDesc("SunOS")
-    print(search[0].getCategory())
-    #  result = filterByMetric('SEVERITY', LOW)[0].score
-    #   print(result)
-    result = filterByMetric('IMPACT', 10)[0].exploitability
-    print(result)
+    # print(searchByID("CVE-1999-0095").getDate())
+    # search = searchByDesc("SunOS")
+    # print(search[0].getCategory())
+    # #  result = filterByMetric('SEVERITY', LOW)[0].score
+    # #   print(result)
+    # result = filterByMetric('IMPACT', 10)[0].exploitability
+    # print(result)
 
-    print("------------\n")
+    # print("------------\n")
 
-    new = Threat("hello", "NETWORK", "MITM", 'messed up mate', 'MEDIUM', 4.5, 6.2, 4.2, '2023', 'df', 'fe')
-    new.addEntry(df)
-    print("SUCCESS")
+    # new = Threat("hello", "NETWORK", "MITM", 'messed up mate', 'MEDIUM', 4.5, 6.2, 4.2, '2023', 'df', 'fe')
+    # new.addEntry(df)
+    # print("SUCCESS")
+    pass
 
 
 main()

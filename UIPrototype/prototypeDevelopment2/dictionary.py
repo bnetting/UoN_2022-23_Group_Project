@@ -20,3 +20,4 @@ Figure_DPI = 100
 # --------- Figure Codes ----------
 Bar_Chart = 0
 Line_Graph = 1
+Pie_Chart = 2

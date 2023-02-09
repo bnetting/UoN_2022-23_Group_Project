@@ -12,6 +12,8 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         self.ui = Ui_MainWindow() # Puts ui_welcome_Page into variable
         self.ui.setupUi(self) # Sets up the screen
 
+        self.testTopics = ['Execute Code','Overflow','Sql Injection','Obtain Information','Denial Of Service']
+
         self.nextPage = Welcome_Page # Used to tell the program which page to move to next
 
         self.openWelcomePage() # Runs at the start of every program, and will contain the animations for bringing the welcome screen into view
@@ -84,17 +86,25 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         self.ui.adminSidePanelFrame.setMaximumWidth(0)
 
         #///////////// TEST DATA \\\\\\\\\\\\\\\
-        x1 = [0,1,2,3,4]
-        x2 = ['A','B','C','D','E']
-        y1 = [50,200,140,110,65]
-        y2 = [20,15,20,50,40]
+        x1 = ['NETWORK','LOCAL']
+        y1 = [100,150]
+        
+        print(getModalFromCol("TYPE"))
+        
+        
+        x2 = self.testTopics
+        y2 = []
+                
+        for i in range(len(x2)):
+            y2.append(getAverageMetricFromCat('EXPLOITABILITY',x2[i]))
+        
         #///////////////////\\\\\\\\\\\\\\\\\\\\
         
-        lineGraph = MplCanvas(self,Line_Graph,x1,y1)
+        pieChart = MplCanvas(self,Pie_Chart,x1,y1)
         barChart = MplCanvas(self,Bar_Chart,x2,y2)
         
         layout1 = QVBoxLayout()
-        layout1.addWidget(lineGraph)
+        layout1.addWidget(pieChart)
         
         layout2 = QVBoxLayout()
         layout2.addWidget(barChart)
@@ -114,21 +124,31 @@ class MainWindow(QMainWindow): #Setup code for welcome page
 
     def openUserHomePage(self):
         self.ui.stackedWidget.setCurrentIndex(User_Home_Page)
+        self.ui.menubar.setMaximumWidth(0)
 
         x1 = [0, 1, 2, 3, 4]
         y1 = [50, 200, 140, 110, 65]
-        lineGraph = MplCanvas(self, Line_Graph, x1, y1)
+        lineGraph = MplCanvas(self, Line_Graph, x1, y1);
 
         topLayout = QHBoxLayout()
         topLayout.addWidget(lineGraph)
         self.ui.frame_8.setLayout(topLayout)
 
-        x2 = ['A','B','C','D','E']
-        y2 = [20,15,20,50,40]
-        barGraph = MplCanvas(self, Bar_Chart, x2, y2)
+        x2 = self.testTopics
+        y2 = []
+                
+        for i in range(len(x2)):
+            y2.append(getAverageMetricFromCat('EXPLOITABILITY',x2[i]))
+            
+        barChart = MplCanvas(self, Bar_Chart, x2, y2)
         bottomLayout = QHBoxLayout()
-        bottomLayout.addWidget(barGraph)
+        bottomLayout.addWidget(barChart)
         self.ui.frame_9.setLayout(bottomLayout)
+
+
+        # navigate to threats page from user overview
+        self.ui.threatstbn.clicked.connect(lambda: openThreatsPage(self))
+
 
         #-------------------------------------
         #ANIMATIONS
@@ -189,36 +209,6 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         self.ui.stackedWidget.setCurrentIndex(6)
         self.ui.templateTitleLabel.setText(store.title)
         self.ui.templateReturnBtn.clicked.connect(lambda: openThreatsPage(self))
-
-    def openUserHomePage(self):
-        self.ui.stackedWidget.setCurrentIndex(User_Home_Page)
-
-        x1 = [0, 1, 2, 3, 4]
-        y1 = [50, 200, 140, 110, 65]
-        lineGraph = MplCanvas(self, Line_Graph, x1, y1);
-
-        topLayout = QHBoxLayout()
-        topLayout.addWidget(lineGraph)
-        self.ui.frame_8.setLayout(topLayout)
-
-        x2 = ['A','B','C','D','E']
-        y2 = [20,15,20,50,40]
-        barGraph = MplCanvas(self, Bar_Chart, x2, y2)
-        bottomLayout = QHBoxLayout()
-        bottomLayout.addWidget(barGraph)
-        self.ui.frame_9.setLayout(bottomLayout)
-
-
-        # navigate to threats page from user overview
-        self.ui.threatstbn.clicked.connect(lambda: openThreatsPage(self))
-
-
-        #-------------------------------------
-        #ANIMATIONS
-        #-------------------------------------
-
-
-
 
     # Checks if the details inputted by the user on the login page are valid or not, and takes the user to the corresponding page if they are.
     def checkLoginDetails(self):

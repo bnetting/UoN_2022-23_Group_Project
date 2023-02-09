@@ -485,7 +485,7 @@ class Ui_MainWindow(object):
         self.adminCountermeasuresButton.setText(_translate("MainWindow", "Countermeasures"))
         self.pushButton_3.setText(_translate("MainWindow", "???"))
         self.adminToggleSideMenuButton.setText(_translate("MainWindow", "Menu"))
-        self.adminPageLabel.setText(_translate("MainWindow", "temp text"))
+        self.adminPageLabel.setText(_translate("MainWindow", "Admin Home Page"))
         self.label_5.setText(_translate("MainWindow", "Threats Page"))
         self.label_8.setText(_translate("MainWindow", "Enter Threat:"))
         self.pushButton.setText(_translate("MainWindow", "Search"))

@@ -48,8 +48,7 @@ class MplCanvas(FigureCanvasQTAgg):
     def __init__(self, parent=None, typeOfGraph=int,xAxes=list,yAxes=list):     
 
         def chart_hover(event):
-            print(event.x)
-            print(event.y)
+            pass
             
         fig = Figure(figsize=(Figure_Width,Figure_Height), dpi=Figure_DPI)    
         ax = fig.add_subplot(111)
@@ -63,6 +62,11 @@ class MplCanvas(FigureCanvasQTAgg):
             ax.bar(xAxes,yAxes)
             ax.set_title("Test Bar Chart")
             test = 2
+            
+        elif(typeOfGraph == Pie_Chart):
+            ax.pie(yAxes, labels=xAxes, explode=[0.035,0.035],autopct='%1.1f%%',shadow=True)
+            ax.set_title("Test Pie Chart")
+            test=3
                 
         # Parses the graph ID to the motion notification function in order to tell that function x & y coordinates of a cursor on a graph,
         # and also which graph the cursor is hovering over. Maybe adding the axes and additional info being parsed in the future.
@@ -72,7 +76,10 @@ class MplCanvas(FigureCanvasQTAgg):
 
         @crs.connect("add")
         def _(sel):
-            sel.annotation.set_text('[{},{}]'.format(round(sel.target[0],2),round(sel.target[1],2)))
+            if(typeOfGraph == Line_Graph):
+                sel.annotation.set_text('[{},{}]'.format(round(sel.target[0],2),round(sel.target[1],2)))
+            elif(typeOfGraph == Bar_Chart):
+                sel.annotation.set_text('{}'.format(round(sel.target[1],2)))
             sel.annotation.get_bbox_patch().set(fc="white", alpha=1)
             sel.annotation.arrow_patch.set(arrowstyle="simple", fc="black", alpha=.25)            
         

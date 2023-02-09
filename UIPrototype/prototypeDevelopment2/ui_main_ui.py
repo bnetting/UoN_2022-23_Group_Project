@@ -614,7 +614,7 @@ class Ui_MainWindow(object):
         self.adminCountermeasuresButton.setText(QCoreApplication.translate("MainWindow", u"Countermeasures", None))
         self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"???", None))
         self.adminToggleSideMenuButton.setText(QCoreApplication.translate("MainWindow", u"Menu", None))
-        self.adminPageLabel.setText(QCoreApplication.translate("MainWindow", u"temp text", None))
+        self.adminPageLabel.setText(QCoreApplication.translate("MainWindow", u"Admin Home Page", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"Threats Page", None))
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"Enter Threat:", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Search", None))
