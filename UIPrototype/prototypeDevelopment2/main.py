@@ -139,7 +139,7 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         #ANIMATIONS
         #-------------------------------------
         openThreatsPage()
-
+    # Detects which cell has been clicked
     def detectPress(self, selected, deselected):
         for cell in selected.indexes():
             print("Selected Cell: ", cell.data())
@@ -183,10 +183,40 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         # TODO: Navigate to templateThreats page with correct data and display it
         # TODO: Implement a search with a backend filter function
         # TODO: Populate returned data into table
+
+    # Opens the template page and pulls data from the global store
     def openSingleResult(self):
         self.ui.stackedWidget.setCurrentIndex(6)
         self.ui.templateTitleLabel.setText(store.title)
         self.ui.templateReturnBtn.clicked.connect(lambda: openThreatsPage(self))
+
+    def openUserHomePage(self):
+        self.ui.stackedWidget.setCurrentIndex(User_Home_Page)
+
+        x1 = [0, 1, 2, 3, 4]
+        y1 = [50, 200, 140, 110, 65]
+        lineGraph = MplCanvas(self, Line_Graph, x1, y1);
+
+        topLayout = QHBoxLayout()
+        topLayout.addWidget(lineGraph)
+        self.ui.frame_8.setLayout(topLayout)
+
+        x2 = ['A','B','C','D','E']
+        y2 = [20,15,20,50,40]
+        barGraph = MplCanvas(self, Bar_Chart, x2, y2)
+        bottomLayout = QHBoxLayout()
+        bottomLayout.addWidget(barGraph)
+        self.ui.frame_9.setLayout(bottomLayout)
+
+
+        # navigate to threats page from user overview
+        self.ui.threatstbn.clicked.connect(lambda: openThreatsPage(self))
+
+
+        #-------------------------------------
+        #ANIMATIONS
+        #-------------------------------------
+
 
 
 
