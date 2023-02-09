@@ -85,26 +85,22 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         
         self.ui.adminSidePanelFrame.setMaximumWidth(0)
 
-        #///////////// TEST DATA \\\\\\\\\\\\\\\
-        x1 = ['NETWORK','LOCAL']
-        y1 = [100,150]
-        
-        print(getModalFromCol("TYPE"))
-        
+        #///////////// TEST DATA \\\\\\\\\\\\\\\        
+        x1 = [0, 1, 2, 3, 4]
+        y1 = [50, 200, 140, 110, 65]        
         
         x2 = self.testTopics
         y2 = []
                 
         for i in range(len(x2)):
-            y2.append(getAverageMetricFromCat('EXPLOITABILITY',x2[i]))
-        
+            y2.append(float(getAverageMetricFromCat('EXPLOITABILITY',x2[i])))
         #///////////////////\\\\\\\\\\\\\\\\\\\\
-        
-        pieChart = MplCanvas(self,Pie_Chart,x1,y1)
+            
+        lineGraph = MplCanvas(self,Line_Graph,x1,y1)
         barChart = MplCanvas(self,Bar_Chart,x2,y2)
         
         layout1 = QVBoxLayout()
-        layout1.addWidget(pieChart)
+        layout1.addWidget(lineGraph)
         
         layout2 = QVBoxLayout()
         layout2.addWidget(barChart)
@@ -126,19 +122,20 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         self.ui.stackedWidget.setCurrentIndex(User_Home_Page)
         self.ui.menubar.setMaximumWidth(0)
 
-        x1 = [0, 1, 2, 3, 4]
-        y1 = [50, 200, 140, 110, 65]
-        lineGraph = MplCanvas(self, Line_Graph, x1, y1);
+        x1 = ['NETWORK','LOCAL']
+        y1 = [getCountFromCol('TYPE','NETWORK'),getCountFromCol('TYPE','LOCAL')]
+
+        pieChart = MplCanvas(self, Pie_Chart, x1, y1)
 
         topLayout = QHBoxLayout()
-        topLayout.addWidget(lineGraph)
+        topLayout.addWidget(pieChart)
         self.ui.frame_8.setLayout(topLayout)
 
         x2 = self.testTopics
         y2 = []
                 
         for i in range(len(x2)):
-            y2.append(getAverageMetricFromCat('EXPLOITABILITY',x2[i]))
+            y2.append(float(getAverageMetricFromCat('EXPLOITABILITY',x2[i])))
             
         barChart = MplCanvas(self, Bar_Chart, x2, y2)
         bottomLayout = QHBoxLayout()

@@ -63,6 +63,9 @@ class MplCanvas(FigureCanvasQTAgg):
             ax.set_title("Test Bar Chart")
             test = 2
             
+            print(xAxes)
+            print(yAxes)
+            
         elif(typeOfGraph == Pie_Chart):
             ax.pie(yAxes, labels=xAxes, explode=[0.035,0.035],autopct='%1.1f%%',shadow=True)
             ax.set_title("Test Pie Chart")
