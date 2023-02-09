@@ -14,6 +14,8 @@ import pandas as pd
 # TODO getters and setters for values
 global df
 
+df = pd.read_excel('Database_files/threats.xlsx', engine='openpyxl', index_col=0)
+
 NETWORK = 0
 LOCAL = 1
 
@@ -21,20 +23,57 @@ LOW = 0
 MEDIUM = 1
 HIGH = 2
 
-Execute_Code = 0
-Overflow = 1
-Gain_privileges = 2
-Bypass_a_restriction_or_similar = 3
-Denial_Of_Service = 4
+EXECUTE_CODE = 0
+OVERFLOW = 1
+GAIN_PRIVILEGES = 2
+BYPASS_A_RESTRICTION_OR_SIMILAR = 3
+DENIAL_OF_SERVICE = 4
 CSRF = 5
-File_Inclusion = 6
-Cross_Site_Scripting = 7
-Sql_Injection = 8
-Obtain_Information = 9
-Directory_traversal = 10
-Http_response_splitting = 11
+FILE_INCLUSION = 6
+CROSS_SITE_SCRIPTING = 7
+SQL_INJECTION = 8
+OBTAIN_INFORMATION = 9
+DIRECTORY_TRAVERSAL = 10
+HTTP_RESPONSE_SPLITTING = 11
 
-df = pd.read_excel('Database_files/threats.xlsx', engine='openpyxl', index_col=0)
+
+def getMapping(string: str):  # Function to map string to an integer
+    if string == 'NETWORK':
+        return NETWORK
+    elif string == 'LOCAL':
+        return LOCAL
+    elif string == 'LOW':
+        return LOW
+    elif string == 'MEDIUM':
+        return MEDIUM
+    elif string == 'HIGH':
+        return HIGH
+    elif string == 'Execute Code':
+        return EXECUTE_CODE
+    elif string == 'Overflow':
+        return OVERFLOW
+    elif string == 'Gain privileges':
+        return GAIN_PRIVILEGES
+    elif string == 'Bypass a restriction or similar':
+        return BYPASS_A_RESTRICTION_OR_SIMILAR
+    elif string == 'CSRF':
+        return CSRF
+    elif string == 'File Inclusion':
+        return FILE_INCLUSION
+    elif string == 'CSRF':
+        return CSRF
+    elif string == 'Cross Site Scripting':
+        return CROSS_SITE_SCRIPTING
+    elif string == 'Sql Injection':
+        return SQL_INJECTION
+    elif string == 'Obtain Information':
+        return OBTAIN_INFORMATION
+    elif string == 'Directory traversal':
+        return FILE_INCLUSION
+    elif string == 'Http response splitting':
+        return HTTP_RESPONSE_SPLITTING
+    else:
+        return -1
 
 
 class Threat:
@@ -98,6 +137,19 @@ class Threat:
 
         print("SUCCESS")
 
+    Execute_Code = 0
+    Overflow = 1
+    Gain_privileges = 2
+    Bypass_a_restriction_or_similar = 3
+    Denial_Of_Service = 4
+    CSRF = 5
+    File_Inclusion = 6
+    Cross_Site_Scripting = 7
+    Sql_Injection = 8
+    Obtain_Information = 9
+    Directory_traversal = 10
+    Http_response_splitting = 11
+
 
 # MAPPING
 def mapData():
@@ -117,20 +169,26 @@ def getThreatTypes():
 def getAverageMetricFromCol(column: str):  # Average metric of a column
     temp: int = df[column].mean()
     math.trunc(temp)
-    test=str(round(temp,2))
+    test = str(round(temp, 2))
     return test
 
 
 def getModalFromCol(column: str):  # Most common metric from a column
-    temp = df[column].mode()
-    return temp
+    temp = df[column].mode()[0]
+    return str(temp)
+
+
+def getCountFromCol(column: str, value: str):
+    temp = df[column]
+    count = temp.loc[temp == value].count()
+    return count
 
 
 # DATA FROM THREAT TYPES
 def getAverageMetricFromCat(column: str, category: str):  # Average metric per category
     temp = df.loc[df['CATEGORY'] == category]
     mean = temp[column].mean()
-    meanFinal=str(round(mean,2))
+    meanFinal = str(round(mean, 2))
     return meanFinal
 
 
@@ -140,7 +198,7 @@ def getModalMetricFromCat(column: str, category: int):  # Average metric per cat
     return mean
 
 
-def getCountFromCat(category: int):
+def getCountFromCat(category: str):
     temp = df.loc[df['CATEGORY'] == category].count()
     return temp[0]
 
@@ -189,26 +247,14 @@ def searchByDesc(text: str):
 # Testing
 
 def main():
-    print(getAverageMetricFromCol("IMPACT"))
-    print(getAverageMetricFromCat("SCORE", 'Overflow'))
-    print(getModalFromCol("CATEGORY"))
-    print(getModalFromCol("TYPE"))
-    print(getCountFromCat(Overflow))
-    print(getThreatTypes())
-
-    print(searchByID("CVE-1999-0095").getDate())
-    search = searchByDesc("SunOS")
-    print(search[0].getCategory())
-    #  result = filterByMetric('SEVERITY', LOW)[0].score
-    #   print(result)
-    result = filterByMetric('IMPACT', 10)[0].exploitability
-    print(result)
-
-    print("------------\n")
-
-    new = Threat("hello", "NETWORK", "MITM", 'messed up mate', 'MEDIUM', 4.5, 6.2, 4.2, '2023', 'df', 'fe')
-    new.addEntry(df)
-    print("SUCCESS")
+    # TESTS FOR EXAMPLE USAGE
+    print(getAverageMetricFromCol("IMPACT"))  # gets the average impact of all threats
+    print(getAverageMetricFromCat("SCORE", 'Overflow'))  # gets the average score of an overflow threat
+    print(getModalFromCol("CATEGORY"))  # gets the most common category of threat
+    print(getCountFromCat('Overflow'))  # gets the number of overflow threats
+    print(getThreatTypes())  # prints the list of all threats
+    print(getModalFromCol("TYPE"))  # gets the most common type of threat
+    print(getCountFromCol('TYPE', 'LOCAL'))  # gives the number of local threats
 
 
 main()
