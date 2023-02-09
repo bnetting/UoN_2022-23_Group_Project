@@ -12,14 +12,18 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         self.ui = Ui_MainWindow() # Puts ui_welcome_Page into variable
         self.ui.setupUi(self) # Sets up the screen
 
-        self.nextPage = Welcome_Page #Used to tell the program which page to move to next
+        self.nextPage = Welcome_Page # Used to tell the program which page to move to next
 
-        self.openWelcomePage() #Runs at the start of every program, and will contain the animations for bringing the welcome screen into view
+        self.openWelcomePage() # Runs at the start of every program, and will contain the animations for bringing the welcome screen into view
 
+        # Button connections
         self.ui.moveToLoginButton.clicked.connect(lambda: self.changePage(Welcome_Page,Login_Page))
         self.ui.loginPushButton.clicked.connect(lambda: self.checkLoginDetails())
         self.ui.adminToggleSideMenuButton.clicked.connect(lambda: self.toggleSideBar(self.ui.adminSidePanelFrame))
         self.ui.Menu.clicked.connect(lambda: self.toggleSideBar(self.ui.menubar))
+        self.ui.threatstbn.clicked.connect(lambda: openThreatsPage(self))
+        self.ui.adminThreatButton.clicked.connect(lambda: openThreatsPage(self))
+        
 
 
     #Toggles a side bar between hidden and shown by changing it's width between 0 and 150
@@ -41,12 +45,9 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         if(currentPageIndex == Welcome_Page):
             self.closeWelcomePage()
         elif(currentPageIndex == Login_Page):
-            if(nextPageIndex == Admin_Home_Page):
-                self.nextPage = Admin_Home_Page
-            elif(nextPageIndex == User_Home_Page):
-                self.nextPage = User_Home_Page
             self.closeLoginPage()
-            
+        elif(currentPageIndex == Admin_Home_Page):
+            self.closeAdminHomePage()
             
             
     def openWelcomePage(self):
@@ -101,13 +102,43 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         self.ui.adminThreatsFrame1.setLayout(layout1)
         self.ui.adminThreatsFrame2.setLayout(layout2)
 
-        # TODO: @ben Link to threats page
+        #-------------------------------------
+        #ANIMATIONS
+        #-------------------------------------
+
+    def closeAdminHomePage(self):
+        #-------------------------------------
+        #ANIMATIONS
+        #-------------------------------------        
+        openThreatsPage()
+
+    def openUserHomePage(self):
+        self.ui.stackedWidget.setCurrentIndex(User_Home_Page)
+
+        x1 = [0, 1, 2, 3, 4]
+        y1 = [50, 200, 140, 110, 65]
+        lineGraph = MplCanvas(self, Line_Graph, x1, y1)
+
+        topLayout = QHBoxLayout()
+        topLayout.addWidget(lineGraph)
+        self.ui.frame_8.setLayout(topLayout)
+
+        x2 = ['A','B','C','D','E']
+        y2 = [20,15,20,50,40]
+        barGraph = MplCanvas(self, Bar_Chart, x2, y2)
+        bottomLayout = QHBoxLayout()
+        bottomLayout.addWidget(barGraph)
+        self.ui.frame_9.setLayout(bottomLayout)
 
         #-------------------------------------
         #ANIMATIONS
         #-------------------------------------
 
-
+    def closeUserHomePage(self):
+        #-------------------------------------
+        #ANIMATIONS
+        #-------------------------------------
+        openThreatsPage()
 
     def detectPress(self, selected, deselected):
         for cell in selected.indexes():
@@ -123,6 +154,7 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         # Ethan: I am hard coding the table values so that I have full control over them
         #        and understand how the table works, please don't use the editor to add data as we will
         #        need to iterate over data to add columns in the future anyway
+        # Ben: Ok
 
 
         self.ui.tableWidget.setColumnCount(2)
@@ -155,34 +187,6 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         self.ui.stackedWidget.setCurrentIndex(6)
         self.ui.templateTitleLabel.setText(store.title)
         self.ui.templateReturnBtn.clicked.connect(lambda: openThreatsPage(self))
-
-    def openUserHomePage(self):
-        self.ui.stackedWidget.setCurrentIndex(User_Home_Page)
-
-        x1 = [0, 1, 2, 3, 4]
-        y1 = [50, 200, 140, 110, 65]
-        lineGraph = MplCanvas(self, Line_Graph, x1, y1);
-
-        topLayout = QHBoxLayout()
-        topLayout.addWidget(lineGraph)
-        self.ui.frame_8.setLayout(topLayout)
-
-        x2 = ['A','B','C','D','E']
-        y2 = [20,15,20,50,40]
-        barGraph = MplCanvas(self, Bar_Chart, x2, y2)
-        bottomLayout = QHBoxLayout()
-        bottomLayout.addWidget(barGraph)
-        self.ui.frame_9.setLayout(bottomLayout)
-
-
-        # navigate to threats page from user overview
-        self.ui.threatstbn.clicked.connect(lambda: openThreatsPage(self))
-
-
-        #-------------------------------------
-        #ANIMATIONS
-        #-------------------------------------
-
 
 
 

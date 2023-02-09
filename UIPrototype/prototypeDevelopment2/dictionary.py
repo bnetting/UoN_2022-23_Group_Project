@@ -6,6 +6,7 @@ Register_Page = 1
 Login_Page = 2
 User_Home_Page = 3
 Admin_Home_Page = 4
+Threats_Page = 5
 
 # --------- Access Levels ----------
 User_Access_Level = 2
