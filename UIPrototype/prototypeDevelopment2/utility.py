@@ -40,13 +40,13 @@ def util_try_register():
 def util_editStore_title(payload):
     store.title = payload
 
-# A function to perform an action when the user hovers over a graph
 
     
 # A class to construct graphs of a given size and return them to go in a layout frame
 class MplCanvas(FigureCanvasQTAgg):
     def __init__(self, parent=None, typeOfGraph=int,xAxes=list,yAxes=list):     
-
+        
+        # A function to perform an action when the user hovers over a graph
         def chart_hover(event):
             pass
             
@@ -54,7 +54,7 @@ class MplCanvas(FigureCanvasQTAgg):
         ax = fig.add_subplot(111)
         
         if(typeOfGraph == Line_Graph):
-            ax.plot(xAxes,yAxes,linewidth=2)
+            ax.plot(xAxes,yAxes,linewidth=2,marker="D")
             ax.set_title("Test Line Graph")
             test = 1
             
@@ -62,9 +62,6 @@ class MplCanvas(FigureCanvasQTAgg):
             ax.bar(xAxes,yAxes)
             ax.set_title("Test Bar Chart")
             test = 2
-            
-            print(xAxes)
-            print(yAxes)
             
         elif(typeOfGraph == Pie_Chart):
             ax.pie(yAxes, labels=xAxes, explode=[0.035,0.035],autopct='%1.1f%%',shadow=True)
@@ -79,10 +76,7 @@ class MplCanvas(FigureCanvasQTAgg):
 
         @crs.connect("add")
         def _(sel):
-            if(typeOfGraph == Line_Graph):
-                sel.annotation.set_text('[{},{}]'.format(round(sel.target[0],2),round(sel.target[1],2)))
-            elif(typeOfGraph == Bar_Chart):
-                sel.annotation.set_text('{}'.format(round(sel.target[1],2)))
+            sel.annotation.set_text('{}'.format(round(sel.target[1],2)))
             sel.annotation.get_bbox_patch().set(fc="white", alpha=1)
             sel.annotation.arrow_patch.set(arrowstyle="simple", fc="black", alpha=.25)            
         

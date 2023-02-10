@@ -85,15 +85,19 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         
         self.ui.adminSidePanelFrame.setMaximumWidth(0)
 
-        #///////////// TEST DATA \\\\\\\\\\\\\\\        
-        x1 = [0, 1, 2, 3, 4]
-        y1 = [50, 200, 140, 110, 65]        
+        #///////////// TEST DATA \\\\\\\\\\\\\\\
+        x1 = ['2019-03-25','2019-04-30','2019-06-11','2019-07-01','2019-08-13','2019-10-07','2019-12-17','2019-12-30']
+        y1 = []
+        for i in range(len(x1)):
+            y1.append(float(getCountFromCol('DATE',x1[i])))
+        
+        print(getCountFromCol("DATE",'2019-06-11'))
         
         x2 = self.testTopics
         y2 = []
                 
-        for i in range(len(x2)):
-            y2.append(float(getAverageMetricFromCat('EXPLOITABILITY',x2[i])))
+        for j in range(len(x2)):
+            y2.append(float(getAverageMetricFromCat('EXPLOITABILITY',x2[j])))
         #///////////////////\\\\\\\\\\\\\\\\\\\\
             
         lineGraph = MplCanvas(self,Line_Graph,x1,y1)
