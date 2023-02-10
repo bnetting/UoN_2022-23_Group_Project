@@ -3,20 +3,21 @@ Calculations and helper functions to calculate optimal solutions
 
 Libraries needed "pip install <>"
 - tabulate
+- pulp
 
-@author: Viren Vadhvana
+@:author Viren Vadhvana
 """
 
 from tabulate import *
 from pulp import *
 
 
-def tabulate_countermeasures():
+def display_countermeasures():
     """
     Function to display the contents of the countermeasures database in a tabular format
 
-    @:param: None
-    @:returns: None
+    @:param None
+    @:returns None
     """
     table_data = []
 
@@ -29,15 +30,16 @@ def tabulate_countermeasures():
             values = i.split()
             table_data.append(values)
 
+        # Output as a table
         print(tabulate(table_data, headers=["Countermeasure", "Covers", "Cost", "Effectiveness"]))
 
 
-def tabulate_threats():
+def display_threats():
     """
     Function to display the contents of the threats database in a tabular format
 
-    @:param: None
-    @:returns: None
+    @:param None
+    @:returns None
     """
     table_data = []
 
@@ -50,22 +52,15 @@ def tabulate_threats():
             values = i.split()
             table_data.append(values)
 
+        # Output as a table
         print(tabulate(table_data, headers=["Threat Name", "Severity Score"]))
 
 
-def tabulate_ordered_countermeasures(rank):
+def tabulate_countermeasures():
     """
-    Function to display the countermeasures on a single line with all coverage and sorted on any column passed in
+    Function to display the countermeasures on a single line with all coverage
 
-    @param rank: An integer representing the column header by which the data should be ordered
-
-       ` # To rank by Name, rank=0
-        # To rank by highest effectiveness against threat Alpha, rank=1
-        # To rank by highest effectiveness against threat Beta, rank=2
-        # To rank by highest effectiveness against threat Gamma, rank=3
-        # To rank by highest effectiveness against threat Delta, rank=4
-        # To rank by Cost, rank=5`
-
+    @:param None
     @:returns tabulated: a table of countermeasures with one countermeasure per line
     """
     # Read and automatically close the file after use
@@ -93,6 +88,28 @@ def tabulate_ordered_countermeasures(rank):
     for key, value in countermeasures_dict.items():
         tabulated.append([key] + [value['E_Alpha'], value['E_Beta'], value['E_Gamma'], value['E_Delta'], value['Cost']])
 
+    # print("Tabulate function:")
+    # print(tabulate(tabulated, headers=['Countermeasure', 'E_Alpha', 'E_Beta', 'E_Gamma', 'E_Delta', 'Cost']), '\n')
+
+    return tabulated
+
+
+def order_tabulated_countermeasures(table, rank):
+    """
+    Function to order a table by an input
+
+    :param table: The table to be ordered
+    :param rank: An integer representing the column header by which the data should be ordered
+
+        # To rank by Name, rank=0
+        # To rank by highest effectiveness against threat Alpha, rank=1
+        # To rank by highest effectiveness against threat Beta, rank=2
+        # To rank by highest effectiveness against threat Gamma, rank=3
+        # To rank by highest effectiveness against threat Delta, rank=4
+        # To rank by Cost, rank=5
+
+    :return: tabulated: an ordered table
+    """
     # Sort the result by the parameter
     # Reverse the list if showing effectiveness
     rev = False
@@ -102,51 +119,54 @@ def tabulate_ordered_countermeasures(rank):
     def sort_by(cm):
         return cm[rank]
 
-    tabulated = sorted(tabulated, key=sort_by, reverse=rev)
+    tabulated = sorted(table, key=sort_by, reverse=rev)
 
-    print(tabulate(tabulated, headers=['Countermeasure', 'E_Alpha', 'E_Beta', 'E_Gamma', 'E_Delta', 'Cost']))
+    # print("Sorted function: ")
+    # print(tabulate(tabulated, headers=['Countermeasure', 'E_Alpha', 'E_Beta', 'E_Gamma', 'E_Delta', 'Cost']), '\n')
 
     return tabulated
 
 
-def optimise_specific_budget(budget):  # threats needed - use #args for multiple
+def optimise_budget_given_threats(budget, threats):
     """
-    For a given budget, print the optimal solution to the threats Alpha and Gamma
+    Function to calculate the best countermeasures to buy given a budget and the threats that need to be covered
 
-    :param budget: Integer value representing the maximum costs the countermeasures can total
-    :return: None
+    :param budget: The maximum value the user is willing to spend on countermeasures
+    :param threats: A list of threats that need to be countered
+    :return: solutions: A list containing the optimal countermeasures to buy
+
     """
     # Store the tabulated data in a list (Ordering is irrelevant)
-    cm_data = tabulate_ordered_countermeasures(0)
+    cm_data = order_tabulated_countermeasures(tabulate_countermeasures(), 0)
 
     # Map the necessary columns to lists
-    # TODO: Make this not hard coded
     countermeasures = []
     costs = []
-    e_alpha = []
-    e_gamma = []
+    threats_data = []
+    solutions = []
     for i in cm_data:
         countermeasures.append(i[0])
         costs.append(i[5])
-        e_alpha.append(i[1])
-        e_gamma.append(i[3])
+        threat_data = []
+        for j in range(len(threats)):
+            if threats[j] < len(i):
+                threat_data.append(i[threats[j]])
+            else:
+                threat_data.append(0)
+        threats_data.append(threat_data)
 
     problem = LpProblem("Optimal Countermeasures", LpMaximize)
 
     # Create binary variables for each countermeasure
     countermeasure_vars = LpVariable.dicts("Countermeasure", countermeasures, 0, 1, LpBinary)
 
-    # Objective function to maximise the sum of the e_alpha and e_gamma values
-    # Calculate the sum of alpha and gamma for each countermeasure
-    alpha_sum = 0
+    # Objective function to maximise the sum of the chosen threat values
+    threat_sum = 0
     for i in range(len(countermeasures)):
-        alpha_sum += e_alpha[i] * countermeasure_vars[countermeasures[i]]
+        for j in range(len(threats)):
+            threat_sum += threats_data[i][j] * countermeasure_vars[countermeasures[i]]
 
-    gamma_sum = 0
-    for i in range(len(countermeasures)):
-        gamma_sum += e_gamma[i] * countermeasure_vars[countermeasures[i]]
-
-    problem += alpha_sum + gamma_sum
+    problem += threat_sum
 
     # Sum of the costs must be <= the budget
     cost_sum = 0
@@ -163,12 +183,15 @@ def optimise_specific_budget(budget):  # threats needed - use #args for multiple
     no_solutions = True
     for solution in problem.variables():
         if solution.varValue == 1:
+            solutions.append(solution.name)
             print(solution.name)
             no_solutions = False
 
     if no_solutions:
         print("You should consider increasing your spending budget as the current budget will not cover all threats")
         print("However, here is how your budget could be optimally spent: ")
+
+    return solutions
 
 
 """
@@ -179,24 +202,11 @@ def optimise_specific_budget(budget):  # threats needed - use #args for multiple
 ----------------------------------------------------------------------------------
 """
 
-tabulate_countermeasures()
-print()
-tabulate_threats()
-print()
-tabulate_ordered_countermeasures(0)
-print()
-tabulate_ordered_countermeasures(1)
-print()
-tabulate_ordered_countermeasures(2)
-print()
-tabulate_ordered_countermeasures(3)
-print()
-tabulate_ordered_countermeasures(4)
-print()
-tabulate_ordered_countermeasures(5)
-print()
-optimise_specific_budget(100)
-print()
-optimise_specific_budget(1000)
-print()
-optimise_specific_budget(5000)
+# print(order_tabulated_countermeasures(tabulate_countermeasures(), 5))
+
+print("////////////////////////////////////////////////////////////////", optimise_budget_given_threats(100, [1, 3]))
+print("////////////////////////////////////////////////////////////////", optimise_budget_given_threats(1000, [1, 3]))
+print("////////////////////////////////////////////////////////////////", optimise_budget_given_threats(5000, [1, 3]))
+print("////////////////////////////////////////////////////////////////", optimise_budget_given_threats(1000, [4]))
+print("////////////////////////////////////////////////////////////////", optimise_budget_given_threats(1000, [1, 2, 3, 4]))
+print("////////////////////////////////////////////////////////////////", optimise_budget_given_threats(750, [1, 2, 3, 4]))

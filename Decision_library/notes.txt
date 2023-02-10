@@ -8,4 +8,22 @@ D	            0	        0	        0	        0.4	        100
 
 Where E_x is the effectiveness of the countermeasure against the threat "x"
 
+Show the total effectiveness using combinatorial probability
+E.g Countermeasures A B and C chosen:
 
+E_Alpha =
+E+Gamma = 0.4
+
+                A           B
+
+
+                       /
+                0.8
+        /              \
+[start]
+                            0.25
+        \              /
+                0.2
+                       \
+
+0.8+(0.2*0.25) = 0.85
