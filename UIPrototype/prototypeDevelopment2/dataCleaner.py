@@ -14,7 +14,7 @@ import pandas as pd
 # TODO getters and setters for values
 global df
 
-df = pd.read_excel('Database_files/threats.xlsx', engine='openpyxl', index_col=0)
+df = pd.read_excel('threats.xlsx', engine='openpyxl', index_col=0)
 
 NETWORK = 0
 LOCAL = 1

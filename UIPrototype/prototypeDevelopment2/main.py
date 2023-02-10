@@ -183,15 +183,15 @@ class MainWindow(QMainWindow): #Setup code for welcome page
         self.ui.tableWidget.setRowCount(10)
         # To Add a single item, TODO: put this in a loop
         item = QTableWidgetItem()
-        item.setText("Test")
+        item.setText("DDOS")
         self.ui.tableWidget.setItem(0,0,item)
 
         item = QTableWidgetItem()
-        item.setText("osc hard")
+        item.setText("Phishing")
         self.ui.tableWidget.setItem(1,0,item)
 
         item = QTableWidgetItem()
-        item.setText("rip dms")
+        item.setText("Man In The Middle")
         self.ui.tableWidget.setItem(2,0,item)
 
 
